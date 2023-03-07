@@ -4,6 +4,6 @@ type Button = {
   label: string
 } & ComponentProps<'button'>
 
-export const Button = ({ label }: Button) => {
-  return <button>{label}</button>
+export const Button = ({ label,...props }: Button) => {
+  return <button {...props}>{label}</button>
 }
