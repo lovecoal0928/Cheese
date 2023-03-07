@@ -1,6 +1,10 @@
 {
   "compilerOptions": {
-    "baseUrl": "./",
+    "baseUrl": "src",
+    // 追加
+    "paths": {
+      "@/components/*": ["components/*"]
+    },
     "target": "es5",
     "module": "esnext",
     "jsx": "preserve",
