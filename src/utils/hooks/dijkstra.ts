@@ -60,7 +60,7 @@ function getAllPaths(graph: Graph): string[][] {
             const start = nodes[i];
             const end = nodes[j];
             const shortestPath = dijkstra(graph, start);
-            let path = [end];
+            const path = [end];
             let node = end;
             while (node !== start) {
                 node = shortestPath[node];
