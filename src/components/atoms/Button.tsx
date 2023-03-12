@@ -1,7 +1,7 @@
 import { ComponentProps } from 'react'
 
 type Button = {
-  label: string
+  label?: string
 } & ComponentProps<'button'>
 
 export const Button = ({ label,...props }: Button) => {
