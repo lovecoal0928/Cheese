@@ -1,4 +1,4 @@
-import { Graph } from "types/Graph";
+import { Graph } from "types/";
 
 const INFINITY = Number.MAX_SAFE_INTEGER;
 

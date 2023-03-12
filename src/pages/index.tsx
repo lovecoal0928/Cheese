@@ -1,5 +1,5 @@
 import { NextPage } from 'next'
-import { Graph } from 'types/Graph';
+import { Graph } from 'types/';
 import { getShortestPath } from 'utils/hooks/dijkstra';
 
 const Home: NextPage = () => {
