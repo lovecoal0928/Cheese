@@ -1,10 +1,11 @@
 import { NextPage } from 'next'
+import { Graph } from 'types/Graph';
 import { getShortestPath } from 'utils/hooks/dijkstra';
 
 const Home: NextPage = () => {
 
   // グラフの定義
-  const graph = {
+  const graph: Graph = {
     A: { B: 5, C: 1, D: 6, E: 8, F: 4 },
     B: { A: 5, C: 2, D: 1, E: 5, F: 7 },
     C: { A: 1, B: 2, D: 4, E: 8, F: 3 },

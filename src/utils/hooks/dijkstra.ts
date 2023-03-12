@@ -1,6 +1,8 @@
+import { Graph } from "types/Graph";
+
 const INFINITY = Number.MAX_SAFE_INTEGER;
 
-function dijkstra(graph: { [key: string]: { [key: string]: number } }, start: string): { [key: string]: string } {
+function dijkstra(graph: Graph, start: string): { [key: string]: string } {
     // グラフの頂点数を取得
     const nodes = Object.keys(graph);
 
@@ -44,13 +46,13 @@ function dijkstra(graph: { [key: string]: { [key: string]: number } }, start: st
         }
 
         current = nextNode;
-        visited[current] = true;
+        visited[current!] = true;
     }
 
     return shortestPath;
 }
 
-function getAllPaths(graph: { [key: string]: { [key: string]: number } }): string[][] {
+function getAllPaths(graph: Graph): string[][] {
     const nodes = Object.keys(graph);
     const paths: string[][] = [];
     for (let i = 0; i < nodes.length; i++) {
@@ -96,7 +98,7 @@ export function getShortestPath(graph: { [key: string]: { [key: string]: number 
         }
     }
 
-    return shortestPath;
+    return shortestPath!;
 }
 
 
