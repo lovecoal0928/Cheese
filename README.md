@@ -71,6 +71,8 @@ feature/name/#2(issue)
 </tbody>
 </table>
 
+https://qiita.com/takano-h/items/8731d8e7413d7b1f6d7b
+
 ## Getting Started
 
 First, run the development server:
