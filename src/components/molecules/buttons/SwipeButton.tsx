@@ -1,5 +1,5 @@
 import React, { CSSProperties } from 'react'
-import { Styles } from 'types/style'
+import { Styles } from 'types/index'
 import { Button } from '../../atoms/Button'
 import { Image } from '../../atoms/Image'
 

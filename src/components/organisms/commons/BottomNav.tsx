@@ -1,13 +1,9 @@
 import { Nav } from '@/components/atoms/Nav'
 import { NavButton } from '@/components/molecules/buttons/NavButton'
 import React from 'react'
-import { Styles } from 'types/style'
+import { Styles } from 'types/index'
 
-type BottomNav = {
-    path:string
-}
-
-export const BottomNav = (props: BottomNav) => {
+export const BottomNav = () => {
   return (
     <Nav style={style}>
       <NavButton src="" label='マップ'/>
