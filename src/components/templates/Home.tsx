@@ -5,13 +5,20 @@ import { Post } from 'types/index'
 import { BottomNav } from '../organisms/commons/BottomNav'
 import { Flex } from '../atoms/Flex'
 
+type Props={
+    data:Post[]
+    handlePushRouter:(pathname:string)=>void
+}
 
-export const Home = (props:Post) => {
+export const Home = (props:Props) => {
+    const {data,handlePushRouter} = props
   return (
     <Flex style={style.container}>
-      <SpotCard {...props}/>
+        {data.map((value:Post,index:number)=>       
+            <SpotCard title={value.title} address={value.address} src={value.src} comment={value.comment} key={index}/>
+        )}
       <SwipeButtons />
-      <BottomNav/>
+      <BottomNav handlePushRouter={handlePushRouter}/>
     </Flex>
   )
 }
