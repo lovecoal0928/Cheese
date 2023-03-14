@@ -1,8 +1,10 @@
-import React, { ReactNode } from "react";
+import React, { CSSProperties, ReactNode } from 'react'
 
 type Nav = {
-    children:ReactNode
+  children: ReactNode
+  style:CSSProperties
 }
-export const Nav = ({children}:Nav) => {
-  return <nav>{children}</nav>
-};
+export const Nav = (props: Nav) => {
+  const { children,style } = props
+  return <nav style={style}>{children}</nav>
+}
