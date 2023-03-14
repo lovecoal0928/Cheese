@@ -43,6 +43,34 @@ etc. feat: 〇〇なため、△△を追加
 
 feature/name/#2(issue)
 
+## Atomic Design
+<table>
+<thead>
+<tr>
+<th style="text-align: center">レイヤー</th>
+<th style="text-align: left">責務</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center">pages</td>
+<td style="text-align: left">基本的には Route コンポーネントの直下で呼ばれる<br>API リクエスト/レスポンスのハンドリングを行う<br>クエリパラメータの取得やリダイレクトなど router 関連の処理を行う<br>redux や context に依存する値や関数を呼び出す<br>template, organisms を呼び出す<br>loading/error/empty 等の状態に応じて呼び出す子コンポーネントを切り替える<br>基本的にはCSSファイルを持たない</td>
+</tr>
+<tr>
+<td style="text-align: center">templates</td>
+<td style="text-align: left">ロジックを持たない<br>pagesコンポーネントからのみ呼ばれる<br>1ページあたり1回だけ呼ばれる<br>DOMツリーの最も root に近い場所にレンダリングされる<br>CSSファイルを持つ</td>
+</tr>
+<tr>
+<td style="text-align: center">organisms</td>
+<td style="text-align: left">ドメイン知識を持つ<br>ロジックを持つ場合は表示を制御するコンポーネントと分けて実装する<br>CSSファイルを持っても良い</td>
+</tr>
+<tr>
+<td style="text-align: center">atoms/molecules</td>
+<td style="text-align: left">基本的にはドメイン知識を持たない<br>複数 organisms から参照される<br>CSSファイルを持つ</td>
+</tr>
+</tbody>
+</table>
+
 ## Getting Started
 
 First, run the development server:
