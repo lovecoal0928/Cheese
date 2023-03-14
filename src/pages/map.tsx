@@ -1,19 +1,23 @@
 import { GoogleMap, LoadScriptNext, useJsApiLoader } from "@react-google-maps/api";
 import { NextPage } from "next";
-import React, { useCallback, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 
-const center = {
-  lat: -3.745,
-  lng: -38.523
-}
+const APIkey = process.env.NEXT_PUBLIC_GCP_KEY as string;
 
 const map: NextPage = () => {
-  const APIkey = "AIzaSyCw2xTxfg_-I5lbXu6XqR3vATpm-GV_jog"
+  const [center, setCenter] = useState({ lat: 0, lng: 0 });
 
-  const center = {
-    lat: -3.745,
-    lng: -38.523
-  }
+
+  useEffect(() => {
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition((position) => {
+        setCenter({
+          lat: position.coords.latitude,
+          lng: position.coords.longitude,
+        });
+      });
+    }
+  }, []);
 
   return (
     <LoadScriptNext googleMapsApiKey={APIkey}>
