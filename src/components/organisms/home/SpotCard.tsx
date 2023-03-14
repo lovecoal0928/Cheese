@@ -2,7 +2,7 @@ import { Card } from '@/components/atoms/Card'
 import { Image } from '@/components/atoms/Image'
 import { Typography } from '@/components/atoms/Typography'
 import React from 'react'
-import { Styles } from 'types/style'
+import { Styles } from 'types/index'
 
 type Props={
     title:string
