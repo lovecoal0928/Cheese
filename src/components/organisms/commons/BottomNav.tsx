@@ -1,6 +1,7 @@
 import { Nav } from '@/components/atoms/Nav'
-import { NavButton } from '@/components/molecules/NavButton'
+import { NavButton } from '@/components/molecules/buttons/NavButton'
 import React from 'react'
+import { Styles } from 'types/style'
 
 type BottomNav = {
     path:string
@@ -8,7 +9,7 @@ type BottomNav = {
 
 export const BottomNav = (props: BottomNav) => {
   return (
-    <Nav>
+    <Nav style={style}>
       <NavButton src="" label='マップ'/>
       <NavButton src="" label='マップ'/>
       <NavButton src="" label='ホーム'/>
@@ -17,3 +18,8 @@ export const BottomNav = (props: BottomNav) => {
     </Nav>
   )
 }
+  const style:Styles = {
+    Nav:{
+      padding:"10px"
+    }
+  }
