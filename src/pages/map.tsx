@@ -1,4 +1,4 @@
-import { GoogleMap, LoadScriptNext, useJsApiLoader } from "@react-google-maps/api";
+import { GoogleMap, LoadScriptNext, Marker, MarkerF, useJsApiLoader } from "@react-google-maps/api";
 import { NextPage } from "next";
 import React, { useCallback, useEffect, useState } from "react";
 
@@ -23,13 +23,19 @@ const map: NextPage = () => {
     <LoadScriptNext googleMapsApiKey={APIkey}>
       <GoogleMap
         mapContainerStyle={{
-          width: "400px",
-          height: "400px",
+          width: "100%",
+          height: "100vh",
         }}
         center={center}
-        zoom={10}
-      >
+        zoom={15}
+        options={{
+          gestureHandling: "greedy",
+          streetViewControl: false,
+          fullscreenControl: false,
 
+        }}
+      >
+        <MarkerF position={center} />
       </GoogleMap>
 
 
