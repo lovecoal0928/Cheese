@@ -3,14 +3,18 @@ import { NavButton } from '@/components/molecules/buttons/NavButton'
 import React from 'react'
 import { Styles } from 'types/index'
 
-export const BottomNav = () => {
+type Props={
+  handlePushRouter:(pathname:string)=>void
+}
+export const BottomNav = (props:Props) => {
+  const {handlePushRouter} = props
   return (
     <Nav style={style}>
-      <NavButton src="" label='マップ'/>
-      <NavButton src="" label='マップ'/>
-      <NavButton src="" label='ホーム'/>
-      <NavButton src="" label='投稿'/>
-      <NavButton src="" label='一覧'/>
+      <NavButton src=""  handlePushRouter={handlePushRouter} pathname="/map" label='マップ'/>
+      <NavButton src=""  handlePushRouter={handlePushRouter} pathname="/route" label='ルート'/>
+      <NavButton src=""  handlePushRouter={handlePushRouter} pathname="/home" label='ホーム'/>
+      <NavButton src=""  handlePushRouter={handlePushRouter} pathname="/post" label='投稿'/>
+      <NavButton src=""  handlePushRouter={handlePushRouter} pathname="/list" label='一覧'/>
     </Nav>
   )
 }
