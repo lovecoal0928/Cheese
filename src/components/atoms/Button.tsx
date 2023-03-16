@@ -1,9 +1,9 @@
-import { ComponentProps } from 'react'
+import { ComponentProps, ReactNode } from 'react'
 
 type Button = {
-  label: string
+  children: ReactNode
 } & ComponentProps<'button'>
 
-export const Button = ({ label,...props }: Button) => {
-  return <button {...props} >{label}</button>
+export const Button = ({ children,...props}: Button) => {
+  return <button {...props} >{children}</button>
 }
