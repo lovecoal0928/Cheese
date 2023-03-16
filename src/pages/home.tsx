@@ -4,7 +4,7 @@ import React from 'react'
 import { useRouter } from 'next/router'
 import { Post } from 'types'
 import { handlePushRouter } from 'utils/libs/handlePushRouter'
-import { PAGE_NAME } from 'constance/PathName'
+import { PAGE_NAME } from 'constants/PathName'
 
 const home: NextPage = () => {
   const router = useRouter()
