@@ -5,7 +5,7 @@
     "paths": {
       "@/components/*": ["components/*"]
     },
-    "target": "es5",
+    "target": "es6",
     "module": "esnext",
     "jsx": "preserve",
     "strict": true,
