@@ -21,9 +21,6 @@ const Home: NextPage = () => {
 
 
 
-
-
-
   return (
     <>
       <div>

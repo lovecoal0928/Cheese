@@ -1,19 +1,25 @@
 import { Nav } from '@/components/atoms/Nav'
-import { NavButton } from '@/components/molecules/NavButton'
+import { NavButton } from '@/components/molecules/buttons/NavButton'
 import React from 'react'
+import { Styles } from 'types/index'
 
-type BottomNav = {
-    path:string
+type Props={
+  handlePushRouter:(pathname:string)=>void
 }
-
-export const BottomNav = (props: BottomNav) => {
+export const BottomNav = (props:Props) => {
+  const {handlePushRouter} = props
   return (
-    <Nav>
-      <NavButton src="" label='マップ'/>
-      <NavButton src="" label='マップ'/>
-      <NavButton src="" label='ホーム'/>
-      <NavButton src="" label='投稿'/>
-      <NavButton src="" label='一覧'/>
+    <Nav style={style}>
+      <NavButton src=""  handlePushRouter={handlePushRouter} pathname="/map" label='マップ'/>
+      <NavButton src=""  handlePushRouter={handlePushRouter} pathname="/route" label='ルート'/>
+      <NavButton src=""  handlePushRouter={handlePushRouter} pathname="/home" label='ホーム'/>
+      <NavButton src=""  handlePushRouter={handlePushRouter} pathname="/post" label='投稿'/>
+      <NavButton src=""  handlePushRouter={handlePushRouter} pathname="/list" label='一覧'/>
     </Nav>
   )
 }
+  const style:Styles = {
+    Nav:{
+      padding:"10px"
+    }
+  }
