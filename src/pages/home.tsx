@@ -4,22 +4,17 @@ import React from 'react'
 import { useRouter } from 'next/router'
 import { Post } from 'types'
 import { handlePushRouter } from 'utils/libs/handlePushRouter'
+import { PAGE_NAME } from 'constance/PathName'
 
 const home: NextPage = () => {
   const router = useRouter()
   const PostData: Post[] = [{ title: '', address: '', src: '', comment: '' }]
-  const pageName = [
-    { path: 'home', label: 'ホーム', src: '' },
-    { path: 'map', label: 'マップ', src: '' },
-    { path: 'post', label: '投稿', src: '' },
-    { path: 'route', label: 'ルート', src: '' },
-    { path: 'list', label: 'リスト', src: '' },
-  ]
+
   return (
     <Home
       data={PostData}
       handlePushRouter={(pathname) => handlePushRouter(router, pathname)}
-      pageName={pageName}
+      PAGE_NAME={PAGE_NAME}
     />
   )
 }
