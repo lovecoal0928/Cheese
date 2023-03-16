@@ -12,7 +12,7 @@ export const BottomNav = (props:Props) => {
   return (
     <Nav style={style}>
       {pageName.map((value:{path:string,label:string,src:string},index:number)=>
-        <NavButton src={value.src}  handlePushRouter={handlePushRouter} pathname={value.path} label={value.label}/>
+        <NavButton src={value.src}  handlePushRouter={handlePushRouter} pathname={value.path} label={value.label} key={index}/>
       )}
     </Nav>
   )
