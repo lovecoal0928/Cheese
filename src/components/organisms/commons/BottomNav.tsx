@@ -5,16 +5,15 @@ import { Styles } from 'types/index'
 
 type Props={
   handlePushRouter:(pathname:string)=>void
+  pageName:{ path: string; label: string; src:string }[]
 }
 export const BottomNav = (props:Props) => {
-  const {handlePushRouter} = props
+  const {handlePushRouter,pageName} = props
   return (
     <Nav style={style}>
-      <NavButton src=""  handlePushRouter={handlePushRouter} pathname="/map" label='マップ'/>
-      <NavButton src=""  handlePushRouter={handlePushRouter} pathname="/route" label='ルート'/>
-      <NavButton src=""  handlePushRouter={handlePushRouter} pathname="/home" label='ホーム'/>
-      <NavButton src=""  handlePushRouter={handlePushRouter} pathname="/post" label='投稿'/>
-      <NavButton src=""  handlePushRouter={handlePushRouter} pathname="/list" label='一覧'/>
+      {pageName.map((value:{path:string,label:string,src:string},index:number)=>
+        <NavButton src={value.src}  handlePushRouter={handlePushRouter} pathname={value.path} label={value.label}/>
+      )}
     </Nav>
   )
 }
