@@ -1,3 +1,4 @@
+import { PAGE_NAME } from 'constance/PathName'
 import { useRouter } from 'next/router'
 import React from 'react'
 import { Post } from 'types/supabase'
@@ -26,7 +27,7 @@ export const List = (props: Props) => {
           <TextDetail title={value.title} address={value.address} />
         </Card>
       ))}
-      <BottomNav handlePushRouter={handlePushRouter}/>
+      <BottomNav handlePushRouter={handlePushRouter} PAGE_NAME={PAGE_NAME}/>
     </Flex>
   )
 }

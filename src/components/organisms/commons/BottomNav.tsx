@@ -3,22 +3,33 @@ import { NavButton } from '@/components/molecules/buttons/NavButton'
 import React from 'react'
 import { Styles } from 'types/index'
 
-type Props={
-  handlePushRouter:(pathname:string)=>void
-  pageName:{ path: string; label: string; src:string }[]
+type Props = {
+  handlePushRouter: (pathname: string) => void
+  PAGE_NAME: { path: string; label: string; src: string }[]
 }
-export const BottomNav = (props:Props) => {
-  const {handlePushRouter,pageName} = props
+export const BottomNav = (props: Props) => {
+  const { handlePushRouter, PAGE_NAME } = props
   return (
     <Nav style={style}>
-      {pageName.map((value:{path:string,label:string,src:string},index:number)=>
-        <NavButton src={value.src}  handlePushRouter={handlePushRouter} pathname={value.path} label={value.label} key={index}/>
+      {PAGE_NAME.map(
+        (
+          value: { path: string; label: string; src: string },
+          index: number,
+        ) => (
+          <NavButton
+            src={value.src}
+            handlePushRouter={handlePushRouter}
+            pathname={value.path}
+            label={value.label}
+            key={index}
+          />
+        ),
       )}
     </Nav>
   )
 }
-  const style:Styles = {
-    Nav:{
-      padding:"10px"
-    }
-  }
+const style: Styles = {
+  Nav: {
+    padding: '10px',
+  },
+}
