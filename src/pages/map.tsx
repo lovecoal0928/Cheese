@@ -23,11 +23,6 @@ const locates = [
   },
 ]
 
-const origin = {
-  lat: 34.933249,
-  lng: 137.168636,
-}
-
 const destination = {
   lat: 34.93145,
   lng: 137.16265,
@@ -55,6 +50,7 @@ const map: NextPage = () => {
     }
   }, []);
 
+  // 現在のルート
   const [currentDirection, setCurrentDirection] = useState(null)
 
   const directionsCallback = useCallback((googleRes: any) => {
@@ -72,6 +68,14 @@ const map: NextPage = () => {
       }
     }
   }, [])
+
+  // ポイント集
+  const [selectedPoints, setSelectedPoints] = useState([])
+
+  // マーカークリック時
+  const handleClickMarkerF = () => {
+
+  }
 
   return (
     <LoadScriptNext googleMapsApiKey={APIkey}>
@@ -92,7 +96,7 @@ const map: NextPage = () => {
         {locates.map((locate, i) => (
           <MarkerF position={locate} key={i} />
         ))}
-        <MarkerF position={center} />
+        <MarkerF position={center} onClick={handleClickMarkerF} />
         <DirectionsService
           options={{
             origin: center,
