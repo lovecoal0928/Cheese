@@ -1,17 +1,39 @@
-import React from 'react'
-import { SpotCard } from '../organisms/home/SpotCard'
-import { SwipeButtons } from '../organisms/home/SwipeButtons'
-import { BottomNav } from '../organisms/commons/BottomNav'
-import { Flex } from '../atoms/Flex'
+import React, { ChangeEvent, RefObject } from 'react'
 import { PostHeader } from '../organisms/post/PostHeader'
 import { PostForm } from '../organisms/post/PostForm'
+import { PathName } from 'types/pathname'
 
-export const Post = () => {
+type Props = {
+  titleRef: RefObject<HTMLInputElement>
+  commentRef: RefObject<HTMLInputElement>
+  placeRef: RefObject<HTMLInputElement>
+  images: string[]
+  handleSetFiles: (e: ChangeEvent<HTMLInputElement>) => void
+  handlePushRouter: (pathname: string) => void
+  PAGE_NAME:PathName[]
+}
+export const Post = (props: Props) => {
+  const {
+    titleRef,
+    commentRef,
+    placeRef,
+    images,
+    handlePushRouter,
+    handleSetFiles,
+    PAGE_NAME
+  } = props
   return (
     <>
-      <PostHeader />
-      <PostForm />
+      <PostHeader handlePushRouter={handlePushRouter} PAGE_NAME={PAGE_NAME[0].path}/>
+      <PostForm
+        titleRef={titleRef}
+        commentRef={commentRef}
+        placeRef={placeRef}
+        images={images}
+        handleSetFiles={handleSetFiles}
+        handlePushRouter={handlePushRouter}
+        PAGE_NAME={PAGE_NAME[5].path}
+      />
     </>
   )
 }
-
