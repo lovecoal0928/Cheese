@@ -5,10 +5,12 @@ import { Styles } from "types";
 
 type Props={
   src:string
+  onClick:(pathname:string)=>void
+  PAGE_NAME:string
 }
 export const PostCancelButton = (props:Props) => {
-  const {src} = props
-  return <Button style={style.cancel}><Image alt="cancel" src={src}/></Button>;
+  const {src,onClick,PAGE_NAME} = props
+  return <Button style={style.cancel} onClick={()=>onClick(PAGE_NAME)}><Image alt="cancel" src={src}/></Button>;
 };
 
 const style:Styles={

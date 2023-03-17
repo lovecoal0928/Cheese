@@ -10,7 +10,7 @@ export const FileInput = ({ children, ...props }: Props) => {
   return (
     <Label>
       {children}
-      <Input {...props} type="file" style={{ display: 'none' }} />
+      <Input {...props} type="file" style={{ display: 'none' }} multiple/>
     </Label>
   )
 }
