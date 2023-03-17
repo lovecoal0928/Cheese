@@ -1,10 +1,11 @@
 import { NextPage } from 'next'
 import { Graph } from 'types/'
-import { getShortestPath } from 'utils/hooks/dijkstra'
+import { useDijkstra } from 'utils/libs/dijkstra'
 import { useAuth } from 'utils/hooks/useAuth'
 
 const Home: NextPage = () => {
   const { signIn } = useAuth()
+  const { getShortestPath } = useDijkstra()
 
   // グラフの定義
   const graph: Graph = {
@@ -18,7 +19,7 @@ const Home: NextPage = () => {
 
   // 実行例
   const a = getShortestPath(graph)
-  // console.log(a)
+  console.log(a)
   // { A: 0, B: 5, C: 1, D: 6, E: 9, F: 4 }
   // console.log(previous); // { A: null, B: 'A', C: 'A', D: 'A', E: 'C', F: 'A' }
 
