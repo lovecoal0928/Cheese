@@ -53,8 +53,8 @@ const map: NextPage = () => {
 
         }}
       >
-        {locates.map(locate => (
-          <MarkerF position={locate} />
+        {locates.map((locate, i) => (
+          <MarkerF position={locate} key={i} />
         ))}
         <MarkerF position={center} />
       </GoogleMap>
