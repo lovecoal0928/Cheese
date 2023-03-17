@@ -13,10 +13,12 @@ const locates = [
   {
     lat: 34.93876,
     lng: 137.16650,
+    img: ""
   },
   {
     lat: 34.93145,
     lng: 137.16265,
+    img: ""
   },
 ]
 
@@ -51,6 +53,9 @@ const map: NextPage = () => {
 
         }}
       >
+        {locates.map(locate => (
+          <MarkerF position={locate} />
+        ))}
         <MarkerF position={center} />
       </GoogleMap>
 
