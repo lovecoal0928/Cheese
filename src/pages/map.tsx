@@ -4,6 +4,22 @@ import React, { useCallback, useEffect, useState } from "react";
 
 const APIkey = process.env.NEXT_PUBLIC_GCP_KEY as string;
 
+const locates = [
+  {
+    lat: 34.933249,
+    lng: 137.168636,
+    img: "/"
+  },
+  {
+    lat: 34.93876,
+    lng: 137.16650,
+  },
+  {
+    lat: 34.93145,
+    lng: 137.16265,
+  },
+]
+
 const map: NextPage = () => {
   const [center, setCenter] = useState({ lat: 0, lng: 0 });
 
