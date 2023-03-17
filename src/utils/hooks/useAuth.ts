@@ -1,31 +1,39 @@
-import { useEffect, useState } from 'react'
+import { authUserRepository } from 'repositories/auth/AuthUserReppositoryImpl'
+import { useSessionStorage } from 'react-use'
+import { AuthChangeEvent, Session } from '@supabase/supabase-js'
+import { useEffect } from 'react'
+import { supabase } from 'plugins/supabse'
 
 export const useAuth = () => {
-  const [session, setSession] = useState()
-
-  useEffect(() => {
-    const { data: authListener } = supabase.auth.onAuthStateChange(
-      (event, session) => {
-        setSession(session)
-      },
-    )
-
-    return () => {
-      authListener.unsubscribe()
-    }
-  }, [])
-
-  const signInWithGithub = () => {
-    supabase.auth.signIn({ provider: 'github' })
+  const signOut = async () => {
+    authUserRepository.signOut()
   }
 
-  const signOut = () => {
-    supabase.auth.signOut()
+  const signIn = async () => {
+    authUserRepository.signIn()
   }
 
   return {
-    session,
-    signInWithGithub,
+    signIn,
     signOut,
   } as const
+}
+
+export const useAuthLister = () => {
+  const AUTH_SESSION_KEY = 'AUTH_SESSION_KEY'
+  const [session, setSession] = useSessionStorage<null | Session>(
+    AUTH_SESSION_KEY,
+    null,
+  )
+  useEffect(() => {
+    const { data: authListener } = supabase.auth.onAuthStateChange(
+      (event: AuthChangeEvent, session) => {
+        setSession(session)
+      },
+    )
+    return () => {
+      authListener.subscription.unsubscribe()
+    }
+  }, [session])
+  return { session } as const
 }
