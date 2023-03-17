@@ -97,7 +97,9 @@ const map: NextPage = () => {
           options={{
             origin: center,
             destination,
-            travelMode: google.maps.TravelMode.WALKING,
+            // travelMode: google.maps.TravelMode.WALKING,
+            // @ts-ignore
+            travelMode: "WALKING",
             optimizeWaypoints: true,
             waypoints: transpoints
           }}
