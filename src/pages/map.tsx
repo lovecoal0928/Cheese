@@ -1,6 +1,7 @@
 import { DirectionsRenderer, DirectionsService, GoogleMap, GoogleMapProps, LoadScriptNext, Marker, MarkerF, } from "@react-google-maps/api";
 import { NextPage } from "next";
 import React, { useCallback, useEffect, useState } from "react";
+/* global google */
 
 const APIkey = process.env.NEXT_PUBLIC_GCP_KEY as string;
 
@@ -94,7 +95,7 @@ const map: NextPage = () => {
         <MarkerF position={center} />
         <DirectionsService
           options={{
-            origin: origin,
+            origin: center,
             destination,
             travelMode: google.maps.TravelMode.WALKING,
             optimizeWaypoints: true,
