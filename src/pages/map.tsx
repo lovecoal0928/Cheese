@@ -36,8 +36,21 @@ const transpoints = [
     }
   }
 ]
+
+
+type LatLng = {
+  lat: number,
+  lng: number,
+}
 const map: NextPage = () => {
+  // 現在位置
   const [center, setCenter] = useState({ lat: 0, lng: 0 });
+  // 通過ポイント集
+  const [selectedPoints, setSelectedPoints] = useState<LatLng[]>([])
+  // 検索中かのトグル
+  const [isSearching, setIsSearching] = useState(false);
+
+
   // 現在位置を取得
   useEffect(() => {
     if (navigator.geolocation) {
@@ -69,55 +82,61 @@ const map: NextPage = () => {
     }
   }, [])
 
-  // ポイント集
-  const [selectedPoints, setSelectedPoints] = useState([])
-
   // マーカークリック時
-  const handleClickMarkerF = () => {
+  const handleClickMarkerF = (latLng: LatLng) => {
+
+    setSelectedPoints([...selectedPoints, latLng])
+    console.log(selectedPoints);
+
+  }
+
+  // 道検索
+  const handleSearch = () => {
 
   }
 
   return (
-    <LoadScriptNext googleMapsApiKey={APIkey}>
-      <GoogleMap
-        mapContainerStyle={{
-          width: "100%",
-          height: "100vh",
-        }}
-        center={center}
-        zoom={15}
-        options={{
-          gestureHandling: "greedy",
-          streetViewControl: false,
-          fullscreenControl: false,
-
-        }}
-      >
-        {locates.map((locate, i) => (
-          <MarkerF position={locate} key={i} />
-        ))}
-        <MarkerF position={center} onClick={handleClickMarkerF} />
-        <DirectionsService
-          options={{
-            origin: center,
-            destination,
-            // travelMode: google.maps.TravelMode.WALKING,
-            // @ts-ignore
-            travelMode: "WALKING",
-            optimizeWaypoints: true,
-            waypoints: transpoints
+    <>
+      <LoadScriptNext googleMapsApiKey={APIkey}>
+        <GoogleMap
+          mapContainerStyle={{
+            width: "100%",
+            height: "100vh",
           }}
-          callback={directionsCallback}
-        />
-        {currentDirection !== null && (
-          <DirectionsRenderer
-            options={{ directions: currentDirection }}
+          center={center}
+          zoom={15}
+          options={{
+            gestureHandling: "greedy",
+            streetViewControl: false,
+            fullscreenControl: false,
+
+          }}
+        >
+          {locates.map((locate, i) => (
+            <MarkerF position={locate} key={i} onClick={(e) => handleClickMarkerF(locate)} />
+          ))}
+          <MarkerF position={center} />
+          <DirectionsService
+            options={{
+              origin: center,
+              destination: destination,
+              // travelMode: google.maps.TravelMode.WALKING,
+              // @ts-ignore
+              travelMode: "WALKING",
+              optimizeWaypoints: true,
+              waypoints: transpoints
+            }}
+            callback={directionsCallback}
           />
-        )}
-      </GoogleMap>
-
-
-    </LoadScriptNext>
+          {currentDirection !== null && (
+            <DirectionsRenderer
+              options={{ directions: currentDirection }}
+            />
+          )}
+        </GoogleMap>
+      </LoadScriptNext>
+      <button onClick={handleSearch}>検索</button>
+    </>
   )
 };
 
