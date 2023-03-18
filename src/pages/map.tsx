@@ -1,4 +1,4 @@
-import { DirectionsRenderer, DirectionsService, GoogleMap, GoogleMapProps, LoadScriptNext, Marker, MarkerF, } from "@react-google-maps/api";
+import { DirectionsRenderer, DirectionsService, GoogleMap, LoadScriptNext, MarkerF, } from "@react-google-maps/api";
 import { NextPage } from "next";
 import React, { useCallback, useEffect, useState } from "react";
 /* global google */
@@ -28,14 +28,14 @@ const destination = {
   lng: 137.16265,
 }
 
-const transpoints = [
-  {
-    location: {
-      lat: 34.93876,
-      lng: 137.16650,
-    }
-  }
-]
+// const transpoints = [
+//   {
+//     location: {
+//       lat: 34.93876,
+//       lng: 137.16650,
+//     }
+//   }
+// ]
 
 
 type LatLng = {
@@ -45,10 +45,12 @@ type LatLng = {
 const map: NextPage = () => {
   // 現在位置
   const [center, setCenter] = useState({ lat: 0, lng: 0 });
-  // 通過ポイント集
+  // ユーザー選択のいきたいポイント集
   const [selectedPoints, setSelectedPoints] = useState<LatLng[]>([])
-  // 検索中かのトグル
-  const [isSearching, setIsSearching] = useState(false);
+
+
+  // ルート表示用の途中ポイント集
+  const [transpoints, setTranspoints] = useState([]);
 
 
   // 現在位置を取得
@@ -90,10 +92,12 @@ const map: NextPage = () => {
 
   }
 
-  // 道検索
+  // 道検索ボタン押すたびに道を再生成
   const handleSearch = () => {
 
   }
+
+
 
   return (
     <>
@@ -130,7 +134,8 @@ const map: NextPage = () => {
           />
           {currentDirection !== null && (
             <DirectionsRenderer
-              options={{ directions: currentDirection }}
+              options={{ directions: currentDirection, markerOptions: { visible: false } }}
+
             />
           )}
         </GoogleMap>
