@@ -13,10 +13,9 @@ This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next
 - test: テスト関連
 - chore: ビルド、補助ツール、ライブラリ関連
 
-etc. feat: 〇〇なため、△△を追加
+etc. feat: 〇〇なため、△△ を追加
 
-参考URL:https://qiita.com/konatsu_p/items/dfe199ebe3a7d2010b3e#1-prefix%E3%82%92%E3%81%A4%E3%81%91%E3%82%8B
-
+参考 URL:https://qiita.com/konatsu_p/items/dfe199ebe3a7d2010b3e#1-prefix%E3%82%92%E3%81%A4%E3%81%91%E3%82%8B
 
 ## Pull Request
 
@@ -44,6 +43,7 @@ etc. feat: 〇〇なため、△△を追加
 feature/name/#2(issue)
 
 ## Atomic Design
+
 <table>
 <thead>
 <tr>
@@ -71,9 +71,8 @@ feature/name/#2(issue)
 </tbody>
 </table>
 
- - orgamisms/ページ名/...
- - atoms?molecules/...
-
+- orgamisms/ページ名/...
+- atoms?molecules/...
 
 https://qiita.com/takano-h/items/8731d8e7413d7b1f6d7b
 
@@ -109,3 +108,9 @@ You can check out [the Next.js GitHub repository](https://github.com/vercel/next
 The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
 
 Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+
+## supabase generate type
+
+```
+supabase gen types typescript --linked > schema.ts
+```
