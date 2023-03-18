@@ -6,9 +6,7 @@ export type PostParams = {
   userId: string
   title: string
   comment?: string
-  postedAt: string
   postImages: {
-    postImageId: string
     imagePath: string
     imageTags: {
       name: string
