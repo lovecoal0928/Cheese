@@ -1,6 +1,6 @@
 import { NextPage } from 'next'
 import React from 'react'
-import { useAuth } from 'utils/hooks/useAuth'
+import { useAuth } from 'utils/hooks/auth/useAuth'
 
 const signup: NextPage = () => {
   const { signIn, signOut } = useAuth()

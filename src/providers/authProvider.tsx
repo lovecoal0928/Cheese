@@ -1,8 +1,8 @@
 import { Session } from '@supabase/supabase-js'
 import { ReactNode, useEffect } from 'react'
 import { userRepository } from 'repositories/user/UserRepositoryImpl'
+import { useAuthLister } from 'utils/hooks/auth/useAuth'
 
-import { useAuthLister } from 'utils/hooks/useAuth'
 interface Props {
   children: ReactNode
 }
@@ -17,6 +17,7 @@ export const AuthProvider = ({ children }: Props) => {
     }
   }
 
+  // NOTE: ログイン時にユーザーが存在しない場合は作成する
   useEffect(() => {
     ;(async () => {
       if (!session) return
@@ -25,5 +26,6 @@ export const AuthProvider = ({ children }: Props) => {
       await userRepository.save(createUser(session))
     })()
   }, [session])
+
   return <>{children}</>
 }
