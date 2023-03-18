@@ -5,7 +5,7 @@ type Images = {
   file: File[]
   src: string[]
 }
-export const useImages = () => {
+export const useImageFiles = () => {
   const [images, setImages] = useState<Images>({ file: [], src: [] })
 
   const handleSetFiles = useCallback((e: ChangeEvent<HTMLInputElement>) => {

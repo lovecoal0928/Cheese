@@ -2,7 +2,7 @@ import { NextPage } from 'next'
 import React, { useEffect, useRef, useState } from 'react'
 import { Post } from '@/components/templates/Post'
 import { handleReadFile } from 'utils/libs/handleReadFile'
-import { useImages } from 'utils/hooks/useImages'
+import { useImageFiles } from 'utils/hooks/useImageFiles'
 import { useCustomRouter } from 'utils/hooks/useCustomRouter'
 import { PAGE_NAME } from 'constants/PathName'
 
@@ -10,7 +10,7 @@ const post: NextPage = () => {
   const titleRef = useRef(null)
   const commentRef = useRef(null)
   const placeRef = useRef(null)
-  const { images, handleSetFiles, handleSetSrc } = useImages()
+  const { images, handleSetFiles, handleSetSrc } = useImageFiles()
   const { handleBackRouter,handlePushRouter } = useCustomRouter()
 
   useEffect(() => {
