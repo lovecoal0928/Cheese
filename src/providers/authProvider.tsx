@@ -1,8 +1,8 @@
 import { Session } from '@supabase/supabase-js'
 import { ReactNode, useEffect } from 'react'
 import { userRepository } from 'repositories/user/UserRepositoryImpl'
+import { useAuthLister } from 'utils/hooks/auth/useAuth'
 
-import { useAuthLister } from 'utils/hooks/useAuth'
 interface Props {
   children: ReactNode
 }
