@@ -1,7 +1,6 @@
 import { NextPage } from 'next'
 import { Home } from '@/components/templates/Home'
 import React, { useEffect } from 'react'
-import { useRouter } from 'next/router'
 import { Post } from 'types/entities/Post'
 import { PAGE_NAME } from 'constants/PathName'
 import { useCustomRouter } from 'utils/hooks/useCustomRouter'

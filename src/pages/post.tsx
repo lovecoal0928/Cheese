@@ -1,5 +1,5 @@
 import { NextPage } from 'next'
-import React, { useEffect, useRef, useState } from 'react'
+import React, { useEffect, useRef} from 'react'
 import { Post } from '@/components/templates/Post'
 import { handleReadFile } from 'utils/libs/handleReadFile'
 import { useImageFiles } from 'utils/hooks/useImageFiles'
@@ -11,7 +11,7 @@ const post: NextPage = () => {
   const commentRef = useRef(null)
   const placeRef = useRef(null)
   const { images, handleSetFiles, handleSetSrc } = useImageFiles()
-  const { handleBackRouter,handlePushRouter } = useCustomRouter()
+  const { handlePushRouter } = useCustomRouter()
 
   useEffect(() => {
     const handleLoopSrc = async () => {

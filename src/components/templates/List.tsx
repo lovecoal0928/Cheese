@@ -1,7 +1,7 @@
 import { PAGE_NAME } from 'constants/PathName'
-import { useRouter } from 'next/router'
 import React from 'react'
 import { Post } from 'types/entities/Post'
+import { useCustomRouter } from 'utils/hooks/useCustomRouter'
 import { Card } from '../atoms/Card'
 import { Flex } from '../atoms/Flex'
 import { Image } from '../atoms/Image'
@@ -13,17 +13,17 @@ type Props = {
 }
 export const List = (props: Props) => {
   const { data } = props
-  const router = useRouter()
-  const handlePushRouter = (pathname: string) => {
-    router.push({
-      pathname: pathname,
-    })
-  }
+  const { handlePushRouter } = useCustomRouter()
+
   return (
     <Flex>
       {data.map((value: Post, index: number) => (
         <Card style={style.card} key={index}>
-          <Image alt="投稿写真" src={value.postImages[0].imagePath} style={style.Image} />
+          <Image
+            alt="投稿写真"
+            src={value.postImages[0].imagePath}
+            style={style.Image}
+          />
           <TextDetail title={value.title} />
         </Card>
       ))}

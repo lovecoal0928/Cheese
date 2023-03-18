@@ -1,7 +1,7 @@
 import React, { ChangeEvent, RefObject } from 'react'
 import { PostHeader } from '../organisms/post/PostHeader'
 import { PostForm } from '../organisms/post/PostForm'
-import { PathName } from 'types/pathname'
+import { PathName } from 'types'
 
 type Props = {
   titleRef: RefObject<HTMLInputElement>
