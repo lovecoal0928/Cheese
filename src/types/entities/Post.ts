@@ -13,7 +13,7 @@ export type Post = {
 
 export type PostImages = {
   postImageId: string
-  imagePaths: string
+  imagePath: string
   imageTags: ImageTag[]
 }
 
