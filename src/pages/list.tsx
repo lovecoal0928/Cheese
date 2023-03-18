@@ -17,6 +17,7 @@ const list: NextPage = () => {
           imagePath: '',
           imageTags: [
             {
+              tagId: '',
               name: 'タグ',
             },
           ],
