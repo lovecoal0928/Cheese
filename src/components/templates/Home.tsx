@@ -1,7 +1,7 @@
 import React from 'react'
 import { SpotCard } from '../organisms/home/SpotCard'
 import { SwipeButtons } from '../organisms/home/SwipeButtons'
-import { Post } from 'types/index'
+import { Post, Styles } from 'types/index'
 import { BottomNav } from '../organisms/commons/BottomNav'
 import { Flex } from '../atoms/Flex'
 
@@ -14,7 +14,7 @@ type Props = {
 export const Home = (props: Props) => {
   const { data, handlePushRouter, PAGE_NAME } = props
   return (
-    <Flex style={style.container}>
+    <Flex style={style.container} direction="column">
       {data.map((value: Post, index: number) => (
         <SpotCard
           title={value.title}
@@ -30,8 +30,9 @@ export const Home = (props: Props) => {
   )
 }
 
-const style = {
+const style:Styles = {
   container: {
-    padding: '10px',
+    width:"100%",
+    minHeight:"120vh"
   },
 }

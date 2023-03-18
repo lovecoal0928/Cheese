@@ -8,7 +8,7 @@ import { PAGE_NAME } from 'constants/PathName'
 
 const home: NextPage = () => {
   const router = useRouter()
-  const PostData: Post[] = [{ title: '', address: '', src: '', comment: '' }]
+  const PostData: Post[] = [{ title: 'タイトル', address: '住所', src: '', comment: 'コメント' }]
 
   return (
     <Home

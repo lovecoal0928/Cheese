@@ -11,7 +11,7 @@ export const SwipeButton = (props: SwipeButton) => {
   const { src, alt } = props
   return (
     <Button style={style.button}>
-      <Image src={src} alt={alt} style={style.image}/>
+      <Image src={src} alt={alt} style={style.image} width={30} height={30}/>
     </Button>
   )
 }
