@@ -11,35 +11,34 @@ const home: NextPage = () => {
   const { image, handleSetImage } = useImage()
   const PostData: Post[] = [
     {
-      postId: '',
-      userId: '',
+      postId: 'fnojefneo',
+      userId: 'njogron',
       title: 'タイトル',
       comment: 'コメント',
-      postedAt: '',
-      updatedAt: '',
+      postedAt: 'fenojfnenj',
+      updatedAt: 'nofjei',
       postImages: [
         {
-          postImageId: '',
-          imagePath: '',
-          imageTags:[
+          postImageId: 'jnouonj',
+          imagePath: 'fnjorghnrou',
+          imageTags: [
             {
-              tagId:"vercel",
-              name:"ばーせる"
-            }
-          ]
+              tagId: 'vercel',
+              name: 'ばーせる',
+            },
+          ],
         },
       ],
       address: {
-        addressesId: '',
+        addressesId: 'aaaa',
         longitude: 10,
         latitude: 20,
       },
     },
   ]
-  useEffect(()=>{
+  useEffect(() => {
     handleSetImage(PostData[0].postImages[0].imagePath)
-  },[PostData])
-
+  }, [PostData])
 
   return (
     <Home
