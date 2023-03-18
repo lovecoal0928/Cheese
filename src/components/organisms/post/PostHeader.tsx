@@ -3,7 +3,6 @@ import { Header } from '@/components/atoms/Header'
 import { Typography } from '@/components/atoms/Typography'
 import { PostCancelButton } from '@/components/molecules/buttons/PostCancelButton'
 import React from 'react'
-import { PathName } from 'types/pathname'
 
 type Props={
   handlePushRouter:(pathname:string)=>void

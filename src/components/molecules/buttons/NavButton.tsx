@@ -21,7 +21,6 @@ export const NavButton = (props: NavButton) => {
 
 const style={
   button:{
-    padding:"10px"
   },
   image:{
     padding:"10px"
