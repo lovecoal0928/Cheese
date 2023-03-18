@@ -73,19 +73,19 @@ export interface Database {
       }
       like_posts: {
         Row: {
-          id: number
+          id: string
           liked_at: string | null
           post_id: string
           user_id: string
         }
         Insert: {
-          id?: number
+          id: string
           liked_at?: string | null
           post_id: string
           user_id: string
         }
         Update: {
-          id?: number
+          id?: string
           liked_at?: string | null
           post_id?: string
           user_id?: string
@@ -111,7 +111,7 @@ export interface Database {
       posts: {
         Row: {
           comment: string | null
-          created_at: string | null
+          created_at: string
           post_id: string
           posted_at: string
           title: string
@@ -120,7 +120,7 @@ export interface Database {
         }
         Insert: {
           comment?: string | null
-          created_at?: string | null
+          created_at?: string
           post_id: string
           posted_at?: string
           title: string
@@ -129,7 +129,7 @@ export interface Database {
         }
         Update: {
           comment?: string | null
-          created_at?: string | null
+          created_at?: string
           post_id?: string
           posted_at?: string
           title?: string

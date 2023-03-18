@@ -22,6 +22,7 @@ const home: NextPage = () => {
           imagePath: 'fnjorghnrou',
           imageTags: [
             {
+              tagId: 'fnjogrn',
               name: 'ばーせる',
             },
           ],
