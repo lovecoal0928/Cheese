@@ -1,12 +1,23 @@
 import { NextPage } from 'next'
 import React, { useEffect, useRef} from 'react'
 import { Post } from '@/components/templates/Post'
+import { useFetchPosts } from 'utils/hooks/post/useFetchPost'
 import { handleReadFile } from 'utils/libs/handleReadFile'
 import { useImageFiles } from 'utils/hooks/useImageFiles'
 import { useCustomRouter } from 'utils/hooks/useCustomRouter'
 import { PAGE_NAME } from 'constants/PathName'
 
 const post: NextPage = () => {
+  const {
+    data: posts,
+    refetch: refetchPosts,
+    isLoading: isFetchPostLoading,
+  } = useFetchPosts()
+
+  React.useEffect(() => {
+    console.log(posts)
+  }, [posts])
+
   const titleRef = useRef(null)
   const commentRef = useRef(null)
   const placeRef = useRef(null)

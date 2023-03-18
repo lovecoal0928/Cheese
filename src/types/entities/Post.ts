@@ -4,7 +4,7 @@ export type Post = {
   postId: string
   userId: string
   title: string
-  comment: string
+  comment?: string
   postedAt: string
   updatedAt: string
   postImages: PostImageList[]
