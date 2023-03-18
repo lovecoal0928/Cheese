@@ -4,4 +4,5 @@ export const PAGE_NAME = [
     { path: 'post', label: '投稿', src: '' },
     { path: 'route', label: 'ルート', src: '' },
     { path: 'list', label: 'リスト', src: '' },
+    { path: 'postmap', label: '', src: '' },
   ]

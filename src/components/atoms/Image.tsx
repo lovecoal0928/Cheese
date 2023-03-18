@@ -10,7 +10,7 @@ type Props={
     height?:number
 }
 export const Image = (props:Props) => {
-    const {alt,src,width,height,style} = props
+    const {alt,src,width=100,height=100,style} = props
   return (
     <Flex style={style}>
       <NextImage alt={alt} src={src} width={width} height={height}/>
