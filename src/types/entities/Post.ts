@@ -17,5 +17,6 @@ export type PostImage = {
 }
 
 export type ImageTag = {
+  tagId: string
   name: string
 }
