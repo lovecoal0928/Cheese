@@ -1,29 +1,11 @@
 import { ChangeEvent, useCallback, useState } from 'react'
-import { handleReadFile } from 'utils/libs/handleReadFile'
 
-type Images = {
-  file: File[]
-  src: string[]
-}
-export const useImages = () => {
-  const [images, setImages] = useState<Images>({ file: [], src: [] })
+export const useImage = () => {
+  const [image, setImage] = useState("")
 
-  const handleSetFiles = useCallback((e: ChangeEvent<HTMLInputElement>) => {
-    const files = e.target.files
-    if (files && files.length > 0) {
-      setImages((prevState) => ({
-        ...prevState,
-        file: [...prevState.file, ...files],
-      }))
-    }
+  const handleSetImage = useCallback((src:string) => {
+    setImage(src)
   }, [])
 
-  const handleSetSrc = useCallback((srcs: string[]) => {
-    setImages((prevState) => ({
-      ...prevState,
-      src: [...srcs],
-    }))
-  }, [])
-
-  return { images, setImages, handleSetFiles, handleSetSrc }
+  return { image,handleSetImage}
 }

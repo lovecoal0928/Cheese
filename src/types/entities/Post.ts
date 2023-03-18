@@ -6,11 +6,11 @@ export type Post = {
   title: string
   comment?: string
   postedAt: string
-  postImages: PostImage[]
+  postImages: PostImageList[]
   address: Address
 }
 
-export type PostImage = {
+export type PostImageList = {
   postImageId: string
   imagePath: string
   imageTags: ImageTag[]

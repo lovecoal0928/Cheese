@@ -10,12 +10,12 @@ type Props = {
 export const BottomNav = (props: Props) => {
   const { handlePushRouter, PAGE_NAME } = props
   return (
-    <Nav style={style}>
+    <Nav style={style.nav}>
       {PAGE_NAME.map(
         (
           value: { path: string; label: string; src: string },
           index: number,
-        ) => (
+        ) => value.src &&(
           <NavButton
             src={value.src}
             handlePushRouter={handlePushRouter}
@@ -29,7 +29,14 @@ export const BottomNav = (props: Props) => {
   )
 }
 const style: Styles = {
-  Nav: {
-    padding: '10px',
+  nav: {
+    display: "flex",
+    width:"100%",
+    position:"fixed",
+    justifyContent: "space-around",
+    left:0,
+    bottom:0,
+    height:"100px",
+    background:"#fff"
   },
 }
