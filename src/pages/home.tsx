@@ -21,12 +21,12 @@ const home: NextPage = () => {
         {
           postImageId: '',
           imagePath: '',
-          imageTags: [
+          imageTags:[
             {
-              tagId: '',
-              name: 'タグ',
-            },
-          ],
+              tagId:"vercel",
+              name:"ばーせる"
+            }
+          ]
         },
       ],
       address: {
