@@ -6,7 +6,6 @@ export type Post = {
   title: string
   comment?: string
   postedAt: string
-  updatedAt: string
   postImages: PostImageList[]
   address: Address
 }
@@ -19,5 +18,4 @@ export type PostImageList = {
 
 export type ImageTag = {
   name: string
-  tagId: string
 }

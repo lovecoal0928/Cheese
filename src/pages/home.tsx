@@ -16,21 +16,19 @@ const home: NextPage = () => {
       title: 'タイトル',
       comment: 'コメント',
       postedAt: 'fenojfnenj',
-      updatedAt: 'nofjei',
       postImages: [
         {
           postImageId: 'jnouonj',
           imagePath: 'fnjorghnrou',
           imageTags: [
             {
-              tagId: 'vercel',
               name: 'ばーせる',
             },
           ],
         },
       ],
       address: {
-        addressesId: 'aaaa',
+        addressId: 'aaaa',
         longitude: 10,
         latitude: 20,
       },

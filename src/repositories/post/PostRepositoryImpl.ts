@@ -1,5 +1,5 @@
 import { PostRepository } from './PostReppository'
-import { ImageTag, Post, PostImage } from 'types/entities/Post'
+import { ImageTag, Post, PostImageList } from 'types/entities/Post'
 import {
   ImageTagReturnType,
   PostImageReturnType,
@@ -37,7 +37,7 @@ const convert = (res: PostReturnType): Post => {
   }
 }
 
-const convertPostImage = (res: PostImageReturnType): PostImage => {
+const convertPostImage = (res: PostImageReturnType): PostImageList => {
   return {
     postImageId: res.post_image_id,
     imagePath: res.image_path,

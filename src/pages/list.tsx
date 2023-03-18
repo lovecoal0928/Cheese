@@ -17,14 +17,13 @@ const list: NextPage = () => {
           imagePath: '',
           imageTags: [
             {
-              tagId: '',
               name: 'タグ',
             },
           ],
         },
       ],
       address: {
-        addressesId: '',
+        addressId: '',
         longitude: 10,
         latitude: 20,
       },
