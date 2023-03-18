@@ -17,6 +17,7 @@ export const AuthProvider = ({ children }: Props) => {
     }
   }
 
+  // NOTE: ログイン時にユーザーが存在しない場合は作成する
   useEffect(() => {
     ;(async () => {
       if (!session) return
@@ -25,5 +26,6 @@ export const AuthProvider = ({ children }: Props) => {
       await userRepository.save(createUser(session))
     })()
   }, [session])
+
   return <>{children}</>
 }
