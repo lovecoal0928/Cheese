@@ -1,4 +1,3 @@
-import { Session } from '@supabase/supabase-js'
 import { userFactory } from 'factories/userFactory'
 import { ReactNode, useEffect } from 'react'
 import { userRepository } from 'repositories/user/UserRepositoryImpl'
