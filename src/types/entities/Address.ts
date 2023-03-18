@@ -1,5 +1,5 @@
 export type Address = {
-  addressesId: string
+  addressId: string
   longitude: number
   latitude: number
 }
