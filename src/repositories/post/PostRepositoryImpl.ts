@@ -17,6 +17,40 @@ class PostRepositoryImpl implements PostRepository {
     if (!res) return undefined
     return convert(res)
   }
+  public save = async (post: Post): Promise<void> => {
+    await postMapper.save({
+      user_id: post.userId,
+      title: post.title,
+      comment: post.comment,
+      posted_at: post.postedAt,
+      post_id: post.postId,
+    })
+    await postMapper.saveAddress({
+      address_id: post.address.addressId,
+      latitude: post.address.latitude,
+      longitude: post.address.longitude,
+      post_id: post.postId,
+    })
+    await this.saveImages(post.postImages, post.postId)
+    return
+  }
+  private saveImages = async (postImages: PostImage[], postId: string) => {
+    postImages.forEach(async (postImage) => {
+      await postMapper.saveImage({
+        post_image_id: postImage.postImageId,
+        image_path: postImage.imagePath,
+        post_id: postId,
+      })
+      postImage.imageTags.forEach(async (imageTag) => {
+        await postMapper.saveImageTag({
+          name: imageTag.name,
+          post_image_id: postImage.postImageId,
+          tag_id: imageTag.tagId,
+        })
+      })
+    })
+    return
+  }
 }
 
 export const postRepository = new PostRepositoryImpl()
@@ -48,5 +82,6 @@ const convertPostImage = (res: PostImageReturnType): PostImage => {
 const convertImageTag = (res: ImageTagReturnType): ImageTag => {
   return {
     name: res.name,
+    tagId: res.tag_id,
   }
 }
