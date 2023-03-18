@@ -18,6 +18,6 @@ export type PostImageList = {
 }
 
 export type ImageTag = {
-  tagId: string
   name: string
+  tagId: string
 }
