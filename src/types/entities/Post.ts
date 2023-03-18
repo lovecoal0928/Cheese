@@ -4,20 +4,18 @@ export type Post = {
   postId: string
   userId: string
   title: string
-  comment: string
+  comment?: string
   postedAt: string
-  updatedAt: string
-  postImages: PostImages[]
+  postImages: PostImage[]
   address: Address
 }
 
-export type PostImages = {
+export type PostImage = {
   postImageId: string
-  imagePaths: string
+  imagePath: string
   imageTags: ImageTag[]
 }
 
 export type ImageTag = {
-  tagId: string
   name: string
 }
