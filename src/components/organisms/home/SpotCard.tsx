@@ -3,12 +3,12 @@ import { Flex } from '@/components/atoms/Flex'
 import { Image } from '@/components/atoms/Image'
 import { Typography } from '@/components/atoms/Typography'
 import React from 'react'
-import { PostImages } from 'types/entities/Post'
+import { PostImageList } from 'types/entities/Post'
 import { Styles } from 'types/index'
 
 type Props = {
   title: string
-  postImages: PostImages[]
+  postImages: PostImageList[]
   comment: string
   handleSetImage: (src: string) => void
   image: string
@@ -21,7 +21,7 @@ export const SpotCard = (props: Props) => {
       <Typography style={styles.title}>{title}</Typography>
       <Image alt="スポット画像" src={image} />
       <Flex>
-        {postImages.map((value:PostImages,index:number) => (
+        {postImages.map((value:PostImageList,index:number) => (
           <Image alt={"写真"} key={index} src={value.imagePath} width={30} height={30} onClick={()=>handleSetImage(value.imagePath)}/>
         ))}
       </Flex>
