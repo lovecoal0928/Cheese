@@ -22,7 +22,7 @@ export const Home = (props: Props) => {
         <SpotCard
           title={value.title}
           postImages={value.postImages}
-          comment={value.comment}
+          comment={value.comment||""}
           key={index}
           handleSetImage={handleSetImage}
           image={image}
