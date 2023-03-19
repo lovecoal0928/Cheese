@@ -7,6 +7,7 @@ import { useImageFiles } from 'utils/hooks/useImageFiles'
 import { useCustomRouter } from 'utils/hooks/useCustomRouter'
 import { PAGE_NAME } from 'constants/PathName'
 import { useSavePost } from 'utils/hooks/post/useSavePost'
+import { useFetchSnapRoutes } from 'utils/hooks/snapRoute/useFetchSnapRoute'
 
 const dummyPost = {
   title: 'hoge',
@@ -32,6 +33,12 @@ const post: NextPage = () => {
     refetch: refetchPosts,
     isLoading: isFetchPostLoading,
   } = useFetchPosts()
+
+  const { data: snapRoutes } = useFetchSnapRoutes()
+
+  useEffect(() => {
+    console.log('route', snapRoutes)
+  }, [snapRoutes])
 
   //NOTE: 確認したら消してもらって大丈夫です。
   //NOTE: useSaveXXXは戻り値に更新するmutate関数とローディング状態を返します。
