@@ -7,12 +7,27 @@ import { useCustomRouter } from 'utils/hooks/useCustomRouter'
 import { useImage } from 'utils/hooks/useImages'
 import { useFetchSnapRoutes } from 'utils/hooks/snapRoute/useFetchSnapRoute'
 import { useFetchLikedPost } from 'utils/hooks/likedPost/useFetchLikedPost'
+import { useSaveLikedPost } from 'utils/hooks/likedPost/useSaveLikedPost'
 
 const home: NextPage = () => {
   const { handlePushRouter } = useCustomRouter()
   const { image, handleSetImage } = useImage()
 
   const { data: snapRoutes } = useFetchLikedPost('u001')
+  const { mutate: saveLikedPost } = useSaveLikedPost()
+
+  const submitLikedPostHandler = async () => {
+    saveLikedPost(
+      {
+        userId: 'u001',
+        postId: 'p003',
+      },
+      {
+        onSuccess: () => console.log('success'),
+        onError: () => console.log('error'),
+      },
+    )
+  }
 
   useEffect(() => {
     console.log('liked pOst', snapRoutes)
@@ -49,13 +64,14 @@ const home: NextPage = () => {
   }, [PostData])
 
   return (
-    <Home
-      data={PostData}
-      PAGE_NAME={PAGE_NAME}
-      image={image}
-      handlePushRouter={handlePushRouter}
-      handleSetImage={handleSetImage}
-    />
+    // <Home
+    //   data={PostData}
+    //   PAGE_NAME={PAGE_NAME}
+    //   image={image}
+    //   handlePushRouter={handlePushRouter}
+    //   handleSetImage={handleSetImage}
+    // />
+    <button onClick={submitLikedPostHandler}>submit</button>
   )
 }
 

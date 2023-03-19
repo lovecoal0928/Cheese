@@ -73,19 +73,16 @@ export interface Database {
       }
       like_posts: {
         Row: {
-          id: string
           liked_at: string | null
           post_id: string
           user_id: string
         }
         Insert: {
-          id: string
           liked_at?: string | null
           post_id: string
           user_id: string
         }
         Update: {
-          id?: string
           liked_at?: string | null
           post_id?: string
           user_id?: string
