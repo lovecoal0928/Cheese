@@ -1,7 +1,7 @@
 import { CustomMarker } from "@/components/organisms/map/CustomMarker";
-import { DirectionsRenderer, DirectionsService, GoogleMap, InfoWindowF, LoadScriptNext, MarkerF, } from "@react-google-maps/api";
+import { DirectionsRenderer, DirectionsService, GoogleMap, LoadScriptNext, MarkerF, } from "@react-google-maps/api";
 import { NextPage } from "next";
-import React, { memo, useCallback, useEffect, useRef, useState } from "react";
+import React, { useEffect, useState } from "react";
 import "../styles/map.module.css"
 /* global google */
 
