@@ -16,6 +16,7 @@ const home: NextPage = () => {
   const { data: snapRoutes } = useFetchLikedPost('u001')
   const { mutate: saveLikedPost } = useSaveLikedPost()
   const {isZoom,handleSetIsZoom} = useIsZoom()
+  
 
   const submitLikedPostHandler = async () => {
     saveLikedPost(

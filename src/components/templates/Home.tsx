@@ -15,6 +15,7 @@ type Props = {
   handleSetIsZoom: () => void
   handleSwipeLike: () => void
   handleSwipeBad: () => void
+  
 }
 
 export const Home = (props: Props) => {
