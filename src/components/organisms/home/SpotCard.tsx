@@ -13,10 +13,11 @@ type Props = {
   comment: string
   handleSetImage: (src: string) => void
   image: string
+  handleSetIsZoom:()=>void
 }
 
 export const SpotCard = (props: Props) => {
-  const { title, postImages, comment, image, handleSetImage } = props
+  const { title, postImages, comment, image, handleSetImage,handleSetIsZoom } = props
   const a = ["/paca.png","/mapicon.png","/paca.png"]
   return (
     <Card style={styles.card}>
@@ -37,7 +38,7 @@ export const SpotCard = (props: Props) => {
           />
         ))}
       </Flex>
-      <Image alt="スポット画像" src={image} style={styles.selected_image}/>
+      <Image alt="スポット画像" src={image} style={styles.selected_image} onClick={handleSetIsZoom}/>
       <Typography style={styles.comment}>{comment}</Typography>
     </Card>
   )

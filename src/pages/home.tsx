@@ -8,12 +8,14 @@ import { useFetchSnapRoutes } from 'utils/hooks/snapRoute/useFetchSnapRoute'
 import { useFetchLikedPost } from 'utils/hooks/likedPost/useFetchLikedPost'
 import { useSaveLikedPost } from 'utils/hooks/likedPost/useSaveLikedPost'
 import { useFetchPosts } from 'utils/hooks/post/useFetchPost'
+import { useIsZoom } from 'utils/hooks/useIsZoom'
 
 const home: NextPage = () => {
   const { handlePushRouter } = useCustomRouter()
   const { image, handleSetImage } = useImage()
   const { data: snapRoutes } = useFetchLikedPost('u001')
   const { mutate: saveLikedPost } = useSaveLikedPost()
+  const {isZoom,handleSetIsZoom} = useIsZoom()
 
   const submitLikedPostHandler = async () => {
     saveLikedPost(
@@ -38,6 +40,14 @@ const home: NextPage = () => {
     isLoading: isFetchPostLoading,
   } = useFetchPosts()
 
+  const handleSwipeLike=()=>{
+    submitLikedPostHandler();
+  }
+
+  const handleSwipeBad=()=>{
+    
+  }
+
   useEffect(() => {
     if (posts) {
       handleSetImage(posts[0].postImages[0].imagePath)
@@ -60,6 +70,9 @@ const home: NextPage = () => {
       image={image}
       handlePushRouter={handlePushRouter}
       handleSetImage={handleSetImage}
+      handleSetIsZoom={handleSetIsZoom}
+      handleSwipeLike={handleSwipeLike}
+      handleSwipeBad={handleSwipeBad}
     />
   )
 }

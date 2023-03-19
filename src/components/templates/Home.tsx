@@ -9,38 +9,55 @@ import { Post } from 'types/entities/Post'
 type Props = {
   data: Post[]
   handlePushRouter: (pathname: string) => void
-  handleSetImage: (src:string) => void
+  handleSetImage: (src: string) => void
   PAGE_NAME: { path: string; label: string; src: string }[]
-  image:string
+  image: string
+  handleSetIsZoom: () => void
+  handleSwipeLike: () => void
+  handleSwipeBad: () => void
 }
 
 export const Home = (props: Props) => {
-  const { data, handlePushRouter, PAGE_NAME,handleSetImage,image } = props
+  const {
+    data,
+    handlePushRouter,
+    PAGE_NAME,
+    handleSetImage,
+    image,
+    handleSetIsZoom,
+    handleSwipeBad,
+    handleSwipeLike,
+  } = props
+
   return (
     <Flex style={style.container} direction="column">
       {data.map((value: Post, index: number) => (
         <SpotCard
           title={value.title}
           postImages={value.postImages}
-          comment={value.comment||""}
+          comment={value.comment || ''}
           key={index}
           handleSetImage={handleSetImage}
           image={image}
+          handleSetIsZoom={handleSetIsZoom}
         />
       ))}
-      <SwipeButtons />
+      <SwipeButtons
+        handleSwipeLike={handleSwipeLike}
+        handleSwipeBad={handleSwipeBad}
+      />
       <BottomNav handlePushRouter={handlePushRouter} PAGE_NAME={PAGE_NAME} />
     </Flex>
   )
 }
 
-const style:Styles = {
+const style: Styles = {
   container: {
-    position:"absolute",
-    width:"100%",
-    left:"0px",
-    top:"0px",
-    height:"120vh",
-    background:"#eee"
+    position: 'absolute',
+    width: '100%',
+    left: '0px',
+    top: '0px',
+    height: '120vh',
+    background: '#eee',
   },
 }
