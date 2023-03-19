@@ -19,11 +19,10 @@ export const CustomMarker = (props: Props) => {
         <>
             <MarkerF
                 position={locate}
-                // @ts-ignore
                 animation={
                     typeof google !== "undefined"
-                        ? window.google.maps.Animation.DROP
-                        : null
+                        ? window.google.maps.Animation.BOUNCE
+                        : undefined
                 }
                 onClick={onClick}
             // icon={{
@@ -33,7 +32,6 @@ export const CustomMarker = (props: Props) => {
             />
             <InfoWindowF
                 position={locate}
-
             >
                 <div
                 // style={{
