@@ -36,7 +36,11 @@ export const Home = (props: Props) => {
 
 const style:Styles = {
   container: {
+    position:"absolute",
     width:"100%",
-    minHeight:"120vh"
+    left:"0px",
+    top:"0px",
+    height:"120vh",
+    background:"#eee"
   },
 }
