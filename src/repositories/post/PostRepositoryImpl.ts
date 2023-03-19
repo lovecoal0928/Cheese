@@ -20,13 +20,15 @@ class PostRepositoryImpl implements PostRepository {
   }
   public findAll = async (): Promise<Post[]> => {
     const { data } = await this.selectQueryBuilder().returns<PostReturnType[]>()
+    if (!data) return []
     return postMapper.findAll(data)
   }
   public findById = async (postId: string): Promise<Post | undefined> => {
     const { data } = await this.selectQueryBuilder()
       .eq('post_id', postId)
       .single()
-    return postMapper.findOne(data as PostReturnType | null)
+    if (!data) return undefined
+    return postMapper.findOne(data as PostReturnType)
   }
 
   public save = async (post: Post): Promise<void> => {

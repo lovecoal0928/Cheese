@@ -7,12 +7,11 @@ import {
 } from './PostRepositoryImpl'
 
 class PostMapper {
-  public findAll = (res: PostReturnType[] | null): Post[] => {
-    return res?.map(this.convert) ?? []
+  public findAll = (res: PostReturnType[]): Post[] => {
+    return res.map(this.convert)
   }
 
-  public findOne = (res: PostReturnType | null): Post | undefined => {
-    if (!res) return undefined
+  public findOne = (res: PostReturnType): Post => {
     return this.convert(res)
   }
 

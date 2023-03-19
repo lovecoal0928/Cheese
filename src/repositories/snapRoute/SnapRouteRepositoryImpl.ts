@@ -27,6 +27,7 @@ class SnapRouteRepositoryImpl implements SnapRouteRepository {
     const { data } = await this.selectQueryBuilder().returns<
       SnapRouteReturnType[]
     >()
+    if (!data) return []
     return snapRouteMapper.findAll(data)
   }
   public findById = async (
