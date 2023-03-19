@@ -1,3 +1,4 @@
+import { CustomMarker } from "@/components/organisms/map/CustomMarker";
 import { DirectionsRenderer, DirectionsService, GoogleMap, InfoWindowF, LoadScriptNext, MarkerF, } from "@react-google-maps/api";
 import { NextPage } from "next";
 import React, { memo, useCallback, useEffect, useRef, useState } from "react";
@@ -131,34 +132,7 @@ const map: NextPage = () => {
           }}
         >
           {locates.map((locate, i) => (
-            <>
-              <MarkerF
-                position={locate} key={i}
-                // @ts-ignore
-                animation={
-                  typeof google !== "undefined"
-                    ? window.google.maps.Animation.DROP
-                    : null
-                }
-                onClick={(e) => handleClickMarkerF(locate)}
-              // icon={{
-              // url: "/mapicon.png",
-              // scaledSize: 10
-              // }}
-              />
-              <InfoWindowF
-                position={locate}
-
-              >
-                <div
-                // style={{
-                //   borderRadius: "50%"
-                // }}
-                >
-                  <img src="/paca.png" width={50} height={50} />
-                </div>
-              </InfoWindowF>
-            </>
+            <CustomMarker locate={locate} imageUrl="/paca.png" onClick={() => handleClickMarkerF(locate)} />
           ))}
           <MarkerF position={center} />
 
