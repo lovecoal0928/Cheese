@@ -26,7 +26,7 @@ class PostRepositoryImpl implements PostRepository {
     const { data } = await this.selectQueryBuilder()
       .eq('post_id', postId)
       .single()
-    return postMapper.findById(data as PostReturnType | null)
+    return postMapper.findOne(data as PostReturnType | null)
   }
 
   public save = async (post: Post): Promise<void> => {

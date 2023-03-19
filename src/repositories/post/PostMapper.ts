@@ -6,12 +6,12 @@ import {
   PostReturnType,
 } from './PostRepositoryImpl'
 
-export class PostMapper {
+class PostMapper {
   public findAll = (res: PostReturnType[] | null): Post[] => {
     return res?.map(this.convert) ?? []
   }
 
-  public findById = (res: PostReturnType | null): Post | undefined => {
+  public findOne = (res: PostReturnType | null): Post | undefined => {
     if (!res) return undefined
     return this.convert(res)
   }
