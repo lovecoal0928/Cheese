@@ -1,7 +1,7 @@
 import { NextPage } from 'next'
 import { Graph } from 'types/'
 import { useDijkstra } from 'utils/libs/dijkstra'
-import { useAuth } from 'utils/hooks/useAuth'
+import { useAuth } from 'utils/hooks/auth/useAuth'
 
 const Home: NextPage = () => {
   const { signIn } = useAuth()

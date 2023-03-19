@@ -15,6 +15,10 @@ export const SwipeButtons = () => {
 
 const styles:Styles ={
     swipe_buttons:{
-        padding:"10px"
+      justifyContent: "space-around",
+      position:"fixed",
+      width:"100%",
+      bottom:"100px",
+      left: 0,
     },
 }

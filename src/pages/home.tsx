@@ -1,20 +1,51 @@
 import { NextPage } from 'next'
 import { Home } from '@/components/templates/Home'
-import React from 'react'
-import { useRouter } from 'next/router'
-import { Post } from 'types'
-import { handlePushRouter } from 'utils/libs/handlePushRouter'
+import React, { useEffect } from 'react'
+import { Post } from 'types/entities/Post'
 import { PAGE_NAME } from 'constants/PathName'
+import { useCustomRouter } from 'utils/hooks/useCustomRouter'
+import { useImage } from 'utils/hooks/useImages'
 
 const home: NextPage = () => {
-  const router = useRouter()
-  const PostData: Post[] = [{ title: '', address: '', src: '', comment: '' }]
+  const { handlePushRouter } = useCustomRouter()
+  const { image, handleSetImage } = useImage()
+  const PostData: Post[] = [
+    {
+      postId: 'fnojefneo',
+      userId: 'njogron',
+      title: 'タイトル',
+      comment: 'コメント',
+      postedAt: 'fenojfnenj',
+      postImages: [
+        {
+          postImageId: 'jnouonj',
+          imagePath: 'fnjorghnrou',
+          imageTags: [
+            {
+              tagId: 'fnjogrn',
+              name: 'ばーせる',
+            },
+          ],
+        },
+      ],
+      address: {
+        addressId: 'aaaa',
+        longitude: 10,
+        latitude: 20,
+      },
+    },
+  ]
+  useEffect(() => {
+    handleSetImage(PostData[0].postImages[0].imagePath)
+  }, [PostData])
 
   return (
     <Home
       data={PostData}
-      handlePushRouter={(pathname) => handlePushRouter(router, pathname)}
       PAGE_NAME={PAGE_NAME}
+      image={image}
+      handlePushRouter={handlePushRouter}
+      handleSetImage={handleSetImage}
     />
   )
 }

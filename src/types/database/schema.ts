@@ -39,16 +39,19 @@ export interface Database {
           address_id: string
           latitude: number
           longitude: number
+          post_id: string
         }
         Insert: {
           address_id: string
           latitude: number
           longitude: number
+          post_id: string
         }
         Update: {
           address_id?: string
           latitude?: number
           longitude?: number
+          post_id?: string
         }
       }
       image_tags: {
@@ -70,25 +73,25 @@ export interface Database {
       }
       like_posts: {
         Row: {
-          id: number
+          id: string
           liked_at: string | null
           post_id: string
           user_id: string
         }
         Insert: {
-          id?: number
+          id: string
           liked_at?: string | null
           post_id: string
           user_id: string
         }
         Update: {
-          id?: number
+          id?: string
           liked_at?: string | null
           post_id?: string
           user_id?: string
         }
       }
-      post_image: {
+      post_images: {
         Row: {
           image_path: string
           post_id: string
@@ -108,47 +111,30 @@ export interface Database {
       posts: {
         Row: {
           comment: string | null
-          created_at: string | null
+          created_at: string
           post_id: string
-          posted_at: string | null
+          posted_at: string
           title: string
-          updated_at: string | null
+          updated_at: string
           user_id: string
         }
         Insert: {
           comment?: string | null
-          created_at?: string | null
+          created_at?: string
           post_id: string
-          posted_at?: string | null
+          posted_at?: string
           title: string
-          updated_at?: string | null
+          updated_at?: string
           user_id: string
         }
         Update: {
           comment?: string | null
-          created_at?: string | null
+          created_at?: string
           post_id?: string
-          posted_at?: string | null
+          posted_at?: string
           title?: string
-          updated_at?: string | null
+          updated_at?: string
           user_id?: string
-        }
-      }
-      posts_addresses: {
-        Row: {
-          address_id: string
-          id: number
-          post_id: string
-        }
-        Insert: {
-          address_id: string
-          id?: number
-          post_id: string
-        }
-        Update: {
-          address_id?: string
-          id?: number
-          post_id?: string
         }
       }
       snap_routes: {
@@ -173,53 +159,16 @@ export interface Database {
       }
       snap_routes_posts: {
         Row: {
-          id: number
           post_id: string
           snap_route_id: string
         }
         Insert: {
-          id?: number
           post_id: string
           snap_route_id: string
         }
         Update: {
-          id?: number
           post_id?: string
           snap_route_id?: string
-        }
-      }
-      temporary_posts: {
-        Row: {
-          created_at: string | null
-          temporary_post_id: string
-          user_id: string
-        }
-        Insert: {
-          created_at?: string | null
-          temporary_post_id: string
-          user_id: string
-        }
-        Update: {
-          created_at?: string | null
-          temporary_post_id?: string
-          user_id?: string
-        }
-      }
-      temporary_posts_adresses: {
-        Row: {
-          address_id: string
-          id: number
-          temporary_post_id: string
-        }
-        Insert: {
-          address_id: string
-          id?: number
-          temporary_post_id: string
-        }
-        Update: {
-          address_id?: string
-          id?: number
-          temporary_post_id?: string
         }
       }
       users: {

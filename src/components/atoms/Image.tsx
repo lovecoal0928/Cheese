@@ -8,11 +8,12 @@ type Props={
     style?:CSSProperties
     width?:number
     height?:number
+    onClick?:()=>void
 }
 export const Image = (props:Props) => {
-    const {alt,src,width=100,height=100,style} = props
+    const {alt,src,width=100,height=100,style,onClick} = props
   return (
-    <Flex style={style}>
+    <Flex style={style} onClick={onClick}>
       <NextImage alt={alt} src={src} width={width} height={height}/>
     </Flex>
   )
