@@ -1,4 +1,4 @@
-import { DirectionsRenderer, DirectionsService, GoogleMap, LoadScriptNext, MarkerF, } from "@react-google-maps/api";
+import { DirectionsRenderer, DirectionsService, GoogleMap, InfoWindowF, LoadScriptNext, MarkerF, } from "@react-google-maps/api";
 import { NextPage } from "next";
 import React, { memo, useCallback, useEffect, useRef, useState } from "react";
 /* global google */
@@ -112,8 +112,6 @@ const map: NextPage = () => {
   }
   console.log(transpoints);
 
-
-
   return (
     <>
       <LoadScriptNext googleMapsApiKey={APIkey}>
@@ -133,11 +131,34 @@ const map: NextPage = () => {
           }}
         >
           {locates.map((locate, i) => (
-            <MarkerF
-              position={locate} key={i}
-              // @ts-ignore
-              animation="BOUNCE"
-              onClick={(e) => handleClickMarkerF(locate)} />
+            <>
+              <MarkerF
+                position={locate} key={i}
+                // @ts-ignore
+                animation={
+                  typeof google !== "undefined"
+                    ? window.google.maps.Animation.DROP
+                    : null
+                }
+                onClick={(e) => handleClickMarkerF(locate)}
+              // icon={{
+              // url: "/mapicon.png",
+              // scaledSize: 10
+              // }}
+              />
+              <InfoWindowF
+                position={locate}
+
+              >
+                <div
+                // style={{
+                //   borderRadius: "50%"
+                // }}
+                >
+                  <img src="/paca.png" width={50} height={50} />
+                </div>
+              </InfoWindowF>
+            </>
           ))}
           <MarkerF position={center} />
 
@@ -157,7 +178,6 @@ const map: NextPage = () => {
           )}
           {currentDirection !== null && (
             <DirectionsRenderer
-              key={Date.now()}
               options={{ directions: currentDirection, suppressMarkers: true, markerOptions: { visible: false } }}
             />
           )}
