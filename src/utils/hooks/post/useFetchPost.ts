@@ -3,7 +3,7 @@ import { postRepository } from 'repositories/post/PostRepositoryImpl'
 import { Post } from 'types/entities/Post'
 
 const QUERY_KEYS = {
-  ALL: 'ALL_POSTS',
+  ALL: 'all-posts',
 }
 
 export const useFetchPosts = (queryOptions?: UseQueryOptions<Post[]>) => {

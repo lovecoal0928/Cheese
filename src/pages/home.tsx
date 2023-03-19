@@ -5,10 +5,19 @@ import { Post } from 'types/entities/Post'
 import { PAGE_NAME } from 'constants/PathName'
 import { useCustomRouter } from 'utils/hooks/useCustomRouter'
 import { useImage } from 'utils/hooks/useImages'
+import { useFetchSnapRoutes } from 'utils/hooks/snapRoute/useFetchSnapRoute'
+import { useFetchLikedPost } from 'utils/hooks/likedPost/useFetchLikedPost'
 
 const home: NextPage = () => {
   const { handlePushRouter } = useCustomRouter()
   const { image, handleSetImage } = useImage()
+
+  const { data: snapRoutes } = useFetchLikedPost('u001')
+
+  useEffect(() => {
+    console.log('liked pOst', snapRoutes)
+  }, [snapRoutes])
+
   const PostData: Post[] = [
     {
       postId: 'fnojefneo',
@@ -19,7 +28,7 @@ const home: NextPage = () => {
       postImages: [
         {
           postImageId: 'jnouonj',
-          imagePath: 'fnjorghnrou',
+          imagePath: '',
           imageTags: [
             {
               tagId: 'fnjogrn',

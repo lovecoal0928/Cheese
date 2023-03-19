@@ -4,7 +4,7 @@ import { snapRouteRepository } from 'repositories/snapRoute/SnapRouteRepositoryI
 import { SnapRoute } from 'types/entities/SnapRoute'
 
 const QUERY_KEYS = {
-  ALL: 'ALL_SNAP_ROUTES',
+  ALL: 'all-snap-routes',
 }
 
 export const useFetchSnapRoutes = (
