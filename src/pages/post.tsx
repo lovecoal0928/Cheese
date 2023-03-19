@@ -1,5 +1,5 @@
 import { NextPage } from 'next'
-import React, { useEffect, useRef} from 'react'
+import React, { useEffect, useRef } from 'react'
 import { Post } from '@/components/templates/Post'
 import { useFetchPosts } from 'utils/hooks/post/useFetchPost'
 import { handleReadFile } from 'utils/libs/handleReadFile'
