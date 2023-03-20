@@ -1,6 +1,5 @@
 import React from 'react'
 import { SpotCard } from '../organisms/home/SpotCard'
-import { SwipeButtons } from '../organisms/home/SwipeButtons'
 import { Styles } from 'types/index'
 import { BottomNav } from '../organisms/commons/BottomNav'
 import { Flex } from '../atoms/Flex'
@@ -13,9 +12,8 @@ type Props = {
   PAGE_NAME: { path: string; label: string; src: string }[]
   image: string
   handleSetIsZoom: () => void
-  handleSwipeLike: () => void
-  handleSwipeBad: () => void
-  
+  handleSwipeLike: (userId:string,postId:string,func?:()=>void) => void
+  handleSwipeBad: (func?:()=>void) => void
 }
 
 export const Home = (props: Props) => {
@@ -37,16 +35,15 @@ export const Home = (props: Props) => {
           title={value.title}
           postImages={value.postImages}
           comment={value.comment || ''}
-          key={index}
+          key={value.postId}
+          postId={value.postId}
           handleSetImage={handleSetImage}
           image={image}
           handleSetIsZoom={handleSetIsZoom}
-        />
+          handleSwipeBad={handleSwipeBad}
+          handleSwipeLike={handleSwipeLike}
+        /> 
       ))}
-      <SwipeButtons
-        handleSwipeLike={handleSwipeLike}
-        handleSwipeBad={handleSwipeBad}
-      />
       <BottomNav handlePushRouter={handlePushRouter} PAGE_NAME={PAGE_NAME} />
     </Flex>
   )

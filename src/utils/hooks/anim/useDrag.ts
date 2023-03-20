@@ -12,13 +12,18 @@ export const useDrag = (CARD_START_X: number, CARD_SWIPE_X: number) => {
     // console.log(info.offset.x)
   }
 
-  const handleDragEnd = (event: TouchEvent, info: PanInfo) => {
-    setCardAnimation('start')
+  const handleDragEnd = () => {
+    setCardAnimation('stop')
     // 規定量を超えたらスワイプ
     if (Math.abs(dragX) > CARD_SWIPE_X) {
       setIsSwiped(true)
-      setCardAnimation('swiped')
+      setCardAnimation(dragX > 0 ? 'swipedRight' : 'swipedLeft')
     }
+  }
+  const handleSetCardAnimation = (
+    name: 'stop' | 'drag' | 'swipedRight' | 'swipedLeft',
+  ) => {
+    setCardAnimation(name)
   }
 
   const cardVariants = {
@@ -28,13 +33,45 @@ export const useDrag = (CARD_START_X: number, CARD_SWIPE_X: number) => {
     },
     drag: {
       rotate: dragX / 30,
-      transition: { type: 'spring', damping: 20, stiffness: 300 },
+      transition: {
+        type: 'spring',
+        damping: 20,
+        stiffness: 200,
+        onComplete: () => {
+          setIsSwiped(true)
+        },
+      },
     },
-    swiped: {
-      x: dragX ,
-      transition: { type: 'spring', damping: 20, stiffness: 300 },
+    swipedRight: {
+      x: CARD_SWIPE_X * 2,
+      transition: {
+        type: 'spring',
+        damping: 20,
+        stiffness: 200,
+        onComplete: () => {
+          setIsSwiped(true)
+        },
+      },
+    },
+    swipedLeft: {
+      x: -CARD_SWIPE_X * 2,
+      transition: {
+        type: 'spring',
+        damping: 20,
+        stiffness: 200,
+        onComplete: () => {
+          setIsSwiped(true)
+        },
+      },
     },
   }
 
-  return {isSwiped, handleDrag, handleDragEnd, cardVariants, cardAnimation }
+  return {
+    isSwiped,
+    handleDrag,
+    handleDragEnd,
+    handleSetCardAnimation,
+    cardVariants,
+    cardAnimation,
+  }
 }

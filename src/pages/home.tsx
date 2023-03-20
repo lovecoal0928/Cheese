@@ -18,7 +18,7 @@ const home: NextPage = () => {
   const {isZoom,handleSetIsZoom} = useIsZoom()
   
 
-  const submitLikedPostHandler = async () => {
+  const submitLikedPostHandler = async (userId:string,postId:string) => {
     saveLikedPost(
       {
         userId: 'u001',
@@ -41,12 +41,18 @@ const home: NextPage = () => {
     isLoading: isFetchPostLoading,
   } = useFetchPosts()
 
-  const handleSwipeLike=()=>{
-    submitLikedPostHandler();
+  const handleSwipeLike=(userId:string,postId:string,func?:()=>void)=>{
+    // submitLikedPostHandler(userId,postId);
+    if(func){
+      func()
+    }
   }
 
-  const handleSwipeBad=()=>{
+  const handleSwipeBad=(func?:()=>void)=>{
     
+    if(func){
+      func()
+    }
   }
 
   useEffect(() => {

@@ -6,7 +6,7 @@ type Props = {
   style: CSSProperties
   children: ReactNode
   onClick?: () => void
-  onDragEnd: (event: TouchEvent, info: PanInfo) => void
+  onDragEnd: () => void
   onDrag: (event: TouchEvent, info: PanInfo) => void
   variants:{}
   initial?: boolean | VariantLabels 
