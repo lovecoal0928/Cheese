@@ -10,7 +10,7 @@ type Props = {
 }
 export const PostCancelButton = (props: Props) => {
   const { src, onClick, PAGE_NAME } = props
-  return <Button style={style.cancel} onClick={() => onClick(PAGE_NAME)}><Image width={10} height={10} alt="cancel" src={src} /></Button>;
+  return <Button style={style.cancel} onClick={() => onClick(PAGE_NAME)}><Image width={15} height={15} alt="cancel" src={src} /></Button>;
 };
 
 const style: Styles = {
