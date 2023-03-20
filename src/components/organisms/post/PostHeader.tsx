@@ -12,7 +12,7 @@ export const PostHeader = (props: Props) => {
   const { handlePushRouter, PAGE_NAME } = props
   return (
     <Header>
-      <PostCancelButton src='' onClick={handlePushRouter} PAGE_NAME={PAGE_NAME} />
+      <PostCancelButton src='/icons/vector.png' onClick={handlePushRouter} PAGE_NAME={PAGE_NAME} />
       <Typography style={style.title}>投稿</Typography>
       <Button>保存</Button>
     </Header>
