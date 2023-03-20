@@ -4,15 +4,15 @@ import { Typography } from '@/components/atoms/Typography'
 import { PostCancelButton } from '@/components/molecules/buttons/PostCancelButton'
 import React from 'react'
 
-type Props={
-  handlePushRouter:(pathname:string)=>void
-  PAGE_NAME:string
+type Props = {
+  handlePushRouter: (pathname: string) => void
+  PAGE_NAME: string
 }
-export const PostHeader = (props:Props) => {
-  const {handlePushRouter,PAGE_NAME} = props
+export const PostHeader = (props: Props) => {
+  const { handlePushRouter, PAGE_NAME } = props
   return (
-    <Header style={style.container}>
-      <PostCancelButton src='' onClick={handlePushRouter} PAGE_NAME={PAGE_NAME}/>
+    <Header>
+      <PostCancelButton src='' onClick={handlePushRouter} PAGE_NAME={PAGE_NAME} />
       <Typography style={style.title}>投稿</Typography>
       <Button>保存</Button>
     </Header>
@@ -21,5 +21,5 @@ export const PostHeader = (props:Props) => {
 
 const style = {
   container: {},
-  title:{}
+  title: {}
 }
