@@ -1,7 +1,6 @@
 import { PAGE_NAME } from 'constants/PathName'
 import React from 'react'
 import { Post } from 'types/entities/Post'
-import { useCustomRouter } from 'utils/hooks/useCustomRouter'
 import { Card } from '../atoms/Card'
 import { Flex } from '../atoms/Flex'
 import { Image } from '../atoms/Image'
@@ -10,10 +9,11 @@ import { TextDetail } from '../organisms/list/TextDetail'
 
 type Props = {
   data: Post[]
+  isActive:(pathname:string)=>boolean
+  handlePushRouter:(pathname:string)=>void
 }
 export const List = (props: Props) => {
-  const { data } = props
-  const { handlePushRouter } = useCustomRouter()
+  const { data,handlePushRouter,isActive } = props
 
   return (
     <Flex>
@@ -27,7 +27,7 @@ export const List = (props: Props) => {
           <TextDetail title={value.title} />
         </Card>
       ))}
-      <BottomNav handlePushRouter={handlePushRouter} PAGE_NAME={PAGE_NAME} />
+      <BottomNav handlePushRouter={handlePushRouter} PAGE_NAME={PAGE_NAME} isActive={isActive}/>
     </Flex>
   )
 }
