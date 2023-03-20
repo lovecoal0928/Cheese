@@ -2,7 +2,6 @@ import { CustomMarker } from "@/components/organisms/map/CustomMarker";
 import { DirectionsRenderer, DirectionsService, GoogleMap, LoadScriptNext, MarkerF, } from "@react-google-maps/api";
 import { NextPage } from "next";
 import React, { useEffect, useState } from "react";
-import "../styles/map.module.css"
 /* global google */
 
 const APIkey = process.env.NEXT_PUBLIC_GCP_KEY as string;
