@@ -1,5 +1,5 @@
 import { Card } from '@/components/atoms/Card'
-import { motion, PanInfo, VariantLabels } from 'framer-motion'
+import { motion, PanInfo, VariantLabels, Variants } from 'framer-motion'
 import React, { ChangeEvent, CSSProperties, ReactNode } from 'react'
 
 type Props = {
@@ -8,19 +8,15 @@ type Props = {
   onClick?: () => void
   onDragEnd: () => void
   onDrag: (event: TouchEvent, info: PanInfo) => void
-  variants:{}
-  initial?: boolean | VariantLabels 
-  animate: boolean | VariantLabels 
+  variants: Variants
+  initial?: boolean | VariantLabels
+  animate: boolean | VariantLabels
 }
 
 export const DragCard = (props: Props) => {
-  const { children} = props
+  const { children } = props
   return (
-    <motion.div
-      drag="x"
-      dragConstraints={{ left: 0, right: 0 }}
-      {...props}
-    >
+    <motion.div drag="x" dragConstraints={{ left: 0, right: 0 }} {...props}>
       {children}
     </motion.div>
   )
