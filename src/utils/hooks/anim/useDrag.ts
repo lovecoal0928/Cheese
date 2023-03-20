@@ -32,7 +32,7 @@ export const useDrag = (CARD_START_X: number, CARD_SWIPE_X: number) => {
       rotation: 0,
     },
     drag: {
-      rotate: dragX / 30,
+      rotate: dragX / 20,
       transition: {
         type: 'spring',
         damping: 20,
@@ -43,7 +43,7 @@ export const useDrag = (CARD_START_X: number, CARD_SWIPE_X: number) => {
       },
     },
     swipedRight: {
-      x: CARD_SWIPE_X * 2,
+      x: CARD_SWIPE_X * 10,
       transition: {
         type: 'spring',
         damping: 20,
@@ -54,7 +54,7 @@ export const useDrag = (CARD_START_X: number, CARD_SWIPE_X: number) => {
       },
     },
     swipedLeft: {
-      x: -CARD_SWIPE_X * 2,
+      x: -CARD_SWIPE_X * 10,
       transition: {
         type: 'spring',
         damping: 20,

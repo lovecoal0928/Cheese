@@ -35,7 +35,7 @@ export const SpotCard = (props: Props) => {
   } = props
   const a = ['/paca.png', '/mapicon.png', '/paca.png']
   const CARD_START_X = 0
-  const CARD_SWIPE_X = 200
+  const CARD_SWIPE_X = 100
   // 上から渡すとすべてが動いてしまう
   const {
     isSwiped,

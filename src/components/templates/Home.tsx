@@ -59,5 +59,6 @@ const style: Styles = {
     top: '0px',
     height: '120vh',
     background: '#eee',
+    overflow:'hidden',
   },
 }
