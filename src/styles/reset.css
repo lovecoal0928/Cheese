@@ -49,5 +49,19 @@ input, button, textarea, select {
 
 /* map.tsx */
 .gm-ui-hover-effect {
-    display: none !important;
+    /* display: none !important; */
+    visibility: hidden;
+}
+
+.gm-style-iw.gm-style-iw-c {
+    height: 70px;
+    width: 90px;
+    /* border-radius: 50%; */
+    align-items: center;
+    text-align: center;
+    padding: 0px;
+}
+
+.gm-style-iw-d {
+    /* width: 80px; */
 }

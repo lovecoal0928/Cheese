@@ -132,7 +132,7 @@ const map: NextPage = () => {
           }}
         >
           {locates.map((locate, i) => (
-            <CustomMarker locate={locate} imageUrl="/paca.png" onClick={() => handleClickMarkerF(locate)} key={i} />
+            <CustomMarker locate={locate} imageUrl="/dummyMap.jpg" onClick={() => handleClickMarkerF(locate)} key={i} />
           ))}
           <MarkerF position={center} />
 
