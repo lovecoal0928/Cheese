@@ -1,22 +1,24 @@
 import { NextPage } from 'next'
 import { Home } from '@/components/templates/Home'
 import React, { useEffect } from 'react'
-import { Post } from 'types/entities/Post'
 import { PAGE_NAME } from 'constants/PathName'
 import { useCustomRouter } from 'utils/hooks/useCustomRouter'
 import { useImage } from 'utils/hooks/useImages'
 import { useFetchSnapRoutes } from 'utils/hooks/snapRoute/useFetchSnapRoute'
 import { useFetchLikedPost } from 'utils/hooks/likedPost/useFetchLikedPost'
 import { useSaveLikedPost } from 'utils/hooks/likedPost/useSaveLikedPost'
+import { useFetchPosts } from 'utils/hooks/post/useFetchPost'
+import { useIsZoom } from 'utils/hooks/useIsZoom'
 
 const home: NextPage = () => {
   const { handlePushRouter } = useCustomRouter()
   const { image, handleSetImage } = useImage()
-
   const { data: snapRoutes } = useFetchLikedPost('u001')
   const { mutate: saveLikedPost } = useSaveLikedPost()
+  const {isZoom,handleSetIsZoom} = useIsZoom()
+  
 
-  const submitLikedPostHandler = async () => {
+  const submitLikedPostHandler = async (userId:string,postId:string) => {
     saveLikedPost(
       {
         userId: 'u001',
@@ -29,39 +31,36 @@ const home: NextPage = () => {
     )
   }
 
-  useEffect(() => {
-    console.log('liked pOst', snapRoutes)
-  }, [snapRoutes])
+  // useEffect(() => {
+  //   console.log('liked pOst', snapRoutes)
+  // }, [snapRoutes])
 
-  const PostData: Post[] = [
-    {
-      postId: 'fnojefneo',
-      userId: 'njogron',
-      title: 'タイトル',
-      comment: 'コメント',
-      postedAt: 'fenojfnenj',
-      postImages: [
-        {
-          postImageId: 'jnouonj',
-          imagePath: '',
-          imageTags: [
-            {
-              tagId: 'fnjogrn',
-              name: 'ばーせる',
-            },
-          ],
-        },
-      ],
-      address: {
-        addressId: 'aaaa',
-        longitude: 10,
-        latitude: 20,
-      },
-    },
-  ]
+  const {
+    data: posts,
+    refetch: refetchPosts,
+    isLoading: isFetchPostLoading,
+  } = useFetchPosts()
+
+  const handleSwipeLike=(userId:string,postId:string,func?:()=>void)=>{
+    // submitLikedPostHandler(userId,postId);
+    if(func){
+      func()
+    }
+  }
+
+  const handleSwipeBad=(func?:()=>void)=>{
+    
+    if(func){
+      func()
+    }
+  }
+
   useEffect(() => {
-    handleSetImage(PostData[0].postImages[0].imagePath)
-  }, [PostData])
+    if (posts) {
+      handleSetImage(posts[0].postImages[0].imagePath)
+    }
+    // console.log(posts)
+  }, [posts])
 
   return (
     // <Home
@@ -71,7 +70,17 @@ const home: NextPage = () => {
     //   handlePushRouter={handlePushRouter}
     //   handleSetImage={handleSetImage}
     // />
-    <button onClick={submitLikedPostHandler}>submit</button>
+    // <button onClick={submitLikedPostHandler}>submit</button>
+    <Home
+      data={posts || []}
+      PAGE_NAME={PAGE_NAME}
+      image={image}
+      handlePushRouter={handlePushRouter}
+      handleSetImage={handleSetImage}
+      handleSetIsZoom={handleSetIsZoom}
+      handleSwipeLike={handleSwipeLike}
+      handleSwipeBad={handleSwipeBad}
+    />
   )
 }
 

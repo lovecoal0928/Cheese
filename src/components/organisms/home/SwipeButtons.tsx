@@ -4,11 +4,17 @@ import React from 'react'
 import { Styles } from 'types/style'
 
 
-export const SwipeButtons = () => {
+type Props={
+  handleSwipeLike:()=>void
+  handleSwipeBad:()=>void
+}
+
+export const SwipeButtons = (props:Props) => {
+  const {handleSwipeBad,handleSwipeLike} = props
   return (
     <Flex style={styles.swipe_buttons}>
-        <SwipeButton src="" alt="bad"/>
-        <SwipeButton src="" alt="check"/>
+        <SwipeButton src="" alt="bad" onClick={handleSwipeBad}/>
+        <SwipeButton src="" alt="check" onClick={handleSwipeLike}/>
     </Flex>
   )
 }
