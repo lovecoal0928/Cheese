@@ -1,11 +1,10 @@
 import { Flex } from '@/components/atoms/Flex'
-import { Input } from '@/components/atoms/Input'
 import React, { ChangeEvent, LegacyRef, RefObject, useRef, useState } from 'react'
 import { Image } from '@/components/atoms/Image'
 import { TextInput } from '@/components/molecules/inputs/TextInput'
-import { FileInput } from '@/components/molecules/inputs/FileInput'
 import { Typography } from '@/components/atoms/Typography'
 import { Styles } from 'types'
+import { PictureInput } from '@/components/molecules/inputs/PictureInput'
 
 type Props = {
   titleRef: RefObject<HTMLInputElement>
@@ -22,7 +21,7 @@ export const PostForm = (props: Props) => {
   return (
     <Flex direction="column" style={style.container}>
       <TextInput ref={titleRef} placeholder={'タイトル'} style={style.title} />
-      <TextInput placeholder='場所' ref={placeRef} onClick={() => { handlePushRouter(PAGE_NAME) }} style={style.title} />
+      <TextInput placeholder='場所' ref={placeRef} onClick={() => { handlePushRouter(PAGE_NAME) }} style={style.place} />
       {/* <TextInput
         ref={commentRef}
         placeholder={'コメント'}
@@ -33,12 +32,17 @@ export const PostForm = (props: Props) => {
         placeholder='コメント'
         style={style.comment}
       ></textarea>
-      {images?.map((value, index) => (
-        <Image alt="投稿画像" src={value} key={index} />
-      ))}
-      <FileInput onChange={handleSetFiles}>
+      <div style={style.images}>
+        {images?.map((value, index) => (
+          <Image alt="投稿画像" src={value} key={index} width={90} height={120} style={{
+            objectFit: "cover",
+            margin: "0 10px"
+          }} />
+        ))}
+      </div>
+      <PictureInput onChange={handleSetFiles} style={style.file}>
         <Typography style={style.button}>写真を追加</Typography>
-      </FileInput>
+      </PictureInput>
     </Flex>
   )
 }
@@ -52,16 +56,33 @@ const style: Styles = {
     paddingLeft: 20,
     paddingRight: 20
   },
+  place: {
+    border: "none",
+    height: 50,
+    borderBottom: "solid #aaa 1px",
+    paddingLeft: 20,
+    paddingRight: 20
+  },
   comment: {
     border: "none",
     width: "100%",
     height: 150,
     paddingLeft: 20,
-    // paddingRight: 20,
+    paddingRight: 20,
     borderBottom: "solid #aaa 1px",
     resize: "none"
   },
   button: {
     cursor: 'pointer',
   },
+  images: {
+    display: "flex",
+    width: "90%",
+    margin: "0 auto",
+    overflowX: "scroll",
+    marginTop: 20
+  },
+  file: {
+    border: "1px solid #000"
+  }
 }
