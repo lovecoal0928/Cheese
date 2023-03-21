@@ -14,7 +14,7 @@ export const PostHeader = (props: Props) => {
   return (
     <Header>
       <PostCancelButton src='/icons/vector.png' onClick={handlePushRouter} PAGE_NAME={PAGE_NAME} />
-      <Typography style={style.title}>新規作成</Typography>
+      <h4 style={style.title}>新規作成</h4>
       <Button style={style.save}>保存</Button>
     </Header>
   )
@@ -23,12 +23,15 @@ export const PostHeader = (props: Props) => {
 const style: Styles = {
   container: {},
   title: {
-    fontWeight: "bold"
+    fontWeight: "bold",
+    margin: "0 auto"
   },
   save: {
     border: "none",
     backgroundColor: "#fff",
     color: "#0098fd",
-    fontWeight: "bold"
+    fontWeight: "bold",
+    position: "absolute",
+    right: 10,
   }
 }
