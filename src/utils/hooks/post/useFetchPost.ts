@@ -1,5 +1,5 @@
 import { useQuery, UseQueryOptions } from '@tanstack/react-query'
-import { postRepository } from 'repositories/post/PostRepositoryImpl'
+import { postRepository } from 'repositories/database/post/PostRepositoryImpl'
 import { Post } from 'types/entities/Post'
 
 const QUERY_KEYS = {

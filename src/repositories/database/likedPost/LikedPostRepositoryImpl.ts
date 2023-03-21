@@ -1,7 +1,7 @@
 import { Post } from 'types/entities/Post'
 import { LikeRepository } from './LikedPostRepository'
 import { Tables, supabase } from 'plugins/supabse'
-import { PostReturnType } from 'repositories/post/PostRepositoryImpl'
+import { PostReturnType } from 'repositories/database/post/PostRepositoryImpl'
 import { likedPostMapper } from './LikedPostMapper'
 import { LikedPost } from 'types/entities/LikedPost'
 
