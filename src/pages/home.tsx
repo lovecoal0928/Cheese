@@ -9,16 +9,17 @@ import { useFetchLikedPost } from 'utils/hooks/likedPost/useFetchLikedPost'
 import { useSaveLikedPost } from 'utils/hooks/likedPost/useSaveLikedPost'
 import { useFetchPosts } from 'utils/hooks/post/useFetchPost'
 import { useIsZoom } from 'utils/hooks/useIsZoom'
+import { useModalScrollLock } from 'utils/hooks/useModalScrollLock'
+import { Zoom } from '@/components/templates/Zoom'
 
 const home: NextPage = () => {
-  const { handlePushRouter,isActive } = useCustomRouter()
+  const { handlePushRouter, isActive } = useCustomRouter()
   const { image, handleSetImage } = useImage()
-  const { data: snapRoutes } = useFetchLikedPost('u001')
   const { mutate: saveLikedPost } = useSaveLikedPost()
-  const {isZoom,handleSetIsZoom} = useIsZoom()
-  
+  const { isZoom, handleSetIsZoom } = useIsZoom()
+  useModalScrollLock({ isZoom })
 
-  const submitLikedPostHandler = async (userId:string,postId:string) => {
+  const submitLikedPostHandler = async (userId: string, postId: string) => {
     saveLikedPost(
       {
         userId: 'u001',
@@ -31,26 +32,25 @@ const home: NextPage = () => {
     )
   }
 
-  useEffect(() => {
-    console.log('liked pOst', snapRoutes)
-  }, [snapRoutes])
-
   const {
     data: posts,
     refetch: refetchPosts,
     isLoading: isFetchPostLoading,
   } = useFetchPosts()
 
-  const handleSwipeLike=(userId:string,postId:string,func?:()=>void)=>{
+  const handleSwipeLike = (
+    userId: string,
+    postId: string,
+    func?: () => void,
+  ) => {
     // submitLikedPostHandler(userId,postId);
-    if(func){
+    if (func) {
       func()
     }
   }
 
-  const handleSwipeBad=(func?:()=>void)=>{
-    
-    if(func){
+  const handleSwipeBad = (func?: () => void) => {
+    if (func) {
       func()
     }
   }
@@ -71,10 +71,12 @@ const home: NextPage = () => {
     //   handleSetImage={handleSetImage}
     // />
     // <button onClick={submitLikedPostHandler}>submit</button>
+
     <Home
       data={posts || []}
       PAGE_NAME={PAGE_NAME}
       image={image}
+      isZoom={isZoom}
       isActive={isActive}
       handlePushRouter={handlePushRouter}
       handleSetImage={handleSetImage}

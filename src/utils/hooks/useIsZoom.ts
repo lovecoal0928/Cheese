@@ -4,7 +4,7 @@ export const useIsZoom = () => {
   const [isZoom, setIsZoom] = useState(false)
 
   const handleSetIsZoom = useCallback(() => {
-    setIsZoom(!isZoom)
+    setIsZoom((prevState)=>!prevState)
   }, [])
 
   return { isZoom,handleSetIsZoom}

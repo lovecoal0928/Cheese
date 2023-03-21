@@ -21,8 +21,7 @@ export const BottomNav = (props: Props) => {
             {value.src && (
               <NavButton
                 src={isActive(`/${value.path}`) ? value.selected : value.src}
-                handlePushRouter={handlePushRouter}
-                pathname={value.path}
+                handlePushRouter={()=>handlePushRouter(value.path)}
                 label={value.label}
                 key={index}
               />
