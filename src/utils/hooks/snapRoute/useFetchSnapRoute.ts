@@ -1,5 +1,5 @@
 import { useQuery, UseQueryOptions } from '@tanstack/react-query'
-import { snapRouteRepository } from 'repositories/snapRoute/SnapRouteRepositoryImpl'
+import { snapRouteRepository } from 'repositories/database/snapRoute/SnapRouteRepositoryImpl'
 
 import { SnapRoute } from 'types/entities/SnapRoute'
 

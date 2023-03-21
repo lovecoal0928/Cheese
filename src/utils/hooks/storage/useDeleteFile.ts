@@ -1,8 +1,8 @@
 import { useMutation } from '@tanstack/react-query'
 import { storageService } from 'services/storage/StorageServiceImpl'
 
-export const useUploadFile = () => {
+export const useDeleteFile = () => {
   return {
-    ...useMutation((file: File) => storageService.upload(file)),
+    ...useMutation((key: string) => storageService.delete(key)),
   }
 }

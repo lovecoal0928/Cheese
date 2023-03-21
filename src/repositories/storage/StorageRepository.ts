@@ -1,4 +1,5 @@
 export interface StorageRepository {
   upload: (file: File) => Promise<string | undefined>
-  //   delete: (data: any) => Promise<void>
+  getPath: (key: string) => Promise<string | undefined>
+  delete: (key: string) => Promise<void>
 }

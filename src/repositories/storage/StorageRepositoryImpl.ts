@@ -14,6 +14,16 @@ class StorageRepositoryImpl implements StorageRepository {
     if (error) throw error
     return data.path
   }
+
+  public getPath = async (key: string) => {
+    const { data } = supabase.storage.from(this.bucketName).getPublicUrl(key)
+    return data.publicUrl
+  }
+
+  public delete = async (key: string) => {
+    const { error } = await supabase.storage.from(this.bucketName).remove([key])
+    if (error) throw error
+  }
 }
 
 export const storageRepository = new StorageRepositoryImpl()
