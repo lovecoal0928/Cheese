@@ -1,11 +1,11 @@
-import React, { ChangeEvent, RefObject } from 'react'
+import React, { ChangeEvent, LegacyRef, RefObject } from 'react'
 import { PostHeader } from '../organisms/post/PostHeader'
 import { PostForm } from '../organisms/post/PostForm'
 import { PathName } from 'types'
 
 type Props = {
   titleRef: RefObject<HTMLInputElement>
-  commentRef: RefObject<HTMLInputElement>
+  commentRef: LegacyRef<HTMLTextAreaElement>
   placeRef: RefObject<HTMLInputElement>
   images: string[]
   handleSetFiles: (e: ChangeEvent<HTMLInputElement>) => void

@@ -1,6 +1,6 @@
 import { Flex } from '@/components/atoms/Flex'
 import { Input } from '@/components/atoms/Input'
-import React, { ChangeEvent, RefObject, useRef, useState } from 'react'
+import React, { ChangeEvent, LegacyRef, RefObject, useRef, useState } from 'react'
 import { Image } from '@/components/atoms/Image'
 import { TextInput } from '@/components/molecules/inputs/TextInput'
 import { FileInput } from '@/components/molecules/inputs/FileInput'
@@ -9,7 +9,7 @@ import { Styles } from 'types'
 
 type Props = {
   titleRef: RefObject<HTMLInputElement>
-  commentRef: RefObject<HTMLInputElement>
+  commentRef: LegacyRef<HTMLTextAreaElement>
   placeRef: RefObject<HTMLInputElement>
   images: string[]
   handleSetFiles: (e: ChangeEvent<HTMLInputElement>) => void
@@ -23,11 +23,16 @@ export const PostForm = (props: Props) => {
     <Flex direction="column" style={style.container}>
       <TextInput ref={titleRef} placeholder={'タイトル'} style={style.title} />
       <TextInput placeholder='場所' ref={placeRef} onClick={() => { handlePushRouter(PAGE_NAME) }} style={style.title} />
-      <TextInput
+      {/* <TextInput
         ref={commentRef}
         placeholder={'コメント'}
         style={style.comment}
-      />
+      /> */}
+      <textarea
+        ref={commentRef}
+        placeholder='コメント'
+        style={style.comment}
+      ></textarea>
       {images?.map((value, index) => (
         <Image alt="投稿画像" src={value} key={index} />
       ))}
@@ -49,9 +54,12 @@ const style: Styles = {
   },
   comment: {
     border: "none",
-    height: 50,
+    width: "100%",
+    height: 150,
     paddingLeft: 20,
-    paddingRight: 20
+    // paddingRight: 20,
+    borderBottom: "solid #aaa 1px",
+    resize: "none"
   },
   button: {
     cursor: 'pointer',
