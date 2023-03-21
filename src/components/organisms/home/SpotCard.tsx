@@ -53,7 +53,6 @@ export const SpotCard = (props: Props) => {
       ) : (
         <>
           <DragCard
-            style={styles.card}
             onDragEnd={handleDragEnd}
             onDrag={handleDrag}
             variants={cardVariants}
@@ -105,16 +104,6 @@ export const SpotCard = (props: Props) => {
 }
 
 const styles: Styles = {
-  card: {
-    minHeight: '90vh',
-    width: '90%',
-    top: '2%',
-    left: '4.5%',
-    background: '#fff',
-    position: 'absolute',
-    borderRadius: '18px',
-    padding: '15px',
-  },
   title: {
     fontStyle: 'normal',
     fontWeight: 600,

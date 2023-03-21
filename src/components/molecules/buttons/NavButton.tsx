@@ -7,15 +7,14 @@ import { Typography } from '@/components/atoms/Typography'
 type NavButton = {
   src: string
   label: string
-  handlePushRouter: (pathname: string) => void
-  pathname: string
+  handlePushRouter: () => void
 }
 
 export const NavButton = (props: NavButton) => {
-  const { src, label, handlePushRouter, pathname } = props
+  const { src, label, handlePushRouter} = props
 
   return (
-    <Button style={styles.button} onClick={() => handlePushRouter(pathname)}>
+    <Button style={styles.button} onClick={handlePushRouter}>
       <Image
         alt={label}
         src={src}

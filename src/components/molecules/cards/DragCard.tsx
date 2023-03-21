@@ -1,9 +1,9 @@
 import { Card } from '@/components/atoms/Card'
 import { motion, PanInfo, VariantLabels, Variants } from 'framer-motion'
 import React, { ChangeEvent, CSSProperties, ReactNode } from 'react'
+import { Styles } from 'types'
 
 type Props = {
-  style: CSSProperties
   children: ReactNode
   onClick?: () => void
   onDragEnd: () => void
@@ -16,8 +16,21 @@ type Props = {
 export const DragCard = (props: Props) => {
   const { children } = props
   return (
-    <motion.div drag="x" dragConstraints={{ left: 0, right: 0 }} {...props}>
+    <motion.div drag="x" dragConstraints={{ left: 0, right: 0 }} style={styles.card} {...props}>
       {children}
     </motion.div>
   )
+}
+
+const styles:Styles ={
+  card: {
+    minHeight: '90vh',
+    width: '90%',
+    top: '2%',
+    left: '4.5%',
+    background: '#fff',
+    position: 'absolute',
+    borderRadius: '18px',
+    padding: '15px',
+  },
 }

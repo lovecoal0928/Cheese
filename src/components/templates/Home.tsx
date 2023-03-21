@@ -4,17 +4,19 @@ import { PathName, Styles } from 'types/index'
 import { BottomNav } from '../organisms/commons/BottomNav'
 import { Flex } from '../atoms/Flex'
 import { Post } from 'types/entities/Post'
+import { Zoom } from './Zoom'
 
 type Props = {
   image: string
   data: Post[]
   PAGE_NAME: PathName[]
-  isActive:(pathname:string)=>boolean
+  isZoom: boolean
+  isActive: (pathname: string) => boolean
   handlePushRouter: (pathname: string) => void
   handleSetImage: (src: string) => void
   handleSetIsZoom: () => void
-  handleSwipeLike: (userId:string,postId:string,func?:()=>void) => void
-  handleSwipeBad: (func?:()=>void) => void
+  handleSwipeLike: (userId: string, postId: string, func?: () => void) => void
+  handleSwipeBad: (func?: () => void) => void
 }
 
 export const Home = (props: Props) => {
@@ -28,25 +30,33 @@ export const Home = (props: Props) => {
     handleSetIsZoom,
     handleSwipeBad,
     handleSwipeLike,
+    isZoom,
   } = props
 
   return (
     <Flex style={style.container} direction="column">
-      {data.map((value: Post, index: number) => (
-        <SpotCard
-          title={value.title}
-          postImages={value.postImages}
-          comment={value.comment || ''}
-          key={value.postId}
-          postId={value.postId}
-          handleSetImage={handleSetImage}
-          image={image}
-          handleSetIsZoom={handleSetIsZoom}
-          handleSwipeBad={handleSwipeBad}
-          handleSwipeLike={handleSwipeLike}
-        /> 
+      {data.map((value: Post) => (
+        <>
+          {isZoom && <Zoom images={value.postImages} handleSetIsZoom={handleSetIsZoom}/>}
+          <SpotCard
+            title={value.title}
+            postImages={value.postImages}
+            comment={value.comment || ''}
+            key={value.postId}
+            postId={value.postId}
+            handleSetImage={handleSetImage}
+            image={image}
+            handleSetIsZoom={handleSetIsZoom}
+            handleSwipeBad={handleSwipeBad}
+            handleSwipeLike={handleSwipeLike}
+          />
+        </>
       ))}
-      <BottomNav handlePushRouter={handlePushRouter} PAGE_NAME={PAGE_NAME} isActive={isActive}/>
+      <BottomNav
+        handlePushRouter={handlePushRouter}
+        PAGE_NAME={PAGE_NAME}
+        isActive={isActive}
+      />
     </Flex>
   )
 }
@@ -59,6 +69,6 @@ const style: Styles = {
     top: '0px',
     height: '120vh',
     background: '#eee',
-    overflow:'hidden',
+    overflow: 'hidden',
   },
 }
