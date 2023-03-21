@@ -13,16 +13,16 @@ type Props = {
   placeRef: RefObject<HTMLInputElement>
   images: string[]
   handleSetFiles: (e: ChangeEvent<HTMLInputElement>) => void
-  handlePushRouter:(pathname:string)=>void
-  PAGE_NAME:string
+  handlePushRouter: (pathname: string) => void
+  PAGE_NAME: string
 }
 
 export const PostForm = (props: Props) => {
-  const { titleRef, commentRef,placeRef, images, handleSetFiles,handlePushRouter,PAGE_NAME } = props
+  const { titleRef, commentRef, placeRef, images, handleSetFiles, handlePushRouter, PAGE_NAME } = props
   return (
     <Flex direction="column" style={style.container}>
       <TextInput ref={titleRef} placeholder={'タイトル'} style={style.title} />
-      <TextInput placeholder='場所' ref={placeRef} onClick={()=>{handlePushRouter(PAGE_NAME)}}/>
+      <TextInput placeholder='場所' ref={placeRef} onClick={() => { handlePushRouter(PAGE_NAME) }} style={style.title} />
       <TextInput
         ref={commentRef}
         placeholder={'コメント'}
@@ -40,8 +40,19 @@ export const PostForm = (props: Props) => {
 
 const style: Styles = {
   container: {},
-  title: {},
-  comment: {},
+  title: {
+    border: "none",
+    height: 50,
+    borderBottom: "solid #aaa 1px",
+    paddingLeft: 20,
+    paddingRight: 20
+  },
+  comment: {
+    border: "none",
+    height: 50,
+    paddingLeft: 20,
+    paddingRight: 20
+  },
   button: {
     cursor: 'pointer',
   },
