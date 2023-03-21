@@ -1,5 +1,5 @@
 import { NextPage } from 'next'
-import React, { useEffect, useRef } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import { Post } from '@/components/templates/Post'
 import { useFetchPosts } from 'utils/hooks/post/useFetchPost'
 import { handleReadFile } from 'utils/libs/handleReadFile'
@@ -8,6 +8,7 @@ import { useCustomRouter } from 'utils/hooks/useCustomRouter'
 import { PAGE_NAME } from 'constants/PathName'
 import { useSavePost } from 'utils/hooks/post/useSavePost'
 import { useFetchSnapRoutes } from 'utils/hooks/snapRoute/useFetchSnapRoute'
+import { useUploadFile } from 'utils/hooks/storage/useUploadFile'
 
 const dummyPost = {
   title: 'hoge',
@@ -48,6 +49,7 @@ const post: NextPage = () => {
   //NOTE: https://tanstack.com/query/v4/docs/react/reference/useMutation
 
   const { mutate: savePost, isLoading: isPostLoading } = useSavePost()
+  const { mutate: uploadFile, isLoading: isUploading } = useUploadFile()
 
   const submitPostHandler = async () => {
     savePost(dummyPost, {
@@ -59,6 +61,8 @@ const post: NextPage = () => {
   const titleRef = useRef(null)
   const commentRef = useRef(null)
   const placeRef = useRef(null)
+  const [imagePaths, setImagePaths] = useState<string[]>([])
+  const [fileKeys, setFileKeys] = useState<string[]>([])
   const { images, handleSetFiles, handleSetSrc } = useImageFiles()
   const { handlePushRouter } = useCustomRouter()
 
@@ -72,6 +76,28 @@ const post: NextPage = () => {
     }
     handleLoopSrc()
   }, [images.file])
+
+  useEffect(() => {
+    ;(async () => {
+      images.file.forEach(async (file) => {
+        uploadFile(file, {
+          onSuccess: onSuccessUploadFile,
+          onError: (error) => console.log(error),
+        })
+      })
+    })()
+  }, [images])
+
+  const onSuccessUploadFile = ({
+    key,
+    publicUrl,
+  }: {
+    key: string
+    publicUrl: string
+  }) => {
+    setImagePaths((prevPaths) => [...prevPaths, publicUrl])
+    setFileKeys((prevKeys) => [...prevKeys, key])
+  }
 
   // insertPosts:title,comment,user_id
   // insertAddress: 緯度、経度、名前

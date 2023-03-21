@@ -1,6 +1,6 @@
 import { SnapRoute } from 'types/entities/SnapRoute'
 import { SnapRouteReturnType } from './SnapRouteRepositoryImpl'
-import { postMapper } from 'repositories/post/PostMapper'
+import { postMapper } from 'repositories/database/post/PostMapper'
 
 class SnapRouteMapper {
   public findAll = (res: SnapRouteReturnType[] | null): SnapRoute[] => {

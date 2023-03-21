@@ -1,6 +1,5 @@
 import { useQuery, UseQueryOptions } from '@tanstack/react-query'
-import { likedPostRepository } from 'repositories/likedPost/LikedPostRepositoryImpl'
-
+import { likedPostRepository } from 'repositories/database/likedPost/LikedPostRepositoryImpl'
 import { Post } from 'types/entities/Post'
 
 const QUERY_KEYS = {

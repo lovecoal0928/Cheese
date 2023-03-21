@@ -1,6 +1,6 @@
 import { useMutation } from '@tanstack/react-query'
 import { LikedPostFactory, likedPostParams } from 'factories/LikedPostFactory'
-import { likedPostRepository } from 'repositories/likedPost/LikedPostRepositoryImpl'
+import { likedPostRepository } from 'repositories/database/likedPost/LikedPostRepositoryImpl'
 
 export const useSaveLikedPost = () => {
   return {

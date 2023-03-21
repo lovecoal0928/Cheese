@@ -1,7 +1,7 @@
 import { SnapRoute } from 'types/entities/SnapRoute'
 import { SnapRouteRepository } from './SnapRouteRepository'
 import { Tables, supabase } from 'plugins/supabse'
-import { PostReturnType } from 'repositories/post/PostRepositoryImpl'
+import { PostReturnType } from 'repositories/database/post/PostRepositoryImpl'
 import { snapRouteMapper } from './SnapRouteMapper'
 
 class SnapRouteRepositoryImpl implements SnapRouteRepository {

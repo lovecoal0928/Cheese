@@ -1,4 +1,4 @@
-import { postMapper } from 'repositories/post/PostMapper'
+import { postMapper } from 'repositories/database/post/PostMapper'
 import { LikePostReturnType } from './LikedPostRepositoryImpl'
 import { Post } from 'types/entities/Post'
 import { Tables } from 'plugins/supabse'

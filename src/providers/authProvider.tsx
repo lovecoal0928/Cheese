@@ -1,6 +1,6 @@
 import { userFactory } from 'factories/userFactory'
 import { ReactNode, useEffect } from 'react'
-import { userRepository } from 'repositories/user/UserRepositoryImpl'
+import { userRepository } from 'repositories/database/user/UserRepositoryImpl'
 import { useAuthLister } from 'utils/hooks/auth/useAuth'
 
 interface Props {

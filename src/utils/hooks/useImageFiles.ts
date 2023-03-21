@@ -25,5 +25,13 @@ export const useImageFiles = () => {
     }))
   }, [])
 
-  return { images, setImages, handleSetFiles, handleSetSrc }
+  const handleLoopSrc = useCallback(async () => {
+    const srcs = []
+    for (const value of images.file) {
+      srcs.push(await handleReadFile(value))
+    }
+    handleSetSrc(srcs)
+  }, [])
+
+  return { images, setImages, handleSetFiles, handleSetSrc, handleLoopSrc }
 }
