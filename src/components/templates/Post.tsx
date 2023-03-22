@@ -2,6 +2,8 @@ import React, { ChangeEvent, LegacyRef, RefObject } from 'react'
 import { PostHeader } from '../organisms/post/PostHeader'
 import { PostForm } from '../organisms/post/PostForm'
 import { PathName } from 'types'
+import { MotionDiv } from '../atoms/MotionDiv'
+import { postSlide } from 'anim/slide'
 
 type Props = {
   titleRef: RefObject<HTMLInputElement>
@@ -23,7 +25,7 @@ export const Post = (props: Props) => {
     PAGE_NAME
   } = props
   return (
-    <>
+    <MotionDiv {...postSlide}>
       <PostHeader handlePushRouter={handlePushRouter} PAGE_NAME={PAGE_NAME[0].path} />
       <div style={{ marginTop: 50 }}>
         <PostForm
@@ -36,6 +38,6 @@ export const Post = (props: Props) => {
           PAGE_NAME={PAGE_NAME[5].path}
         />
       </div>
-    </>
+    </MotionDiv>
   )
 }

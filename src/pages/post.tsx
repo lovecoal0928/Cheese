@@ -78,7 +78,7 @@ const post: NextPage = () => {
   }, [images.file])
 
   useEffect(() => {
-    ;(async () => {
+    (async () => {
       images.file.forEach(async (file) => {
         uploadFile(file, {
           onSuccess: onSuccessUploadFile,
