@@ -8,8 +8,6 @@ type Props = {
 export const MotionDiv = (props: Props) => {
   const { children } = props
   return (
-    <AnimatePresence mode='wait'>
       <motion.div {...props}>{children}</motion.div>
-    </AnimatePresence>
   )
 }
