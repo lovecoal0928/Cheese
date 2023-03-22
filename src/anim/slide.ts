@@ -1,16 +1,16 @@
-export const postSlide={
-    init:{
+import { HTMLMotionProps} from "framer-motion";
+
+export const postSlide:HTMLMotionProps<"div">={
+    initial:{
       y: 0,
-      opacity:0,
-  
     },
     animate: {
-      y: [300,0],
+      y: [1000,0]
     },
     exit:{
-      x: 480,opacity:0.6
+      y:[0,1000]
     },
     transition: {
-      duration: 0.2,
+      duration: 0.3,
     },
   }

@@ -19,8 +19,8 @@ export const Zoom = (props: Props) => {
     <OverLay>
       <ZoomCancelButton onClick={handleSetIsZoom} />
       <MotionDiv
-        initial={{ scale: 0.8,}}
-        animate={{ scale: 1 }}
+        initial={{ scale: 1}}
+        animate={{ scale: 1.1 }}
         transition={openSpring}
         style={styles.image}
       >
