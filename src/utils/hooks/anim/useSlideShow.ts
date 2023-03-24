@@ -3,6 +3,9 @@ import { useState } from 'react'
 
 export const useSlidShow = () => {
   const swipeConfidenceThreshold = 10000 //このプロパティの値が高いほど、ユーザーが画像をドラッグしてもアニメーションがすぐにトリガーされなくなる。
+  const [images,setImages] = useState<string[]>([])
+
+  const handleSetImages=(images:string[])=>setImages(images)
   const variants = {
     enter: (direction: number) => {
       return {
@@ -48,12 +51,11 @@ export const useSlidShow = () => {
   }
 
   return {
-    swipePower,
+    images,
     page,
     direction,
-    setPage,
-    paginate,
     variants,
+    handleSetImages,
     onDragEnd,
   }
 }
