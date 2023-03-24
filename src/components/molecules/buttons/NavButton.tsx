@@ -3,38 +3,59 @@ import { Image } from '../../atoms/Image'
 import { Button } from '../../atoms/Button'
 import { Styles } from 'types'
 import { Typography } from '@/components/atoms/Typography'
+import Link from 'next/link'
+import { Flex } from '@/components/atoms/Flex'
 
 type NavButton = {
   src: string
   label: string
-  handlePushRouter: () => void
+  href: string
+  isActive: (pathname: string) => boolean
 }
 
 export const NavButton = (props: NavButton) => {
-  const { src, label, handlePushRouter} = props
+  const { src, label, href, isActive } = props
 
   return (
-    <Button style={styles.button} onClick={handlePushRouter}>
+    <Link
+      style={{
+        ...styles.container,
+        background: isActive(`/${href}`) ? '#FFEDAF' : 'none',
+        boxShadow: isActive(`/${href}`)
+          ? '0px 0px 5px rgba(0, 0, 0, 0.32)'
+          : 'none',
+      }}
+      href={href}
+    >
       <Image
         alt={label}
         src={src}
-        width={30}
-        height={30}
-        style={styles.image}
+        width={35}
+        height={35}
+        style={{
+          ...styles.image,
+          margin: isActive(`/${href}`) ? '0 0 0 0' : '0 0 7px 0',
+        }}
       />
-      <Typography style={styles.label}>{label}</Typography>
-    </Button>
+      {isActive(`/${href}`) || (
+        <Typography style={styles.label}>{label}</Typography>
+      )}
+    </Link>
   )
 }
 
 const styles: Styles = {
-  button: {
-    background: '#fff',
+  container: {
     border: 'none',
+    textDecoration: 'none',
+    margin: 0,
+    padding: '15px',
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'center',
+    borderRadius: '50%',
   },
-  image: {
-    // padding:"10px"
-  },
+  image: {},
   label: {
     fontStyle: 'normal',
     fontWeight: 500,

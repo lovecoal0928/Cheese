@@ -15,7 +15,7 @@ import { useAuth, useAuthLister } from 'utils/hooks/auth/useAuth'
 import { useSlidShow } from 'utils/hooks/anim/useSlideShow'
 
 const home: NextPage = () => {
-  const { handlePushRouter, isActive } = useCustomRouter()
+  const { isActive,isLastActive,pathHistory } = useCustomRouter()
   const { mutate: saveLikedPost } = useSaveLikedPost()
   const { isZoom, handleSetIsZoom } = useIsZoom()
   const { userId } = useAuthLister()
@@ -71,7 +71,8 @@ const home: NextPage = () => {
       PAGE_NAME={PAGE_NAME}
       isZoom={isZoom}
       isActive={isActive}
-      handlePushRouter={handlePushRouter}
+      isLastActive={isLastActive}
+      pathHistory={pathHistory}
       handleSetIsZoom={handleSetIsZoom}
       handleSwipeLike={handleSwipeLike}
       handleSwipeBad={handleSwipeBad}

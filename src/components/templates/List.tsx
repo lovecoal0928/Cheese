@@ -10,10 +10,12 @@ import { TextDetail } from '../organisms/list/TextDetail'
 type Props = {
   data: Post[]
   isActive:(pathname:string)=>boolean
-  handlePushRouter:(pathname:string)=>void
+  isLastActive: (pathname: string) => boolean
+  pathHistory:string[]
 }
+
 export const List = (props: Props) => {
-  const { data,handlePushRouter,isActive } = props
+  const { data,isActive,pathHistory,isLastActive } = props
 
   return (
     <Flex>
@@ -27,7 +29,7 @@ export const List = (props: Props) => {
           <TextDetail title={value.title} />
         </Card>
       ))}
-      <BottomNav handlePushRouter={handlePushRouter} PAGE_NAME={PAGE_NAME} isActive={isActive}/>
+      <BottomNav PAGE_NAME={PAGE_NAME} isActive={isActive} pathHistory={pathHistory} isLastActive={isLastActive}/>
     </Flex>
   )
 }
