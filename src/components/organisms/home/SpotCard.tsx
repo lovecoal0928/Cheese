@@ -47,7 +47,6 @@ export const SpotCard = (props: Props) => {
   } = useDrag(CARD_START_X, CARD_SWIPE_X, handleSwipeLike, postId)
 
   useEffect(() => {
-    console.log(postImages)
     handleSetImage(postImages[0].imagePath)
   }, [])
 
