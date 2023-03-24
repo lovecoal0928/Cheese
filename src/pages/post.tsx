@@ -9,6 +9,9 @@ import { PAGE_NAME } from 'constants/PathName'
 import { useSavePost } from 'utils/hooks/post/useSavePost'
 import { useFetchSnapRoutes } from 'utils/hooks/snapRoute/useFetchSnapRoute'
 import { useUploadFile } from 'utils/hooks/storage/useUploadFile'
+import { useAuth, useAuthLister } from 'utils/hooks/auth/useAuth'
+import { PostParams } from 'factories/postFactory'
+import { useDeleteFile } from 'utils/hooks/storage/useDeleteFile'
 
 const dummyPost = {
   title: 'hoge',
@@ -29,11 +32,11 @@ const dummyPost = {
 }
 
 const post: NextPage = () => {
-  const {
-    data: posts,
-    refetch: refetchPosts,
-    isLoading: isFetchPostLoading,
-  } = useFetchPosts()
+  // const {
+  //   data: posts,
+  //   refetch: refetchPosts,
+  //   isLoading: isFetchPostLoading,
+  // } = useFetchPosts()
 
   const { data: snapRoutes } = useFetchSnapRoutes()
 
@@ -50,8 +53,15 @@ const post: NextPage = () => {
 
   const { mutate: savePost, isLoading: isPostLoading } = useSavePost()
   const { mutate: uploadFile, isLoading: isUploading } = useUploadFile()
+  const { mutate: deleteFile, isLoading: isDeleting } = useDeleteFile()
+
+  const { userId } = useAuthLister()
 
   const submitPostHandler = async () => {
+    const post: PostParams = {
+
+    }
+
     savePost(dummyPost, {
       onSuccess: () => console.log('success'),
       onError: () => console.log('error'),
