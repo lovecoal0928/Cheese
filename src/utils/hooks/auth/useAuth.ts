@@ -35,5 +35,5 @@ export const useAuthLister = () => {
       authListener.subscription.unsubscribe()
     }
   }, [session])
-  return { session } as const
+  return { session, userId: session?.user.id } as const
 }
