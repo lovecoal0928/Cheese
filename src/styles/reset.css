@@ -1,3 +1,4 @@
+/* reset-css */
 *, *::before, *::after {
     box-sizing: border-box
 }
@@ -44,4 +45,25 @@ input, button, textarea, select {
         transition-duration: .01ms !important;
         scroll-behavior: auto !important
     }
+}
+
+/* map.tsx */
+.gm-ui-hover-effect {
+    /* display: none !important; */
+    visibility: hidden;
+}
+
+.gm-style-iw.gm-style-iw-c {
+    height: 90px;
+    width: 90px;
+    /* border-radius: 50%; */
+    align-items: center;
+    text-align: center;
+    padding: 0px;
+}
+
+.gm-style-iw-d {
+    /* width: 80px; */
+    /* overflow: "hidden"; */
+    padding-left: 10px;
 }

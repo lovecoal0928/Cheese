@@ -1,4 +1,5 @@
 import { InfoWindowF, MarkerF } from '@react-google-maps/api'
+import Image from 'next/image'
 import React from 'react'
 
 type Props = {
@@ -32,14 +33,17 @@ export const CustomMarker = (props: Props) => {
             />
             <InfoWindowF
                 position={locate}
+                options={{
+                    maxWidth: 100,
+                }}
             >
-                <div
-                // style={{
-                //   borderRadius: "50%"
-                // }}
-                >
-                    <img src={imageUrl} width={50} height={50} />
-                </div>
+                <Image src={imageUrl} width={82} height={70} alt='marker'
+                    draggable={false}
+                    style={{
+                        // borderRadius: "50%",
+                        objectFit: "contain",
+
+                    }} />
             </InfoWindowF>
         </>
 
