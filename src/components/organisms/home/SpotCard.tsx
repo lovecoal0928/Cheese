@@ -1,4 +1,4 @@
-import React, { ReactNode } from 'react'
+import React, { ReactNode, useEffect } from 'react'
 import { Button } from '@/components/atoms/Button'
 import { Flex } from '@/components/atoms/Flex'
 import { Image } from '@/components/atoms/Image'
@@ -8,17 +8,17 @@ import { PostImage } from 'types/entities/Post'
 import { Styles } from 'types/index'
 import { useDrag } from 'utils/hooks/anim/useDrag'
 import { SwipeButtons } from './SwipeButtons'
+import { useImage } from 'utils/hooks/useImages'
 
 type Props = {
   title: string
   postImages: PostImage[]
   comment: string
-  image: string
   postId: string
-  handleSetImage: (src: string) => void
   handleSetIsZoom: () => void
-  handleSwipeLike: (userId: string, postId: string, func?: () => void) => void
+  handleSwipeLike: (postId: string, func?: () => void) => Promise<void>
   handleSwipeBad: (func?: () => void) => void
+  handleSetImages: (images: string[]) => void
 }
 
 export const SpotCard = (props: Props) => {
@@ -26,16 +26,16 @@ export const SpotCard = (props: Props) => {
     title,
     postImages,
     comment,
-    image,
-    handleSetImage,
     handleSetIsZoom,
     handleSwipeLike,
     handleSwipeBad,
+    handleSetImages,
     postId,
   } = props
-  const a = ['/paca.png', '/mapicon.png', '/paca.png']
   const CARD_START_X = 0
   const CARD_SWIPE_X = 100
+  const images = postImages.map(({ imagePath }) => imagePath)
+  const { image, handleSetImage } = useImage()
   // 上から渡すとすべてが動いてしまう
   const {
     isSwiped,
@@ -44,7 +44,12 @@ export const SpotCard = (props: Props) => {
     handleSetCardAnimation,
     cardAnimation,
     cardVariants,
-  } = useDrag(CARD_START_X, CARD_SWIPE_X)
+  } = useDrag(CARD_START_X, CARD_SWIPE_X, handleSwipeLike, postId)
+
+  useEffect(() => {
+    console.log(postImages)
+    handleSetImage(postImages[0].imagePath)
+  }, [])
 
   return (
     <>
@@ -66,15 +71,13 @@ export const SpotCard = (props: Props) => {
               </Button>
             </Flex>
             <Flex style={styles.images}>
-              {isSwiped ||
-                postImages.map((value: PostImage, index: number) => (
+              {postImages.length > 1 &&
+                postImages.map((value: PostImage) => (
                   <Image
-                    alt={'写真'}
-                    key={index}
-                    // src={value.imagePath}
-                    src={a[index]}
-                    // onClick={() => handleSetImage(value.imagePath)}
-                    onClick={() => handleSetImage(a[index])}
+                    alt={value.postImageId}
+                    key={value.postImageId}
+                    src={value.imagePath}
+                    onClick={() => handleSetImage(value.imagePath)}
                     style={styles.image}
                   />
                 ))}
@@ -83,13 +86,16 @@ export const SpotCard = (props: Props) => {
               alt="スポット画像"
               src={image}
               style={styles.selected_image}
-              onClick={handleSetIsZoom}
+              onClick={() => {
+                handleSetIsZoom()
+                handleSetImages(images)
+              }}
             />
             <Typography style={styles.comment}>{comment}</Typography>
           </DragCard>
           <SwipeButtons
             handleSwipeLike={() =>
-              handleSwipeLike(postId, postId, () =>
+              handleSwipeLike(postId, () =>
                 handleSetCardAnimation('swipedRight'),
               )
             }

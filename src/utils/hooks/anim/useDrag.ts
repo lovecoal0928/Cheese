@@ -1,7 +1,7 @@
 import { PanInfo } from 'framer-motion'
 import { useState } from 'react'
 
-export const useDrag = (CARD_START_X: number, CARD_SWIPE_X: number) => {
+export const useDrag = (CARD_START_X: number, CARD_SWIPE_X: number,func:(postId: string, func?: () => void) => Promise<void>,postId:string) => {
   const [isSwiped, setIsSwiped] = useState(false)
   const [dragX, setDragX] = useState(CARD_START_X)
   const [cardAnimation, setCardAnimation] = useState('')
@@ -12,11 +12,15 @@ export const useDrag = (CARD_START_X: number, CARD_SWIPE_X: number) => {
     // console.log(info.offset.x)
   }
 
-  const handleDragEnd = () => {
+  const handleDragEnd = async() => {
     setCardAnimation('stop')
     // 規定量を超えたらスワイプ
     if (Math.abs(dragX) > CARD_SWIPE_X) {
       setIsSwiped(true)
+      if(dragX>0){
+        console.log("a");
+        await func(postId)
+      }
       setCardAnimation(dragX > 0 ? 'swipedRight' : 'swipedLeft')
     }
   }

@@ -5,17 +5,26 @@ import { BottomNav } from '../organisms/commons/BottomNav'
 import { Flex } from '../atoms/Flex'
 import { Post } from 'types/entities/Post'
 import { Zoom } from './Zoom'
+import { Point, Variants } from 'framer-motion'
 
 type Props = {
-  image: string
   data: Post[]
   PAGE_NAME: PathName[]
   isZoom: boolean
+  images: string[]
+  page: number
+  direction: number
+  variants: Variants
+  onDragEnd: (
+    event: MouseEvent | TouchEvent | PointerEvent,
+    { offset, velocity }: { [key: string]: Point },
+    imagesLength: number,
+  ) => void
   isActive: (pathname: string) => boolean
   handlePushRouter: (pathname: string) => void
-  handleSetImage: (src: string) => void
+  handleSetImages: (src: string[]) => void
   handleSetIsZoom: () => void
-  handleSwipeLike: (userId: string, postId: string, func?: () => void) => void
+  handleSwipeLike: (postId: string, func?: () => void) => Promise<void>
   handleSwipeBad: (func?: () => void) => void
 }
 
@@ -23,34 +32,44 @@ export const Home = (props: Props) => {
   const {
     data,
     PAGE_NAME,
-    image,
     isActive,
     handlePushRouter,
-    handleSetImage,
+    handleSetImages,
     handleSetIsZoom,
     handleSwipeBad,
     handleSwipeLike,
     isZoom,
+    images,
+    page,
+    direction,
+    variants,
+    onDragEnd,
   } = props
 
   return (
     <Flex style={style.container} direction="column">
-      {data.map((value: Post) => (
-        <>
-          {isZoom && <Zoom images={value.postImages} handleSetIsZoom={handleSetIsZoom}/>}
-          <SpotCard
-            title={value.title}
-            postImages={value.postImages}
-            comment={value.comment || ''}
-            key={value.postId}
-            postId={value.postId}
-            handleSetImage={handleSetImage}
-            image={image}
-            handleSetIsZoom={handleSetIsZoom}
-            handleSwipeBad={handleSwipeBad}
-            handleSwipeLike={handleSwipeLike}
-          />
-        </>
+      {isZoom && (
+        <Zoom
+          images={images}
+          handleSetIsZoom={handleSetIsZoom}
+          page={page}
+          direction={direction}
+          variants={variants}
+          onDragEnd={onDragEnd}
+        />
+      )}
+      {data.map((value: Post,index:number) => (
+        <SpotCard
+          title={value.title}
+          postImages={value.postImages}
+          comment={value.comment || ''}
+          key={value.postId}
+          postId={value.postId}
+          handleSetIsZoom={handleSetIsZoom}
+          handleSetImages={handleSetImages}
+          handleSwipeBad={handleSwipeBad}
+          handleSwipeLike={handleSwipeLike}
+        />
       ))}
       <BottomNav
         handlePushRouter={handlePushRouter}
