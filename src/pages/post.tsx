@@ -13,23 +13,23 @@ import { useAuth, useAuthLister } from 'utils/hooks/auth/useAuth'
 import { PostParams } from 'factories/postFactory'
 import { useDeleteFile } from 'utils/hooks/storage/useDeleteFile'
 
-const dummyPost = {
-  title: 'hoge',
-  comment: 'hoge',
-  userId: 'u001',
-  latitude: 1,
-  longitude: 1,
-  postImages: [
-    {
-      imagePath: 'hoge',
-      imageTags: [
-        {
-          name: 'hoge',
-        },
-      ],
-    },
-  ],
-}
+// const dummyPost = {
+//   title: 'hoge',
+//   comment: 'hoge',
+//   userId: 'u001',
+//   latitude: 1,
+//   longitude: 1,
+//   postImages: [
+//     {
+//       imagePath: 'hoge',
+//       imageTags: [
+//         {
+//           name: 'hoge',
+//         },
+//       ],
+//     },
+//   ],
+// }
 
 const post: NextPage = () => {
   // const {
@@ -58,23 +58,37 @@ const post: NextPage = () => {
   const { userId } = useAuthLister()
 
   const submitPostHandler = async () => {
-    const post: PostParams = {
+    console.log(titleRef);
 
+
+    const post: PostParams = {
+      userId: userId!,
+      title: titleRef.current!.value,
+      comment: commentRef.current!.value,
+
+      postImages: imagePaths.map((path) => (
+        {
+          imagePath: path,
+          imageTags: [{ name: "1" }, { name: "2" }]
+        }
+      )),
+      longitude: 113,
+      latitude: 35
     }
 
-    savePost(dummyPost, {
-      onSuccess: () => console.log('success'),
+    savePost(post, {
+      onSuccess: () => handleBackRouter(),
       onError: () => console.log('error'),
     })
   }
 
-  const titleRef = useRef(null)
-  const commentRef = useRef(null)
+  const titleRef = useRef<HTMLInputElement>(null)
+  const commentRef = useRef<HTMLTextAreaElement>(null)
   const placeRef = useRef(null)
   const [imagePaths, setImagePaths] = useState<string[]>([])
   const [fileKeys, setFileKeys] = useState<string[]>([])
   const { images, handleSetFiles, handleSetSrc } = useImageFiles()
-  const { handlePushRouter } = useCustomRouter()
+  const { handlePushRouter, handleBackRouter } = useCustomRouter()
 
   useEffect(() => {
     const handleLoopSrc = async () => {
@@ -123,6 +137,7 @@ const post: NextPage = () => {
       handleSetFiles={handleSetFiles}
       handlePushRouter={handlePushRouter}
       PAGE_NAME={PAGE_NAME}
+      onClickSave={submitPostHandler}
     />
   )
 }

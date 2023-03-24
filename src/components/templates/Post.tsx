@@ -12,7 +12,8 @@ type Props = {
   images: string[]
   handleSetFiles: (e: ChangeEvent<HTMLInputElement>) => void
   handlePushRouter: (pathname: string) => void
-  PAGE_NAME: PathName[]
+  PAGE_NAME: PathName[],
+  onClickSave: () => Promise<void>
 }
 export const Post = (props: Props) => {
   const {
@@ -22,11 +23,12 @@ export const Post = (props: Props) => {
     images,
     handlePushRouter,
     handleSetFiles,
-    PAGE_NAME
+    PAGE_NAME,
+    onClickSave
   } = props
   return (
     <MotionDiv {...postSlide}>
-      <PostHeader handlePushRouter={handlePushRouter} PAGE_NAME={PAGE_NAME[0].path} />
+      <PostHeader handlePushRouter={handlePushRouter} PAGE_NAME={PAGE_NAME[0].path} onClick={onClickSave} />
       <div style={{ marginTop: 50 }}>
         <PostForm
           titleRef={titleRef}

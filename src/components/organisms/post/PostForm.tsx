@@ -18,10 +18,11 @@ type Props = {
 
 export const PostForm = (props: Props) => {
   const { titleRef, commentRef, placeRef, images, handleSetFiles, handlePushRouter, PAGE_NAME } = props
+
   return (
     <Flex direction="column" style={style.container}>
-      <TextInput ref={titleRef} placeholder={'タイトル'} style={style.title} />
-      <TextInput placeholder='場所' ref={placeRef} onClick={() => { handlePushRouter(PAGE_NAME) }} style={style.place} />
+      <input type='text' ref={titleRef} placeholder={'タイトル'} style={style.title} />
+      <input type='text' placeholder='場所' ref={placeRef} onClick={() => { handlePushRouter(PAGE_NAME) }} style={style.place} />
       {/* <TextInput
         ref={commentRef}
         placeholder={'コメント'}

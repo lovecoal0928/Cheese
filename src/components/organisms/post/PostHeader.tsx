@@ -7,15 +7,16 @@ import { Styles } from 'types'
 
 type Props = {
   handlePushRouter: (pathname: string) => void
-  PAGE_NAME: string
+  PAGE_NAME: string,
+  onClick: () => Promise<void>
 }
 export const PostHeader = (props: Props) => {
-  const { handlePushRouter, PAGE_NAME } = props
+  const { handlePushRouter, PAGE_NAME, onClick } = props
   return (
     <Header>
-      <PostCancelButton src='/icons/vector.png'PAGE_NAME={PAGE_NAME} />
+      <PostCancelButton src='/icons/vector.png' PAGE_NAME={PAGE_NAME} />
       <h4 style={style.title}>新規作成</h4>
-      <Button style={style.save}>保存</Button>
+      <Button style={style.save} onClick={onClick}>保存</Button>
     </Header>
   )
 }
