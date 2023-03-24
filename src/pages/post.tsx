@@ -9,31 +9,34 @@ import { PAGE_NAME } from 'constants/PathName'
 import { useSavePost } from 'utils/hooks/post/useSavePost'
 import { useFetchSnapRoutes } from 'utils/hooks/snapRoute/useFetchSnapRoute'
 import { useUploadFile } from 'utils/hooks/storage/useUploadFile'
+import { useAuth, useAuthLister } from 'utils/hooks/auth/useAuth'
+import { PostParams } from 'factories/postFactory'
+import { useDeleteFile } from 'utils/hooks/storage/useDeleteFile'
 
-const dummyPost = {
-  title: 'hoge',
-  comment: 'hoge',
-  userId: 'u001',
-  latitude: 1,
-  longitude: 1,
-  postImages: [
-    {
-      imagePath: 'hoge',
-      imageTags: [
-        {
-          name: 'hoge',
-        },
-      ],
-    },
-  ],
-}
+// const dummyPost = {
+//   title: 'hoge',
+//   comment: 'hoge',
+//   userId: 'u001',
+//   latitude: 1,
+//   longitude: 1,
+//   postImages: [
+//     {
+//       imagePath: 'hoge',
+//       imageTags: [
+//         {
+//           name: 'hoge',
+//         },
+//       ],
+//     },
+//   ],
+// }
 
 const post: NextPage = () => {
-  const {
-    data: posts,
-    refetch: refetchPosts,
-    isLoading: isFetchPostLoading,
-  } = useFetchPosts()
+  // const {
+  //   data: posts,
+  //   refetch: refetchPosts,
+  //   isLoading: isFetchPostLoading,
+  // } = useFetchPosts()
 
   const { data: snapRoutes } = useFetchSnapRoutes()
 
@@ -50,21 +53,42 @@ const post: NextPage = () => {
 
   const { mutate: savePost, isLoading: isPostLoading } = useSavePost()
   const { mutate: uploadFile, isLoading: isUploading } = useUploadFile()
+  const { mutate: deleteFile, isLoading: isDeleting } = useDeleteFile()
+
+  const { userId } = useAuthLister()
 
   const submitPostHandler = async () => {
-    savePost(dummyPost, {
-      onSuccess: () => console.log('success'),
+    console.log(titleRef);
+
+
+    const post: PostParams = {
+      userId: userId!,
+      title: titleRef.current!.value,
+      comment: commentRef.current!.value,
+
+      postImages: imagePaths.map((path) => (
+        {
+          imagePath: path,
+          imageTags: [{ name: "1" }, { name: "2" }]
+        }
+      )),
+      longitude: 113,
+      latitude: 35
+    }
+
+    savePost(post, {
+      onSuccess: () => handleBackRouter(),
       onError: () => console.log('error'),
     })
   }
 
-  const titleRef = useRef(null)
-  const commentRef = useRef(null)
+  const titleRef = useRef<HTMLInputElement>(null)
+  const commentRef = useRef<HTMLTextAreaElement>(null)
   const placeRef = useRef(null)
   const [imagePaths, setImagePaths] = useState<string[]>([])
   const [fileKeys, setFileKeys] = useState<string[]>([])
   const { images, handleSetFiles, handleSetSrc } = useImageFiles()
-  const { handlePushRouter } = useCustomRouter()
+  const { handlePushRouter, handleBackRouter } = useCustomRouter()
 
   useEffect(() => {
     const handleLoopSrc = async () => {
@@ -113,6 +137,7 @@ const post: NextPage = () => {
       handleSetFiles={handleSetFiles}
       handlePushRouter={handlePushRouter}
       PAGE_NAME={PAGE_NAME}
+      onClickSave={submitPostHandler}
     />
   )
 }
