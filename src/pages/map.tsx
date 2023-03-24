@@ -11,7 +11,6 @@ import { PAGE_NAME } from 'constants/PathName'
 import { NextPage } from 'next'
 import React, { useEffect, useState } from 'react'
 import { useCustomRouter } from 'utils/hooks/useCustomRouter'
-import '../styles/map.module.css'
 /* global google */
 
 const APIkey = process.env.NEXT_PUBLIC_GCP_KEY as string
