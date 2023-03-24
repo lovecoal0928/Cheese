@@ -3,10 +3,8 @@ import React from 'react'
 import { List } from '@/components/templates/List'
 import { useCustomRouter } from 'utils/hooks/useCustomRouter'
 
-
 const list: NextPage = () => {
-  const { handlePushRouter,isActive } = useCustomRouter()
-
+  const { isActive, isLastActive,pathHistory } = useCustomRouter()
   const data = [
     {
       postId: '',
@@ -34,7 +32,14 @@ const list: NextPage = () => {
       },
     },
   ]
-  return <List data={data} handlePushRouter={handlePushRouter} isActive={isActive}/>
+  return (
+    <List
+      data={data}
+      isActive={isActive}
+      isLastActive={isLastActive}
+      pathHistory={pathHistory}
+    />
+  )
 }
 
 export default list

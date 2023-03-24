@@ -15,13 +15,14 @@ type Props = {
   page: number
   direction: number
   variants: Variants
+  pathHistory:string[]
   onDragEnd: (
     event: MouseEvent | TouchEvent | PointerEvent,
     { offset, velocity }: { [key: string]: Point },
     imagesLength: number,
   ) => void
   isActive: (pathname: string) => boolean
-  handlePushRouter: (pathname: string) => void
+  isLastActive: (pathname: string) => boolean
   handleSetImages: (src: string[]) => void
   handleSetIsZoom: () => void
   handleSwipeLike: (postId: string, func?: () => void) => Promise<void>
@@ -33,7 +34,8 @@ export const Home = (props: Props) => {
     data,
     PAGE_NAME,
     isActive,
-    handlePushRouter,
+    isLastActive,
+    pathHistory,
     handleSetImages,
     handleSetIsZoom,
     handleSwipeBad,
@@ -72,9 +74,10 @@ export const Home = (props: Props) => {
         />
       ))}
       <BottomNav
-        handlePushRouter={handlePushRouter}
+        pathHistory={pathHistory}
         PAGE_NAME={PAGE_NAME}
         isActive={isActive}
+        isLastActive={isLastActive}
       />
     </Flex>
   )
