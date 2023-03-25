@@ -32,7 +32,13 @@ export const PostForm = (props: Props) => {
     <>
       <Flex direction="column" style={style.container}>
         <input type='text' ref={titleRef} placeholder={'タイトル'} style={style.title} />
-        <input type='text' placeholder='場所' readOnly ref={placeRef} onClick={() => setbtsheet(true)} style={style.place} />
+        <input
+          type='text'
+          placeholder='場所'
+          readOnly
+          value={`場所：緯度${center.lat} 経度${center.lng}`}
+          ref={placeRef}
+          onClick={() => setbtsheet(true)} style={style.place} />
         {/* <TextInput
         ref={commentRef}
         placeholder={'コメント'}

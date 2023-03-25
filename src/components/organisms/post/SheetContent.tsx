@@ -14,21 +14,32 @@ export const SheetContent = (props: Props) => {
     const centerRef = useRef(center)
 
     return (
-        <LoadScriptNext googleMapsApiKey={APIkey}>
-            <GoogleMap
-                mapContainerStyle={{
-                    width: '100%',
-                    height: '100vh',
-                }}
-                center={centerRef.current}
-                zoom={15}
-            >
-                <MarkerF
-                    position={center}
-                    draggable
-                    onDragEnd={(e) => setCenter({ lat: e.latLng!.lat(), lng: e.latLng!.lng() })}
-                />
-            </GoogleMap>
-        </LoadScriptNext>
+        center.lat !== 0 && center.lng !== 0 ?
+            <LoadScriptNext googleMapsApiKey={APIkey}>
+                <GoogleMap
+                    mapContainerStyle={{
+                        width: '100%',
+                        height: '80vh',
+                    }}
+                    center={center}
+                    zoom={15}
+                    clickableIcons={false}
+                    options={{
+                        gestureHandling: 'greedy',
+                        streetViewControl: false,
+                        fullscreenControl: false,
+                        disableDefaultUI: false,
+                        mapTypeControl: false,
+                        zoomControl: false
+                    }}
+                >
+                    <MarkerF
+                        position={center}
+                        draggable
+                        onDragEnd={(e) => setCenter({ lat: e.latLng!.lat(), lng: e.latLng!.lng() })}
+                    />
+                </GoogleMap>
+            </LoadScriptNext>
+            : <></>
     )
 }

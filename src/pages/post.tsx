@@ -95,7 +95,7 @@ const post: NextPage = () => {
   useEffect(() => {
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition((position) => {
-        setCenter({
+        handleSetCenter({
           lat: position.coords.latitude,
           lng: position.coords.longitude,
         })
@@ -115,7 +115,12 @@ const post: NextPage = () => {
   }
 
   const handleSetCenter = (value: LatLng) => {
-    setCenter(value)
+    const set: LatLng = {
+      lat: Math.floor(value.lat * 1000000) / 1000000,
+      lng: Math.floor(value.lng * 1000000) / 1000000,
+    }
+
+    setCenter(set)
   }
 
   // insertPosts:title,comment,user_id
