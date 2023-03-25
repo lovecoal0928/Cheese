@@ -60,8 +60,8 @@ const map: NextPage = () => {
 
   const { userId } = useAuthLister()
 
-  const { data: post } = useFetchPosts()
-  const { data: likePost } = useFetchLikedPost(userId!)
+  const { data: posts } = useFetchPosts()
+  const { data: likePosts } = useFetchLikedPost(userId!)
 
   const { isActive, isLastActive, pathHistory } = useCustomRouter()
   // 現在位置
