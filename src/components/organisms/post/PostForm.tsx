@@ -7,6 +7,8 @@ import { Styles } from 'types'
 import { PictureInput } from '@/components/molecules/inputs/PictureInput'
 import { BottomSheet } from 'react-spring-bottom-sheet'
 import { SheetContent } from './SheetContent'
+import 'react-spring-bottom-sheet/dist/style.css'
+
 
 type Props = {
   titleRef: RefObject<HTMLInputElement>
@@ -24,30 +26,32 @@ export const PostForm = (props: Props) => {
   const [btsheet, setbtsheet] = useState(false)
 
   return (
-    <Flex direction="column" style={style.container}>
-      <input type='text' ref={titleRef} placeholder={'タイトル'} style={style.title} />
-      <input type='text' placeholder='場所' readOnly ref={placeRef} onClick={() => setbtsheet(true)} style={style.place} />
-      {/* <TextInput
+    <>
+      <Flex direction="column" style={style.container}>
+        <input type='text' ref={titleRef} placeholder={'タイトル'} style={style.title} />
+        <input type='text' placeholder='場所' readOnly ref={placeRef} onClick={() => setbtsheet(true)} style={style.place} />
+        {/* <TextInput
         ref={commentRef}
         placeholder={'コメント'}
         style={style.comment}
       /> */}
-      <textarea
-        ref={commentRef}
-        placeholder='コメント'
-        style={style.comment}
-      ></textarea>
-      <div style={style.images}>
-        {images?.map((value, index) => (
-          <Image alt="投稿画像" src={value} key={index} width={90} height={120} style={{
-            objectFit: "cover",
-            margin: "0 10px"
-          }} />
-        ))}
-      </div>
-      <PictureInput onChange={handleSetFiles} style={style.file}>
-        <Typography style={style.button}>写真を追加</Typography>
-      </PictureInput>
+        <textarea
+          ref={commentRef}
+          placeholder='コメント'
+          style={style.comment}
+        ></textarea>
+        <div style={style.images}>
+          {images?.map((value, index) => (
+            <Image alt="投稿画像" src={value} key={index} width={90} height={120} style={{
+              objectFit: "cover",
+              margin: "0 10px"
+            }} />
+          ))}
+        </div>
+        <PictureInput onChange={handleSetFiles} style={style.file}>
+          <Typography style={style.button}>写真を追加</Typography>
+        </PictureInput>
+      </Flex>
       <BottomSheet
         open={btsheet}
         onDismiss={() => setbtsheet(false)}
@@ -64,7 +68,7 @@ export const PostForm = (props: Props) => {
       >
         <SheetContent />
       </BottomSheet>
-    </Flex>
+    </>
   )
 }
 
