@@ -5,6 +5,8 @@ import { TextInput } from '@/components/molecules/inputs/TextInput'
 import { Typography } from '@/components/atoms/Typography'
 import { Styles } from 'types'
 import { PictureInput } from '@/components/molecules/inputs/PictureInput'
+import { BottomSheet } from 'react-spring-bottom-sheet'
+import { SheetContent } from './SheetContent'
 
 type Props = {
   titleRef: RefObject<HTMLInputElement>
@@ -19,10 +21,12 @@ type Props = {
 export const PostForm = (props: Props) => {
   const { titleRef, commentRef, placeRef, images, handleSetFiles, handlePushRouter, PAGE_NAME } = props
 
+  const [btsheet, setbtsheet] = useState(false)
+
   return (
     <Flex direction="column" style={style.container}>
       <input type='text' ref={titleRef} placeholder={'タイトル'} style={style.title} />
-      <input type='text' placeholder='場所' readOnly ref={placeRef} onClick={() => { handlePushRouter(PAGE_NAME) }} style={style.place} />
+      <input type='text' placeholder='場所' readOnly ref={placeRef} onClick={() => setbtsheet(true)} style={style.place} />
       {/* <TextInput
         ref={commentRef}
         placeholder={'コメント'}
@@ -44,6 +48,22 @@ export const PostForm = (props: Props) => {
       <PictureInput onChange={handleSetFiles} style={style.file}>
         <Typography style={style.button}>写真を追加</Typography>
       </PictureInput>
+      <BottomSheet
+        open={btsheet}
+        onDismiss={() => setbtsheet(false)}
+        defaultSnap={({ snapPoints, lastSnap }) =>
+          lastSnap ?? Math.min(...snapPoints)
+        }
+        snapPoints={({ maxHeight }) => [
+          maxHeight - maxHeight / 5,
+          // maxHeight * 0.6
+        ]}
+        header={
+          <h1>a</h1>
+        }
+      >
+        <SheetContent />
+      </BottomSheet>
     </Flex>
   )
 }
@@ -62,7 +82,8 @@ const style: Styles = {
     height: 50,
     borderBottom: "solid #aaa 1px",
     paddingLeft: 20,
-    paddingRight: 20
+    paddingRight: 20,
+    cursor: "pointer"
   },
   comment: {
     border: "none",
