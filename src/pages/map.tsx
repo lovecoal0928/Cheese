@@ -18,7 +18,7 @@ import { useFetchPosts } from 'utils/hooks/post/useFetchPost'
 import { useCustomRouter } from 'utils/hooks/useCustomRouter'
 /* global google */
 
-const APIkey = process.env.NEXT_PUBLIC_GCP_KEY as string
+const APIkey = process.env.NEXT_PUBLIC_GCP_KEY_SUB as string
 
 const locates = [
   {

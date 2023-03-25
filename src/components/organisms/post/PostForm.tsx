@@ -59,11 +59,14 @@ export const PostForm = (props: Props) => {
           lastSnap ?? Math.min(...snapPoints)
         }
         snapPoints={({ maxHeight }) => [
-          maxHeight,
-          // maxHeight * 0.6
+          maxHeight - maxHeight / 6,
+          maxHeight
         ]}
         header={
-          <h1>a</h1>
+          <h1>場所を登録</h1>
+        }
+        footer={
+          <button style={style.placesAdd}>登録</button>
         }
       >
         <SheetContent />
@@ -110,5 +113,9 @@ const style: Styles = {
   },
   file: {
     border: "1px solid #000"
+  },
+  placesAdd: {
+    width: "100%",
+
   }
 }
