@@ -1,3 +1,4 @@
+import { SearchButton } from '@/components/atoms/SearchButton'
 import { BottomNav } from '@/components/organisms/commons/BottomNav'
 import { CustomMarker } from '@/components/organisms/map/CustomMarker'
 import {
@@ -82,8 +83,8 @@ const map: NextPage = () => {
         if (
           googleRes.status === 'OK' &&
           googleRes.geocoded_waypoints.length !==
-            // @ts-ignore
-            currentDirection.geocoded_waypoints.length
+          // @ts-ignore
+          currentDirection.geocoded_waypoints.length
         ) {
           console.log('ルートが設定されたのでstateを更新する')
           setCurrentDirection(googleRes)
@@ -177,7 +178,8 @@ const map: NextPage = () => {
           )}
         </GoogleMap>
       </LoadScriptNext>
-      <button onClick={handleSearch}>検索</button>
+      <SearchButton onClick={handleSearch} />
+
       <BottomNav
         PAGE_NAME={PAGE_NAME}
         isActive={isActive}

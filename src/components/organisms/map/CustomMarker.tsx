@@ -54,7 +54,7 @@ export const CustomMarker = (props: Props) => {
                 {isSelected && <div style={{
                     position: "absolute",
                     top: 2,
-                    right: 0,
+                    right: 5,
                     width: 20,
                     height: 20,
                     borderRadius: "50%",
