@@ -12,6 +12,7 @@ import { useUploadFile } from 'utils/hooks/storage/useUploadFile'
 import { useAuth, useAuthLister } from 'utils/hooks/auth/useAuth'
 import { PostParams } from 'factories/postFactory'
 import { useDeleteFile } from 'utils/hooks/storage/useDeleteFile'
+import { LatLng } from 'types/latlng'
 
 const post: NextPage = () => {
 
@@ -64,7 +65,7 @@ const post: NextPage = () => {
   const placeRef = useRef(null)
   const [imagePaths, setImagePaths] = useState<string[]>([])
   const [fileKeys, setFileKeys] = useState<string[]>([])
-  const [center, setCenter] = useState({ lat: 0, lng: 0 })
+  const [center, setCenter] = useState<LatLng>({ lat: 0, lng: 0 })
   const { images, handleSetFiles, handleSetSrc } = useImageFiles()
   const { handlePushRouter, handleBackRouter } = useCustomRouter()
 
@@ -113,6 +114,10 @@ const post: NextPage = () => {
     setFileKeys((prevKeys) => [...prevKeys, key])
   }
 
+  const handleSetCenter = (value: LatLng) => {
+
+  }
+
   // insertPosts:title,comment,user_id
   // insertAddress: 緯度、経度、名前
   // posts_addresses:連関テーブル
@@ -128,6 +133,8 @@ const post: NextPage = () => {
       handlePushRouter={handlePushRouter}
       PAGE_NAME={PAGE_NAME}
       onClickSave={submitPostHandler}
+      center={center}
+      setCenter={handleSetCenter}
     />
   )
 }

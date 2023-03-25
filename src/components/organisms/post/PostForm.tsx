@@ -8,6 +8,7 @@ import { PictureInput } from '@/components/molecules/inputs/PictureInput'
 import { BottomSheet } from 'react-spring-bottom-sheet'
 import { SheetContent } from './SheetContent'
 import 'react-spring-bottom-sheet/dist/style.css'
+import { LatLng } from 'types/latlng'
 
 
 type Props = {
@@ -18,10 +19,12 @@ type Props = {
   handleSetFiles: (e: ChangeEvent<HTMLInputElement>) => void
   handlePushRouter: (pathname: string) => void
   PAGE_NAME: string
+  center: LatLng
+  setCenter: (value: LatLng) => void
 }
 
 export const PostForm = (props: Props) => {
-  const { titleRef, commentRef, placeRef, images, handleSetFiles, handlePushRouter, PAGE_NAME } = props
+  const { titleRef, commentRef, placeRef, images, handleSetFiles, handlePushRouter, PAGE_NAME, center, setCenter } = props
 
   const [btsheet, setbtsheet] = useState(false)
 
@@ -69,7 +72,10 @@ export const PostForm = (props: Props) => {
           <button style={style.placesAdd}>登録</button>
         }
       >
-        <SheetContent />
+        <SheetContent
+          center={center}
+          setCenter={setCenter}
+        />
       </BottomSheet>
     </>
   )
