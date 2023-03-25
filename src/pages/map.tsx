@@ -182,8 +182,8 @@ const map: NextPage = () => {
       <SearchButton onClick={handleSearch} />
       <div style={{
         position: "absolute",
-        top: 10,
-        left: 10,
+        top: 15,
+        left: 5,
       }}>
         <MapTabButton name={"すべて"} />
         <MapTabButton name={"おすすめ"} />
