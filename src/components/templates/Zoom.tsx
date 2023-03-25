@@ -53,7 +53,7 @@ export const Zoom = (props: Props) => {
 const styles: Styles = {
   image: {
     width: '100%',
-    objectFit: 'contain',
+    objectFit: 'cover',
     position: 'absolute',
     top: '18%',
   },

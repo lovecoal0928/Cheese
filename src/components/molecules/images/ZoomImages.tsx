@@ -48,8 +48,9 @@ export const ZoomImages = (props: Props) => {
 const styles: Styles = {
   image: {
     width: '100%',
-    objectFit: 'contain',
+    objectFit: 'cover',
     position: 'absolute',
-    top: '18%',
+    height:"300px",
+    top: '6vh',
   },
 }
