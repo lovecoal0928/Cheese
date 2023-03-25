@@ -20,28 +20,28 @@ import { useCustomRouter } from 'utils/hooks/useCustomRouter'
 
 const APIkey = process.env.NEXT_PUBLIC_GCP_KEY as string
 
-const locates = [
-  {
-    lat: 34.933249,
-    lng: 137.168636,
-    img: '/',
-  },
-  {
-    lat: 34.93876,
-    lng: 137.1665,
-    img: '',
-  },
-  {
-    lat: 34.93145,
-    lng: 137.16265,
-    img: '',
-  },
-]
+// const locates = [
+//   {
+//     lat: 34.933249,
+//     lng: 137.168636,
+//     img: '/',
+//   },
+//   {
+//     lat: 34.93876,
+//     lng: 137.1665,
+//     img: '',
+//   },
+//   {
+//     lat: 34.93145,
+//     lng: 137.16265,
+//     img: '',
+//   },
+// ]
 
-const destination = {
-  lat: 34.93145,
-  lng: 137.16265,
-}
+// const destination = {
+//   lat: 34.93145,
+//   lng: 137.16265,
+// }
 
 // const transpoints = [
 //   {
@@ -158,14 +158,15 @@ const map: NextPage = () => {
             zoomControl: false
           }}
         >
-          {locates.map((locate, i) => (
-            <CustomMarker
-              locate={locate}
-              imageUrl="/dummyMap.jpg"
-              onClick={() => handleClickMarkerF(locate)}
-              key={i}
-            />
-          ))}
+          {posts &&
+            posts.map((post, i) => (
+              <CustomMarker
+                locate={{ lat: post.address.latitude, lng: post.address.longitude }}
+                imageUrl={post.postImages[0].imagePath}
+                onClick={() => handleClickMarkerF({ lat: post.address.latitude, lng: post.address.longitude })}
+                key={i}
+              />
+            ))}
           <MarkerF position={center} />
 
           {transpoints.length > 0 && (
