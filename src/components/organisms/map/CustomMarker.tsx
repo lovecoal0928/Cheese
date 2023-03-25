@@ -43,11 +43,11 @@ export const CustomMarker = (props: Props) => {
                         !isSelected
                             ? {
                                 // borderRadius: "50%",
-                                objectFit: "contain",
+                                objectFit: "cover",
 
                             }
                             : {
-                                objectFit: "contain",
+                                objectFit: "cover",
                                 opacity: 0.5
                             }
                     } />
