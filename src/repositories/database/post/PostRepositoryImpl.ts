@@ -18,17 +18,40 @@ class PostRepositoryImpl implements PostRepository {
         )
         `)
   }
+
   public findAll = async (): Promise<Post[]> => {
-    const { data } = await this.selectQueryBuilder().returns<PostReturnType[]>()
+    const { data, error } = await this.selectQueryBuilder().returns<
+      PostReturnType[]
+    >()
+    if (error) throw error
     if (!data) return []
     return postMapper.findAll(data)
   }
   public findById = async (postId: string): Promise<Post | undefined> => {
-    const { data } = await this.selectQueryBuilder()
+    const { data, error } = await this.selectQueryBuilder()
       .eq('post_id', postId)
       .single()
+    if (error) throw error
     if (!data) return undefined
     return postMapper.findOne(data as PostReturnType)
+  }
+
+  public findByUserId = async (userId: string): Promise<Post[]> => {
+    const { data, error } = await this.selectQueryBuilder()
+      .eq('user_id', userId)
+      .returns<PostReturnType[]>()
+    if (error) throw error
+    if (!data) return []
+    return postMapper.findAll(data)
+  }
+
+  public findByExcludeIds = async (postIds: string[]): Promise<Post[]> => {
+    const { data, error } = await this.selectQueryBuilder()
+      .not('post_id', 'in', `(${postIds.join(',')})`)
+      .returns<PostReturnType[]>()
+    if (error) throw error
+    if (!data) return []
+    return postMapper.findAll(data)
   }
 
   public save = async (post: Post): Promise<void> => {
