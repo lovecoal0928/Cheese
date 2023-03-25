@@ -86,7 +86,7 @@ const post: NextPage = () => {
     }
 
     savePost(post, {
-      // onSuccess: () => handleBackRouter(),
+      onSuccess: () => handleBackRouter(),
       // onSuccess: () => { },
       onError: () => console.log('error'),
     })
