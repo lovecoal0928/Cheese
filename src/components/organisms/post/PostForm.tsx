@@ -22,7 +22,7 @@ export const PostForm = (props: Props) => {
   return (
     <Flex direction="column" style={style.container}>
       <input type='text' ref={titleRef} placeholder={'タイトル'} style={style.title} />
-      <input type='text' placeholder='場所' ref={placeRef} onClick={() => { handlePushRouter(PAGE_NAME) }} style={style.place} />
+      <input type='text' placeholder='場所' readOnly ref={placeRef} onClick={() => { handlePushRouter(PAGE_NAME) }} style={style.place} />
       {/* <TextInput
         ref={commentRef}
         placeholder={'コメント'}
