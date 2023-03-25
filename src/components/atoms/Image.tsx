@@ -5,14 +5,15 @@ import { Flex } from './Flex'
 type Props={
     alt:string
     src:string
+    quality?:number
     style?:CSSProperties
     width?:number
     height?:number
     onClick?:()=>void
 }
 export const Image = (props:Props) => {
-    const {alt,src,width=100,height=100,style,onClick} = props
+    const{width=100,height=100} = props
   return (
-      <NextImage alt={alt} src={src} width={width} height={height} onClick={onClick} style={style}/>
+      <NextImage {...props} width={width} height={height}/>
   )
 }

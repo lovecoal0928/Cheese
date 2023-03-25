@@ -31,6 +31,6 @@ const styles:Styles ={
     background: '#fff',
     position: 'absolute',
     borderRadius: '18px',
-    padding: '15px 15px 100px 15px',
+    padding: '10px 15px 100px 15px',
   },
 }
