@@ -50,8 +50,8 @@ const post: NextPage = () => {
           imageTags: [{ name: "1" }, { name: "2" }]
         }
       )),
-      longitude: 113,
-      latitude: 35
+      longitude: center.lng,
+      latitude: center.lat
     }
 
     savePost(post, {
