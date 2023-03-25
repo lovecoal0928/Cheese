@@ -55,7 +55,7 @@ export const PostForm = (props: Props) => {
           lastSnap ?? Math.min(...snapPoints)
         }
         snapPoints={({ maxHeight }) => [
-          maxHeight - maxHeight / 5,
+          maxHeight,
           // maxHeight * 0.6
         ]}
         header={
