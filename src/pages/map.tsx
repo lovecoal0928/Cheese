@@ -12,6 +12,9 @@ import {
 import { PAGE_NAME } from 'constants/PathName'
 import { NextPage } from 'next'
 import React, { useEffect, useState } from 'react'
+import { useAuthLister } from 'utils/hooks/auth/useAuth'
+import { useFetchLikedPost } from 'utils/hooks/likedPost/useFetchLikedPost'
+import { useFetchPosts } from 'utils/hooks/post/useFetchPost'
 import { useCustomRouter } from 'utils/hooks/useCustomRouter'
 /* global google */
 
@@ -54,6 +57,12 @@ type LatLng = {
   lng: number
 }
 const map: NextPage = () => {
+
+  const { userId } = useAuthLister()
+
+  const { data: post } = useFetchPosts()
+  const { data: likePost } = useFetchLikedPost(userId!)
+
   const { isActive, isLastActive, pathHistory } = useCustomRouter()
   // 現在位置
   const [center, setCenter] = useState({ lat: 0, lng: 0 })
