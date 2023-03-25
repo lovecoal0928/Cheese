@@ -115,7 +115,7 @@ const post: NextPage = () => {
   }
 
   const handleSetCenter = (value: LatLng) => {
-
+    setCenter(value)
   }
 
   // insertPosts:title,comment,user_id

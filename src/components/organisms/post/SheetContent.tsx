@@ -1,5 +1,5 @@
 import { GoogleMap, LoadScriptNext, MarkerF } from '@react-google-maps/api'
-import React from 'react'
+import React, { useRef } from 'react'
 import { LatLng } from 'types/latlng'
 
 const APIkey = process.env.NEXT_PUBLIC_GCP_KEY_SUB as string
@@ -11,6 +11,7 @@ type Props = {
 
 export const SheetContent = (props: Props) => {
     const { center, setCenter } = props
+    const centerRef = useRef(center)
 
     return (
         <LoadScriptNext googleMapsApiKey={APIkey}>
@@ -19,7 +20,7 @@ export const SheetContent = (props: Props) => {
                     width: '100%',
                     height: '100vh',
                 }}
-                center={{ lat: center.lat, lng: center.lng }}
+                center={centerRef.current}
                 zoom={15}
             >
                 <MarkerF
