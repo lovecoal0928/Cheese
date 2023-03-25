@@ -60,7 +60,7 @@ const style: Styles = {
     position: 'fixed',
     justifyContent: 'space-evenly',
     left: 0,
-    bottom: 10,
+    bottom: 5,
     height: '90px',
     alignItems: 'center',
   },
@@ -80,5 +80,6 @@ const style: Styles = {
   },
   button: {
     zIndex: 2,
+    width:"65px"
   },
 }

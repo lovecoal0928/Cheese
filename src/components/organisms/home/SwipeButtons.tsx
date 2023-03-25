@@ -13,18 +13,18 @@ export const SwipeButtons = (props:Props) => {
   const {handleSwipeBad,handleSwipeLike} = props
   return (
     <Flex style={styles.swipe_buttons}>
-        <SwipeButton src="" alt="bad" onClick={handleSwipeBad}/>
-        <SwipeButton src="" alt="check" onClick={handleSwipeLike}/>
+        <SwipeButton src="/home/bad.svg" alt="bad" onClick={handleSwipeBad}/>
+        <SwipeButton src="/home/love.svg" alt="check" onClick={handleSwipeLike}/>
     </Flex>
   )
 }
 
 const styles:Styles ={
     swipe_buttons:{
-      justifyContent: "space-around",
+      justifyContent: "center",
       position:"fixed",
       width:"100%",
-      bottom:"100px",
+      bottom:"130px",
       left: 0,
     },
 }

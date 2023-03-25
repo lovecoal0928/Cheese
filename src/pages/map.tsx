@@ -1,3 +1,5 @@
+import { MapTabButton } from '@/components/atoms/MapTabButton'
+import { SearchButton } from '@/components/atoms/SearchButton'
 import { BottomNav } from '@/components/organisms/commons/BottomNav'
 import { CustomMarker } from '@/components/organisms/map/CustomMarker'
 import {
@@ -10,6 +12,9 @@ import {
 import { PAGE_NAME } from 'constants/PathName'
 import { NextPage } from 'next'
 import React, { useEffect, useState } from 'react'
+import { useAuthLister } from 'utils/hooks/auth/useAuth'
+import { useFetchLikedPost } from 'utils/hooks/likedPost/useFetchLikedPost'
+import { useFetchPosts } from 'utils/hooks/post/useFetchPost'
 import { useCustomRouter } from 'utils/hooks/useCustomRouter'
 /* global google */
 
@@ -52,6 +57,12 @@ type LatLng = {
   lng: number
 }
 const map: NextPage = () => {
+
+  const { userId } = useAuthLister()
+
+  const { data: posts } = useFetchPosts()
+  const { data: likePosts } = useFetchLikedPost(userId!)
+
   const { isActive, isLastActive, pathHistory } = useCustomRouter()
   // 現在位置
   const [center, setCenter] = useState({ lat: 0, lng: 0 })
@@ -63,6 +74,9 @@ const map: NextPage = () => {
   >([])
   // 現在のルート
   const [currentDirection, setCurrentDirection] = useState(null)
+  // 上タグ
+  const [isRecommend, setisRecommend] = useState(false)
+
 
   // 現在位置を取得
   useEffect(() => {
@@ -82,8 +96,8 @@ const map: NextPage = () => {
         if (
           googleRes.status === 'OK' &&
           googleRes.geocoded_waypoints.length !==
-            // @ts-ignore
-            currentDirection.geocoded_waypoints.length
+          // @ts-ignore
+          currentDirection.geocoded_waypoints.length
         ) {
           console.log('ルートが設定されたのでstateを更新する')
           setCurrentDirection(googleRes)
@@ -140,6 +154,8 @@ const map: NextPage = () => {
             streetViewControl: false,
             fullscreenControl: false,
             disableDefaultUI: false,
+            mapTypeControl: false,
+            zoomControl: false
           }}
         >
           {locates.map((locate, i) => (
@@ -177,7 +193,16 @@ const map: NextPage = () => {
           )}
         </GoogleMap>
       </LoadScriptNext>
-      <button onClick={handleSearch}>検索</button>
+      <SearchButton onClick={handleSearch} />
+      <div style={{
+        position: "absolute",
+        top: 15,
+        left: 5,
+        backgroundColor: "rgba(0,0,0,0)",
+      }}>
+        <MapTabButton name={"すべて"} onClick={() => setisRecommend(false)} selected={!isRecommend} />
+        <MapTabButton name={"おすすめ"} onClick={() => setisRecommend(true)} selected={isRecommend} />
+      </div>
       <BottomNav
         PAGE_NAME={PAGE_NAME}
         isActive={isActive}

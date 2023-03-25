@@ -54,8 +54,8 @@ input, button, textarea, select {
 }
 
 .gm-style-iw.gm-style-iw-c {
-    height: 90px;
-    width: 90px;
+    height: 70px;
+    width: 100px;
     /* border-radius: 50%; */
     align-items: center;
     text-align: center;
@@ -63,7 +63,8 @@ input, button, textarea, select {
 }
 
 .gm-style-iw-d {
-    /* width: 80px; */
+    width: 120px;
+    height: 100px;
     /* overflow: "hidden"; */
-    padding-left: 10px;
+    transition: 0.2s ease;
 }
