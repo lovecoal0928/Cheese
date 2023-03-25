@@ -74,6 +74,9 @@ const map: NextPage = () => {
   >([])
   // 現在のルート
   const [currentDirection, setCurrentDirection] = useState(null)
+  // 上タグ
+  const [isRecommend, setisRecommend] = useState(false)
+
 
   // 現在位置を取得
   useEffect(() => {
@@ -193,9 +196,10 @@ const map: NextPage = () => {
         position: "absolute",
         top: 15,
         left: 5,
+        backgroundColor: "rgba(0,0,0,0)",
       }}>
-        <MapTabButton name={"すべて"} />
-        <MapTabButton name={"おすすめ"} />
+        <MapTabButton name={"すべて"} onClick={() => setisRecommend(false)} selected={!isRecommend} />
+        <MapTabButton name={"おすすめ"} onClick={() => setisRecommend(true)} selected={isRecommend} />
       </div>
       <BottomNav
         PAGE_NAME={PAGE_NAME}

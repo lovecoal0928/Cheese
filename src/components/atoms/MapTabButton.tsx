@@ -1,21 +1,38 @@
 import React, { CSSProperties } from 'react'
+import { Styles } from 'types'
 
 type Props = {
     name: string
+    onClick: () => void
+    selected: boolean
 }
 
 export const MapTabButton = (props: Props) => {
-    const { name } = props
+    const { name, onClick, selected } = props
 
     return (
-        <button style={style}>{name}</button>
+        <button
+            onClick={onClick}
+            style={selected ? style.selected : style.normal}
+        > {name}</button >
     )
 }
 
-const style: CSSProperties = {
-    backgroundColor: "#fff",
-    border: "1px solid #000",
-    borderRadius: 50,
-    padding: "4px 18px",
-    marginLeft: 10
+const style: Styles = {
+    normal: {
+        backgroundColor: "#fff",
+        border: "1px solid #000",
+        borderRadius: 50,
+        padding: "4px 18px",
+        marginLeft: 10
+    },
+    selected: {
+        backgroundColor: "#000",
+        color: "white",
+        border: "1px solid #000",
+        borderRadius: 50,
+        padding: "4px 18px",
+        marginLeft: 10
+    }
 }
+
