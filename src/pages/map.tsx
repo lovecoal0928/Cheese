@@ -18,7 +18,7 @@ import { useFetchPosts } from 'utils/hooks/post/useFetchPost'
 import { useCustomRouter } from 'utils/hooks/useCustomRouter'
 /* global google */
 
-const APIkey = process.env.NEXT_PUBLIC_GCP_KEY as string
+const APIkey = process.env.NEXT_PUBLIC_GCP_KEY_SUB as string
 
 // const locates = [
 //   {
@@ -138,6 +138,9 @@ const map: NextPage = () => {
     setCurrentDirection(null)
   }
 
+  // 表示する内容をタブで分ける
+  const data = isRecommend ? likePosts : posts
+
   return (
     <div style={{ background: '#eee', height: '200vw', width: '100vw' }}>
       <LoadScriptNext googleMapsApiKey={APIkey}>
@@ -158,8 +161,8 @@ const map: NextPage = () => {
             zoomControl: false
           }}
         >
-          {posts &&
-            posts.map((post, i) => (
+          {data &&
+            data.map((post, i) => (
               <CustomMarker
                 locate={{ lat: post.address.latitude, lng: post.address.longitude }}
                 imageUrl={post.postImages[0].imagePath}
