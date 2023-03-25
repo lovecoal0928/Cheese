@@ -4,6 +4,7 @@ import { PostForm } from '../organisms/post/PostForm'
 import { PathName } from 'types'
 import { MotionDiv } from '../atoms/MotionDiv'
 import { postSlide } from 'anim/slide'
+import { LatLng } from 'types/latlng'
 
 type Props = {
   titleRef: RefObject<HTMLInputElement>
@@ -14,6 +15,8 @@ type Props = {
   handlePushRouter: (pathname: string) => void
   PAGE_NAME: PathName[],
   onClickSave: () => Promise<void>
+  center: LatLng
+  setCenter: (value: LatLng) => void
 }
 export const Post = (props: Props) => {
   const {
@@ -24,7 +27,9 @@ export const Post = (props: Props) => {
     handlePushRouter,
     handleSetFiles,
     PAGE_NAME,
-    onClickSave
+    onClickSave,
+    center,
+    setCenter
   } = props
   return (
     <MotionDiv {...postSlide}>
@@ -38,6 +43,8 @@ export const Post = (props: Props) => {
           handleSetFiles={handleSetFiles}
           handlePushRouter={handlePushRouter}
           PAGE_NAME={PAGE_NAME[5].path}
+          center={center}
+          setCenter={setCenter}
         />
       </div>
     </MotionDiv>

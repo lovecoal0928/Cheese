@@ -12,31 +12,9 @@ import { useUploadFile } from 'utils/hooks/storage/useUploadFile'
 import { useAuth, useAuthLister } from 'utils/hooks/auth/useAuth'
 import { PostParams } from 'factories/postFactory'
 import { useDeleteFile } from 'utils/hooks/storage/useDeleteFile'
-
-// const dummyPost = {
-//   title: 'hoge',
-//   comment: 'hoge',
-//   userId: 'u001',
-//   latitude: 1,
-//   longitude: 1,
-//   postImages: [
-//     {
-//       imagePath: 'hoge',
-//       imageTags: [
-//         {
-//           name: 'hoge',
-//         },
-//       ],
-//     },
-//   ],
-// }
+import { LatLng } from 'types/latlng'
 
 const post: NextPage = () => {
-  // const {
-  //   data: posts,
-  //   refetch: refetchPosts,
-  //   isLoading: isFetchPostLoading,
-  // } = useFetchPosts()
 
   const { data: snapRoutes } = useFetchSnapRoutes()
 
@@ -87,6 +65,7 @@ const post: NextPage = () => {
   const placeRef = useRef(null)
   const [imagePaths, setImagePaths] = useState<string[]>([])
   const [fileKeys, setFileKeys] = useState<string[]>([])
+  const [center, setCenter] = useState<LatLng>({ lat: 0, lng: 0 })
   const { images, handleSetFiles, handleSetSrc } = useImageFiles()
   const { handlePushRouter, handleBackRouter } = useCustomRouter()
 
@@ -112,6 +91,18 @@ const post: NextPage = () => {
     })()
   }, [images])
 
+  // 現在位置を取得
+  useEffect(() => {
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition((position) => {
+        handleSetCenter({
+          lat: position.coords.latitude,
+          lng: position.coords.longitude,
+        })
+      })
+    }
+  }, [])
+
   const onSuccessUploadFile = ({
     key,
     publicUrl,
@@ -121,6 +112,15 @@ const post: NextPage = () => {
   }) => {
     setImagePaths((prevPaths) => [...prevPaths, publicUrl])
     setFileKeys((prevKeys) => [...prevKeys, key])
+  }
+
+  const handleSetCenter = (value: LatLng) => {
+    const set: LatLng = {
+      lat: Math.floor(value.lat * 1000000) / 1000000,
+      lng: Math.floor(value.lng * 1000000) / 1000000,
+    }
+
+    setCenter(set)
   }
 
   // insertPosts:title,comment,user_id
@@ -138,6 +138,8 @@ const post: NextPage = () => {
       handlePushRouter={handlePushRouter}
       PAGE_NAME={PAGE_NAME}
       onClickSave={submitPostHandler}
+      center={center}
+      setCenter={handleSetCenter}
     />
   )
 }
