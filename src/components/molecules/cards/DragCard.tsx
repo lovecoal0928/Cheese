@@ -24,13 +24,13 @@ export const DragCard = (props: Props) => {
 
 const styles:Styles ={
   card: {
-    minHeight: '90vh',
+    minHeight: '85vh',
     width: '90%',
     top: '2%',
     left: '4.5%',
     background: '#fff',
     position: 'absolute',
     borderRadius: '18px',
-    padding: '15px',
+    padding: '15px 15px 100px 15px',
   },
 }

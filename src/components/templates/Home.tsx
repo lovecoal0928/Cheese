@@ -89,7 +89,7 @@ const style: Styles = {
     width: '100%',
     left: '0px',
     top: '0px',
-    height: '120vh',
+    height: '100vh',
     background: '#eee',
     overflow: 'hidden',
   },

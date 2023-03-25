@@ -130,7 +130,9 @@ const styles: Styles = {
     margin: '0px 0px 10px 0px',
     display: 'inline-block',
   },
-  images: {},
+  images: {
+    
+  },
   image: {
     background: '#000',
     objectFit: 'cover',
