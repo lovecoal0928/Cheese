@@ -154,6 +154,8 @@ const map: NextPage = () => {
             streetViewControl: false,
             fullscreenControl: false,
             disableDefaultUI: false,
+            mapTypeControl: false,
+            zoomControl: false
           }}
         >
           {locates.map((locate, i) => (
