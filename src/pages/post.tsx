@@ -13,30 +13,7 @@ import { useAuth, useAuthLister } from 'utils/hooks/auth/useAuth'
 import { PostParams } from 'factories/postFactory'
 import { useDeleteFile } from 'utils/hooks/storage/useDeleteFile'
 
-// const dummyPost = {
-//   title: 'hoge',
-//   comment: 'hoge',
-//   userId: 'u001',
-//   latitude: 1,
-//   longitude: 1,
-//   postImages: [
-//     {
-//       imagePath: 'hoge',
-//       imageTags: [
-//         {
-//           name: 'hoge',
-//         },
-//       ],
-//     },
-//   ],
-// }
-
 const post: NextPage = () => {
-  // const {
-  //   data: posts,
-  //   refetch: refetchPosts,
-  //   isLoading: isFetchPostLoading,
-  // } = useFetchPosts()
 
   const { data: snapRoutes } = useFetchSnapRoutes()
 
@@ -87,6 +64,7 @@ const post: NextPage = () => {
   const placeRef = useRef(null)
   const [imagePaths, setImagePaths] = useState<string[]>([])
   const [fileKeys, setFileKeys] = useState<string[]>([])
+  const [center, setCenter] = useState({ lat: 0, lng: 0 })
   const { images, handleSetFiles, handleSetSrc } = useImageFiles()
   const { handlePushRouter, handleBackRouter } = useCustomRouter()
 
@@ -111,6 +89,18 @@ const post: NextPage = () => {
       })
     })()
   }, [images])
+
+  // 現在位置を取得
+  useEffect(() => {
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition((position) => {
+        setCenter({
+          lat: position.coords.latitude,
+          lng: position.coords.longitude,
+        })
+      })
+    }
+  }, [])
 
   const onSuccessUploadFile = ({
     key,

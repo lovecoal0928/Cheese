@@ -16,6 +16,8 @@ import { useAuthLister } from 'utils/hooks/auth/useAuth'
 import { useFetchLikedPost } from 'utils/hooks/likedPost/useFetchLikedPost'
 import { useFetchPosts } from 'utils/hooks/post/useFetchPost'
 import { useCustomRouter } from 'utils/hooks/useCustomRouter'
+import { LatLng } from 'types/latlng'
+
 /* global google */
 
 const APIkey = process.env.NEXT_PUBLIC_GCP_KEY_SUB as string
@@ -52,10 +54,7 @@ const destination = {
 //   }
 // ]
 
-type LatLng = {
-  lat: number
-  lng: number
-}
+
 const map: NextPage = () => {
 
   const { userId } = useAuthLister()

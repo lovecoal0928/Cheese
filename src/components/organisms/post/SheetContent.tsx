@@ -12,9 +12,14 @@ export const SheetContent = () => {
                     width: '100%',
                     height: '100vh',
                 }}
-            // center={}
+                center={{ lat: 0, lng: 0 }}
+                zoom={15}
             >
-                <MarkerF position={{ lat: 0, lng: 0 }} />
+                <MarkerF
+                    position={{ lat: 0, lng: 0 }}
+                    draggable
+                // onDragEnd={ }
+                />
             </GoogleMap>
         </LoadScriptNext>
     )
