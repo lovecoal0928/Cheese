@@ -45,9 +45,13 @@ class PostRepositoryImpl implements PostRepository {
     return postMapper.findAll(data)
   }
 
-  public findByExcludeIds = async (postIds: string[]): Promise<Post[]> => {
+  public findByExcludeIds = async (
+    postIds: string[],
+    userId: string,
+  ): Promise<Post[]> => {
     const { data, error } = await this.selectQueryBuilder()
       .not('post_id', 'in', `(${postIds.join(',')})`)
+      .neq('user_id', userId)
       .returns<PostReturnType[]>()
     if (error) throw error
     if (!data) return []

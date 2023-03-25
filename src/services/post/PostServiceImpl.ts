@@ -15,10 +15,10 @@ class PostServiceImpl implements PostService {
     const dislikedPostIds = await likedPostRepository.findDislikedPostIds(
       userId,
     )
-    const question = await postRepository.findByExcludeIds([
-      ...likedPostIds,
-      ...dislikedPostIds,
-    ])
+    const question = await postRepository.findByExcludeIds(
+      [...likedPostIds, ...dislikedPostIds],
+      userId,
+    )
     return question
   }
 
