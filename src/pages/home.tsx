@@ -6,20 +6,34 @@ import { useCustomRouter } from 'utils/hooks/useCustomRouter'
 import { useImage } from 'utils/hooks/useImages'
 import { useFetchSnapRoutes } from 'utils/hooks/snapRoute/useFetchSnapRoute'
 import { useFetchLikedPost } from 'utils/hooks/likedPost/useFetchLikedPost'
-import { useSaveLikedPost } from 'utils/hooks/likedPost/useSaveLikedPost'
-import { useFetchPosts } from 'utils/hooks/post/useFetchPost'
+import {
+  useSaveDislikedPost,
+  useSaveLikedPost,
+} from 'utils/hooks/likedPost/useSaveLikedPost'
+import {
+  useFetchPosts,
+  useFetchUnseenPosts,
+} from 'utils/hooks/post/useFetchPost'
 import { useIsZoom } from 'utils/hooks/useIsZoom'
+
 import { useModalScrollLock } from 'utils/hooks/useModalScrollLock'
 import { Zoom } from '@/components/templates/Zoom'
 import { useAuth, useAuthLister } from 'utils/hooks/auth/useAuth'
 import { useSlidShow } from 'utils/hooks/anim/useSlideShow'
 
 const home: NextPage = () => {
-  const { isActive,isLastActive,pathHistory } = useCustomRouter()
+  const { isActive, isLastActive, pathHistory } = useCustomRouter()
   const { mutate: saveLikedPost } = useSaveLikedPost()
+  const { mutate: saveDislikedPost } = useSaveDislikedPost()
   const { isZoom, handleSetIsZoom } = useIsZoom()
+  const { images, page, direction, variants, onDragEnd, handleSetImages } =
+    useSlidShow()
+
   const { userId } = useAuthLister()
-  const { images,page, direction, variants, onDragEnd,handleSetImages } = useSlidShow()
+  const { data: posts } = useFetchUnseenPosts(userId)
+  useEffect(() => {
+    console.log('posts', posts)
+  }, [posts])
 
   useModalScrollLock({ isZoom })
 
@@ -36,15 +50,10 @@ const home: NextPage = () => {
     )
   }
 
-  const {
-    data: posts,
-    refetch: refetchPosts,
-    isLoading: isFetchPostLoading,
-  } = useFetchPosts()
-
   const handleSwipeLike = async (postId: string, func?: () => void) => {
-    if (!userId) return;
+    if (!userId) return
     await submitLikedPostHandler(userId, postId)
+
     if (func) {
       func()
     }

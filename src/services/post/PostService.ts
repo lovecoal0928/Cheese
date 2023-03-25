@@ -1,9 +1,9 @@
 import { Post } from 'types/entities/Post'
 
-export interface PostRepository {
+export interface PostService {
   findAll: () => Promise<Post[]>
-  findById: (id: string) => Promise<Post | undefined>
+  findUnseen: (userId: string) => Promise<Post[]>
+  findById: (id: string) => Promise<Post>
   findByUserId: (userId: string) => Promise<Post[]>
-  findByExcludeIds: (postIds: string[], userId: string) => Promise<Post[]>
   save: (post: Post) => Promise<void>
 }

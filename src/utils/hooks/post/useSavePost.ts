@@ -1,11 +1,11 @@
 import { useMutation } from '@tanstack/react-query'
 import { PostFactory, PostParams } from 'factories/postFactory'
-import { postRepository } from 'repositories/database/post/PostRepositoryImpl'
+import { postService } from 'services/post/PostServiceImpl'
 
 export const useSavePost = () => {
   return {
     ...useMutation((params: PostParams) =>
-      postRepository.save(PostFactory.create(params)),
+      postService.save(PostFactory.create(params)),
     ),
   }
 }

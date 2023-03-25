@@ -54,6 +54,23 @@ export interface Database {
           post_id?: string
         }
       }
+      dislike_posts: {
+        Row: {
+          disliked_at: string | null
+          post_id: string
+          user_id: string
+        }
+        Insert: {
+          disliked_at?: string | null
+          post_id: string
+          user_id: string
+        }
+        Update: {
+          disliked_at?: string | null
+          post_id?: string
+          user_id?: string
+        }
+      }
       image_tags: {
         Row: {
           name: string

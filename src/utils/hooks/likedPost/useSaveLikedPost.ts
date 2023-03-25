@@ -9,3 +9,11 @@ export const useSaveLikedPost = () => {
     ),
   }
 }
+
+export const useSaveDislikedPost = () => {
+  return {
+    ...useMutation((params: likedPostParams) =>
+      likedPostRepository.saveDislike(LikedPostFactory.createDislike(params)),
+    ),
+  }
+}
