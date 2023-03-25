@@ -1,3 +1,4 @@
+import { MapTabButton } from '@/components/atoms/MapTabButton'
 import { SearchButton } from '@/components/atoms/SearchButton'
 import { BottomNav } from '@/components/organisms/commons/BottomNav'
 import { CustomMarker } from '@/components/organisms/map/CustomMarker'
@@ -179,7 +180,14 @@ const map: NextPage = () => {
         </GoogleMap>
       </LoadScriptNext>
       <SearchButton onClick={handleSearch} />
-
+      <div style={{
+        position: "absolute",
+        top: 10,
+        left: 10,
+      }}>
+        <MapTabButton name={"すべて"} />
+        <MapTabButton name={"おすすめ"} />
+      </div>
       <BottomNav
         PAGE_NAME={PAGE_NAME}
         isActive={isActive}

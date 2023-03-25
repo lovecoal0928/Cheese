@@ -1,7 +1,21 @@
-import React from 'react'
+import React, { CSSProperties } from 'react'
 
-export const MapTabButton = () => {
+type Props = {
+    name: string
+}
+
+export const MapTabButton = (props: Props) => {
+    const { name } = props
+
     return (
-        <div>MapTabButton</div>
+        <button style={style}>{name}</button>
     )
+}
+
+const style: CSSProperties = {
+    backgroundColor: "#fff",
+    border: "1px solid #000",
+    borderRadius: 50,
+    padding: "4px 18px",
+    marginLeft: 10
 }
