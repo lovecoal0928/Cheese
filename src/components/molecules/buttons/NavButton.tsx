@@ -24,6 +24,8 @@ export const NavButton = (props: NavButton) => {
         boxShadow: isActive(`/${href}`)
           ? '0px 0px 5px rgba(0, 0, 0, 0.32)'
           : 'none',
+          padding: isActive(`/${href}`) ? '15px 0' : '0',
+
       }}
       href={href}
     >
@@ -49,7 +51,6 @@ const styles: Styles = {
     border: 'none',
     textDecoration: 'none',
     margin: 0,
-    padding: '15px',
     display: 'flex',
     flexDirection: 'column',
     alignItems: 'center',

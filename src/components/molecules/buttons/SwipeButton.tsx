@@ -12,15 +12,19 @@ export const SwipeButton = (props: SwipeButton) => {
   const { src, alt, onClick } = props
   return (
     <Button style={style.button} onClick={onClick}>
-      <Image src={src} alt={alt} style={style.image} width={30} height={30} />
+      <Image src={src} alt={alt} style={style.image} width={100} height={100} />
     </Button>
   )
 }
+
 const style: Styles = {
   button: {
-    padding: '10px',
+    background: 'transparent',
+    border:"none",
+    margin:"0 10px"
   },
   image: {
-    padding: '10px',
+    width:"12vh",
+    height:"12vh"
   },
 }

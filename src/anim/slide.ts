@@ -18,8 +18,7 @@ export const postSlide: HTMLMotionProps<'div'> = {
 
 export const buttonSlide = {
   up: {
-    y: [22, -10],
-    zIndex:-1,
+    y: [22, -15],
     transition: {
       duration: 0.2,
       ease: 'easeOut',
@@ -28,8 +27,6 @@ export const buttonSlide = {
   },
   down: {
     y: 50,
-    zIndex: -1,
-    opacity: 0,
     transition: {
       duration: 0.1,
     },
@@ -38,14 +35,14 @@ export const buttonSlide = {
 
 export const navSlide = {
   home: {
-    x: '0.1%',
+    x: '1%',
     transition: {
       duration: 0.1,
       ease: 'easeOut',
     },
   },
   map: {
-    x: '19%',
+    x: '20.5%',
     transition: {
       duration: 0.1,
       ease: 'easeOut',
