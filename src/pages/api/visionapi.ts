@@ -2,6 +2,14 @@ import fs from "fs";
 import { NextApiRequest, NextApiResponse } from "next";
 import fetch from "node-fetch";
 
+export const config = {
+    api: {
+        bodyParser: {
+            sizeLimit: "20mb"
+        }
+    }
+}
+
 export default async function handler(
     req: NextApiRequest,
     res: NextApiResponse<any>
@@ -12,8 +20,8 @@ export default async function handler(
     const apiKey = process.env.NEXT_PUBLIC_GCP_KEY_SUB;
 
     // 画像をBase64エンコードする
-    const imageData = fs.readFileSync(image);
-    const base64Image = imageData.toString("base64");
+    // const imageData = fs.readFileSync(image);
+    // const base64Image = imageData.toString("base64");
 
     // Cloud Vision APIにリクエストを送信する
     const url = `https://vision.googleapis.com/v1/images:annotate?key=${apiKey}`;
@@ -21,7 +29,7 @@ export default async function handler(
         requests: [
             {
                 image: {
-                    content: base64Image,
+                    content: image,
                 },
                 features: [
                     {

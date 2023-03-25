@@ -35,9 +35,35 @@ const post: NextPage = () => {
 
   const { userId } = useAuthLister()
 
-  const submitPostHandler = async () => {
-    console.log(titleRef);
 
+  const convertToBase64 = (file: File): Promise<string> => {
+    return new Promise((resolve, reject) => {
+      const reader = new FileReader();
+      reader.readAsDataURL(file);
+      reader.onload = () => resolve(reader.result as string);
+      reader.onerror = error => reject(error);
+    });
+  }
+  const submitPostHandler = async () => {
+    const base64 = await convertToBase64(images.file[0])
+    const result: string = base64.replace(/^data:image\/(png|jpeg);base64,/, '')
+    console.log(result);
+
+
+    // タグを検出
+    const response = await fetch("/api/visionapi", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        image: result,
+      }),
+    });
+
+    const data = await response.json();
+    // const tags = data.responses[0].labelAnnotations[0].description
+    const tags: Array<any> = data.responses[0].labelAnnotations
 
     const post: PostParams = {
       userId: userId!,
@@ -47,7 +73,12 @@ const post: NextPage = () => {
       postImages: imagePaths.map((path) => (
         {
           imagePath: path,
-          imageTags: [{ name: "1" }, { name: "2" }]
+          // imageTags: [{ name: "1" }, { name: "2" }]
+          imageTags: tags.map((tag) => (
+            {
+              name: tag.description
+            }
+          ))
         }
       )),
       longitude: center.lng,
@@ -55,7 +86,8 @@ const post: NextPage = () => {
     }
 
     savePost(post, {
-      onSuccess: () => handleBackRouter(),
+      // onSuccess: () => handleBackRouter(),
+      // onSuccess: () => { },
       onError: () => console.log('error'),
     })
   }
