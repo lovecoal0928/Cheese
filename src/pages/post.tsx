@@ -65,6 +65,12 @@ const post: NextPage = () => {
     // const tags = data.responses[0].labelAnnotations[0].description
     const tags: Array<any> = data.responses[0].labelAnnotations
 
+
+    let message = ``// alertテスト用あとで消す
+    tags.forEach(tag => {
+      message += (tag.description + `,`) as string
+    });
+
     const post: PostParams = {
       userId: userId!,
       title: titleRef.current!.value,
@@ -86,7 +92,10 @@ const post: NextPage = () => {
     }
 
     savePost(post, {
-      onSuccess: () => handleBackRouter(),
+      onSuccess: () => {
+        alert(`投稿成功\n抽出タグ:${message}`)
+        handleBackRouter()
+      },
       // onSuccess: () => { },
       onError: () => console.log('error'),
     })
