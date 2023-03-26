@@ -2,6 +2,7 @@ import { NextPage } from 'next'
 import { Graph } from 'types/'
 import { useDijkstra } from 'utils/libs/dijkstra'
 import { useAuth } from 'utils/hooks/auth/useAuth'
+import { Signin } from '@/components/templates/Signin'
 
 const Home: NextPage = () => {
   const { signIn, signOut } = useAuth()
@@ -24,10 +25,7 @@ const Home: NextPage = () => {
   // console.log(previous); // { A: null, B: 'A', C: 'A', D: 'A', E: 'C', F: 'A' }
 
   return (
-    <>
-      <button onClick={signIn}>signup</button>
-      <button onClick={signOut}>signout</button>
-    </>
+    <Signin/>
   )
 }
 
