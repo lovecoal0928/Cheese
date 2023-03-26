@@ -50,7 +50,7 @@ export const navSlide = {
     },
   },
   route: {
-    x: '61.5%',
+    x: '59.2%',
     transition: {
       duration: 0.1,
       ease: 'easeOut',
