@@ -99,17 +99,17 @@ const map: NextPage = () => {
           // @ts-ignore
           currentDirection.geocoded_waypoints.length
         ) {
-          console.log('ルートが設定されたのでstateを更新する')
+          // console.log('ルートが設定されたのでstateを更新する')
           setCurrentDirection(googleRes)
         } else {
-          console.log('前回と同じルートのためstateを更新しない')
+          // console.log('前回と同じルートのためstateを更新しない')
         }
       } else {
         if (googleRes.status === 'OK') {
-          console.log('初めてルートが設定された')
+          // console.log('初めてルートが設定された')
           setCurrentDirection(googleRes)
         } else {
-          console.log('前回と同じルートのためstateを更新しない')
+          // console.log('前回と同じルートのためstateを更新しない')
         }
       }
     }

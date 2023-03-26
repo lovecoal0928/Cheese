@@ -5,7 +5,7 @@ import { routeHistoryState } from 'recoil/atoms'
 
 export const useCustomRouter = () => {
   const router = useRouter()
-  const [pathHistory,setPathHistory] = useRecoilState(routeHistoryState)
+  const [pathHistory, setPathHistory] = useRecoilState(routeHistoryState)
   const isActive = (pathname: string) => router.pathname === pathname
   const isLastActive = (pathname: string) => pathHistory[0] === pathname
   const handlePushRouter = (pathname: string) => {
@@ -14,19 +14,19 @@ export const useCustomRouter = () => {
     })
   }
 
-  const handleSetHistory=()=>{
-    setPathHistory((prevState)=>[prevState[1] || "",router.asPath])
+  const handleSetHistory = () => {
+    setPathHistory((prevState) => [prevState[1] || "", router.asPath])
   }
 
 
-  useEffect(()=>{
+  useEffect(() => {
     handleSetHistory()
-  },[])
-  useEffect(()=>{
-    console.log(pathHistory[0]);
-  },[pathHistory])
+  }, [])
+  useEffect(() => {
+    // console.log(pathHistory[0]);
+  }, [pathHistory])
 
-  const handleBackRouter=()=> router.back()
+  const handleBackRouter = () => router.back()
 
-  return { isActive, handlePushRouter,handleBackRouter,isLastActive,pathHistory}
+  return { isActive, handlePushRouter, handleBackRouter, isLastActive, pathHistory }
 }

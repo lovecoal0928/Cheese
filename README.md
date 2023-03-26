@@ -1,4 +1,14 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Cheese
+## コンセプト
+- 地図
+- Choose（チューズ）
+- はいチーズ
+
+**地図から行きたい場所をチューズしてはいチーズ！**
+## 目的
+写真検索から写真
+
+
 
 ## コミットメッセージ
 

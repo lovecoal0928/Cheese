@@ -2,39 +2,16 @@ import { NextPage } from 'next'
 import React from 'react'
 import { List } from '@/components/templates/List'
 import { useCustomRouter } from 'utils/hooks/useCustomRouter'
+import { useFetchPosts } from 'utils/hooks/post/useFetchPost'
 
 const list: NextPage = () => {
-  const { isActive, isLastActive,pathHistory } = useCustomRouter()
-  const data = [
-    {
-      postId: '',
-      userId: '',
-      title: 'タイトル',
-      comment: 'コメント',
-      postedAt: '',
-      updatedAt: '',
-      postImages: [
-        {
-          postImageId: '',
-          imagePath: '',
-          imageTags: [
-            {
-              tagId: '',
-              name: 'タグ',
-            },
-          ],
-        },
-      ],
-      address: {
-        addressId: '',
-        longitude: 10,
-        latitude: 20,
-      },
-    },
-  ]
+  const { isActive, isLastActive, pathHistory } = useCustomRouter()
+
+  const { data: posts } = useFetchPosts()
+
   return (
     <List
-      data={data}
+      data={posts!}
       isActive={isActive}
       isLastActive={isLastActive}
       pathHistory={pathHistory}
