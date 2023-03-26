@@ -30,9 +30,6 @@ const home: NextPage = () => {
 
   const { userId } = useAuthLister()
   const { data: posts } = useFetchUnseenPosts(userId)
-  useEffect(() => {
-    console.log('posts', posts)
-  }, [posts])
 
   useModalScrollLock({ isZoom })
 

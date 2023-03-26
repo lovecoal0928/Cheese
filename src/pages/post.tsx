@@ -19,7 +19,7 @@ const post: NextPage = () => {
   const { data: snapRoutes } = useFetchSnapRoutes()
 
   useEffect(() => {
-    console.log('route', snapRoutes)
+    // console.log('route', snapRoutes)
   }, [snapRoutes])
 
   //NOTE: 確認したら消してもらって大丈夫です。
@@ -47,7 +47,7 @@ const post: NextPage = () => {
   const submitPostHandler = async () => {
     const base64 = await convertToBase64(images.file[0])
     const result: string = base64.replace(/^data:image\/(png|jpeg);base64,/, '')
-    console.log(result);
+    // console.log(result);
 
 
     // タグを検出
