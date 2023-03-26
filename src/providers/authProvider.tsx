@@ -18,7 +18,7 @@ export const AuthProvider = ({ children }: Props) => {
     ;(async () => {
       if (session === undefined) return
       if (session === null) {
-        router.push(pagesPath.signup.$url())
+        router.push(pagesPath.$url())
         return
       }
       const user = await userRepository.findById(session.user.id)
