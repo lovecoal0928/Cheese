@@ -74,9 +74,9 @@ export const PostForm = (props: Props) => {
         header={
           <h1>場所を登録</h1>
         }
-        footer={
-          <button style={style.placesAdd}>登録</button>
-        }
+      // footer={
+      //   <button style={style.placesAdd}>登録</button>
+      // }
       >
         <SheetContent
           center={center}
