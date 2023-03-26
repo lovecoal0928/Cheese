@@ -6,6 +6,7 @@ import { Flex } from '../atoms/Flex'
 import { Post } from 'types/entities/Post'
 import { Zoom } from './Zoom'
 import { Point, Variants } from 'framer-motion'
+import { NoCard } from '../organisms/home/NoCard'
 
 type Props = {
   data: Post[]
@@ -15,7 +16,7 @@ type Props = {
   page: number
   direction: number
   variants: Variants
-  pathHistory:string[]
+  pathHistory: string[]
   onDragEnd: (
     event: MouseEvent | TouchEvent | PointerEvent,
     { offset, velocity }: { [key: string]: Point },
@@ -60,7 +61,8 @@ export const Home = (props: Props) => {
           onDragEnd={onDragEnd}
         />
       )}
-      {data.map((value: Post,index:number) => (
+      {data.length === 0 && <NoCard />}
+      {data.map((value: Post, index: number) => (
         <SpotCard
           title={value.title}
           postImages={value.postImages}
