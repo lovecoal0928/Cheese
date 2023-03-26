@@ -5,8 +5,6 @@ import { useAuth } from 'utils/hooks/auth/useAuth'
 import { Signin } from '@/components/templates/Signin'
 
 const Home: NextPage = () => {
-  const { signIn, signOut } = useAuth()
-  const { getShortestPath } = useDijkstra()
 
   // // グラフの定義
   // const graph: Graph = {
