@@ -3,6 +3,8 @@ import { useSessionStorage } from 'react-use'
 import { AuthChangeEvent, Session } from '@supabase/supabase-js'
 import { useEffect } from 'react'
 import { supabase } from 'plugins/supabse'
+import { useRouter } from 'next/router'
+import { UseQueryOptions, useMutation, useQuery } from '@tanstack/react-query'
 
 export const useAuth = () => {
   const signOut = async () => {
@@ -19,6 +21,13 @@ export const useAuth = () => {
   } as const
 }
 
+export const useGetSession = (
+  queryOptions?: UseQueryOptions<Session | null>,
+) => {
+  return useQuery<Session | null>([], () => authUserRepository.getSession(), {
+    ...queryOptions,
+  })
+}
 export const useAuthLister = () => {
   const AUTH_SESSION_KEY = 'AUTH_SESSION_KEY'
   const [session, setSession] = useSessionStorage<null | Session>(
