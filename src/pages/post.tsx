@@ -12,31 +12,9 @@ import { useUploadFile } from 'utils/hooks/storage/useUploadFile'
 import { useAuth, useAuthLister } from 'utils/hooks/auth/useAuth'
 import { PostParams } from 'factories/postFactory'
 import { useDeleteFile } from 'utils/hooks/storage/useDeleteFile'
-
-// const dummyPost = {
-//   title: 'hoge',
-//   comment: 'hoge',
-//   userId: 'u001',
-//   latitude: 1,
-//   longitude: 1,
-//   postImages: [
-//     {
-//       imagePath: 'hoge',
-//       imageTags: [
-//         {
-//           name: 'hoge',
-//         },
-//       ],
-//     },
-//   ],
-// }
+import { LatLng } from 'types/latlng'
 
 const post: NextPage = () => {
-  // const {
-  //   data: posts,
-  //   refetch: refetchPosts,
-  //   isLoading: isFetchPostLoading,
-  // } = useFetchPosts()
 
   const { data: snapRoutes } = useFetchSnapRoutes()
 
@@ -57,9 +35,35 @@ const post: NextPage = () => {
 
   const { userId } = useAuthLister()
 
-  const submitPostHandler = async () => {
-    console.log(titleRef);
 
+  const convertToBase64 = (file: File): Promise<string> => {
+    return new Promise((resolve, reject) => {
+      const reader = new FileReader();
+      reader.readAsDataURL(file);
+      reader.onload = () => resolve(reader.result as string);
+      reader.onerror = error => reject(error);
+    });
+  }
+  const submitPostHandler = async () => {
+    const base64 = await convertToBase64(images.file[0])
+    const result: string = base64.replace(/^data:image\/(png|jpeg);base64,/, '')
+    console.log(result);
+
+
+    // タグを検出
+    const response = await fetch("/api/visionapi", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        image: result,
+      }),
+    });
+
+    const data = await response.json();
+    // const tags = data.responses[0].labelAnnotations[0].description
+    const tags: Array<any> = data.responses[0].labelAnnotations
 
     const post: PostParams = {
       userId: userId!,
@@ -69,15 +73,21 @@ const post: NextPage = () => {
       postImages: imagePaths.map((path) => (
         {
           imagePath: path,
-          imageTags: [{ name: "1" }, { name: "2" }]
+          // imageTags: [{ name: "1" }, { name: "2" }]
+          imageTags: tags.map((tag) => (
+            {
+              name: tag.description
+            }
+          ))
         }
       )),
-      longitude: 113,
-      latitude: 35
+      longitude: center.lng,
+      latitude: center.lat
     }
 
     savePost(post, {
       onSuccess: () => handleBackRouter(),
+      // onSuccess: () => { },
       onError: () => console.log('error'),
     })
   }
@@ -87,6 +97,7 @@ const post: NextPage = () => {
   const placeRef = useRef(null)
   const [imagePaths, setImagePaths] = useState<string[]>([])
   const [fileKeys, setFileKeys] = useState<string[]>([])
+  const [center, setCenter] = useState<LatLng>({ lat: 0, lng: 0 })
   const { images, handleSetFiles, handleSetSrc } = useImageFiles()
   const { handlePushRouter, handleBackRouter } = useCustomRouter()
 
@@ -112,6 +123,18 @@ const post: NextPage = () => {
     })()
   }, [images])
 
+  // 現在位置を取得
+  useEffect(() => {
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition((position) => {
+        handleSetCenter({
+          lat: position.coords.latitude,
+          lng: position.coords.longitude,
+        })
+      })
+    }
+  }, [])
+
   const onSuccessUploadFile = ({
     key,
     publicUrl,
@@ -121,6 +144,15 @@ const post: NextPage = () => {
   }) => {
     setImagePaths((prevPaths) => [...prevPaths, publicUrl])
     setFileKeys((prevKeys) => [...prevKeys, key])
+  }
+
+  const handleSetCenter = (value: LatLng) => {
+    const set: LatLng = {
+      lat: Math.floor(value.lat * 1000000) / 1000000,
+      lng: Math.floor(value.lng * 1000000) / 1000000,
+    }
+
+    setCenter(set)
   }
 
   // insertPosts:title,comment,user_id
@@ -138,6 +170,8 @@ const post: NextPage = () => {
       handlePushRouter={handlePushRouter}
       PAGE_NAME={PAGE_NAME}
       onClickSave={submitPostHandler}
+      center={center}
+      setCenter={handleSetCenter}
     />
   )
 }

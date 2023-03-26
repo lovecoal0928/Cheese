@@ -66,7 +66,7 @@ export const SpotCard = (props: Props) => {
             <Flex direction="column">
               <Typography style={styles.title}>{title}</Typography>
               <Button onClick={() => {}} style={styles.map_button}>
-                <Typography style={styles.map}>地図</Typography>
+                <Typography style={styles.map}>Googleマップで表示</Typography>
               </Button>
             </Flex>
             <Flex style={styles.images}>
@@ -81,7 +81,9 @@ export const SpotCard = (props: Props) => {
                   />
                 ))}
             </Flex>
-            <Image
+
+            {/* Imageだとなぜか画質が悪くなる */}
+            <img
               alt="スポット画像"
               src={image}
               style={styles.selected_image}
@@ -90,7 +92,9 @@ export const SpotCard = (props: Props) => {
                 handleSetImages(images)
               }}
             />
-            <Typography style={styles.comment}>{comment}</Typography>
+            <Flex style={styles.comment_box}>
+              <Typography style={styles.comment}>{comment}</Typography>
+            </Flex>
           </DragCard>
           <SwipeButtons
             handleSwipeLike={() =>
@@ -114,25 +118,24 @@ const styles: Styles = {
     fontWeight: 600,
     fontSize: '18px',
     lineHeight: '22px',
-    padding: '10px 0 2px 0',
+    padding: '10px 0 2px 2.0%',
   },
   map_button: {
     backgroundColor: '#fff',
     border: 'none',
-    width: '26px',
-    padding: 0,
+    width: '130px',
+    padding: '0 0 7px ',
   },
   map: {
     fontStyle: 'normal',
     fontWeight: 400,
     fontSize: '13px',
-    color: '#666',
-    margin: '0px 0px 10px 0px',
+    color: '#0A85FF',
+    margin: '0px 0px 10px 2%',
     display: 'inline-block',
+    width: '100%',
   },
-  images: {
-    
-  },
+  images: {},
   image: {
     background: '#000',
     objectFit: 'cover',
@@ -148,8 +151,13 @@ const styles: Styles = {
     height: '300px',
     borderRadius: '8px',
   },
+  comment_box: {
+    width:"100%",
+    justifyContent:"center"
+  },
   comment: {
-    margin: '10px 0',
+    margin: '20px 0 0 0',
     display: 'inline-block',
+    width: '96%',
   },
 }
