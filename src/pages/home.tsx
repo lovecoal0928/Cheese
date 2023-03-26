@@ -15,7 +15,6 @@ import {
   useFetchUnseenPosts,
 } from 'utils/hooks/post/useFetchPost'
 import { useIsZoom } from 'utils/hooks/useIsZoom'
-
 import { useModalScrollLock } from 'utils/hooks/useModalScrollLock'
 import { Zoom } from '@/components/templates/Zoom'
 import { useAuth, useAuthLister } from 'utils/hooks/auth/useAuth'

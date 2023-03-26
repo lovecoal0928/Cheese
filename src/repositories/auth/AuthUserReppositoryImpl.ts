@@ -25,6 +25,12 @@ class AuthUserRepositoryImpl implements AuthUserRepository {
     } = await supabase.auth.getUser()
     return user ?? undefined
   }
+
+  public getSession = async () => {
+    const { data, error } = await supabase.auth.getSession()
+    if (error) throw error
+    return data.session
+  }
 }
 
 export const authUserRepository = new AuthUserRepositoryImpl()
