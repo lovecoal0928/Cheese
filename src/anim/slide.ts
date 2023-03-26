@@ -27,6 +27,7 @@ export const buttonSlide = {
   },
   down: {
     y: 50,
+    zIndex:-1,
     transition: {
       duration: 0.1,
     },
