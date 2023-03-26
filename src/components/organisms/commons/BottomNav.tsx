@@ -33,7 +33,7 @@ export const BottomNav = (props: Props) => {
           value.src && (
             <>
               <MotionDiv
-                variants={isLastActive(`/${value.path}`) ? buttonSlide : {}}
+                variants={isActive(`/${value.path}`) ? buttonSlide : {}}
                 initial={{y:0}}
                 animate={'up'}
                 exit={'down'}
