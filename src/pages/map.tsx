@@ -17,6 +17,7 @@ import { useFetchLikedPost } from 'utils/hooks/likedPost/useFetchLikedPost'
 import { useFetchPosts } from 'utils/hooks/post/useFetchPost'
 import { useCustomRouter } from 'utils/hooks/useCustomRouter'
 import { LatLng } from 'types/latlng'
+import { findFarthestLocation } from 'utils/hooks/useDirection'
 
 /* global google */
 
@@ -140,6 +141,9 @@ const map: NextPage = () => {
   // 表示する内容をタブで分ける
   const data = isRecommend ? likePosts : posts
 
+  // 最終地点を決める
+  // @ts-ignore
+  const destination = findFarthestLocation(center, transpoints)
   return (
     <div style={{ background: '#eee', height: '200vw', width: '100vw' }}>
       <LoadScriptNext googleMapsApiKey={APIkey}>
@@ -175,7 +179,7 @@ const map: NextPage = () => {
             <DirectionsService
               options={{
                 origin: center,
-                destination: center,
+                destination: destination!,
                 // travelMode: google.maps.TravelMode.WALKING,
                 // @ts-ignore
                 travelMode: 'WALKING',
